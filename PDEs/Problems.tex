@@ -1,0 +1,288 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[shortlabels]{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{float}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{subfigure}
+\definecolor{problem}{rgb}{0.8,0.8,0.8}
+\newcommand{\comp}[2]{
+\vspace{0.2in}\begin{mdframed}[
+  backgroundcolor=problem,
+  skipabove=\topsep,
+  skipbelow=\topsep
+  ]
+  \emph{Computation {#1}:} {#2}
+\end{mdframed}}
+\newcommand{\exercise}[2]{
+\vspace{0.2in}\begin{mdframed}[
+  backgroundcolor=problem,
+  skipabove=\topsep,
+  skipbelow=\topsep
+  ]
+  \emph{Exercise {#1}:} {#2}
+\end{mdframed}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\LIM}{\mathop{\textup{LIM}}}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Aidan Copinga, MATH6420}
+\begin{document}
+    % \exercise{1}{Solve the IVP/IBPs using the method of characteristics.}
+    % \begin{enumerate}[(a)]
+    %   \item Let $b\in \R^n,c\in \R$ find the general solution of,
+    %   \[\begin{cases}
+    %     u_t + b\cdot D_x u = cu &(x,t)\in \R^n\otimes (0,\infty) \\
+    %     u(x,0)=g(x) &x\in\R^n
+    %   \end{cases}\]
+    %   \item[] \textit{Solution:} This has characteristic equations
+    %   \begin{align*}
+    %     \frac{\partial x}{\partial s} = b,\,\,
+    %     \frac{\partial t}{\partial s} = 1,\,\,
+    %     \frac{\partial u}{\partial s}=cu
+    %   \end{align*}
+    %   subject to the initial conditions
+    %   \begin{align*}
+    %     x(0) = \xi,\,\,
+    %     t(0) = 0,\,\,
+    %     u(0) = g(\xi)
+    %   \end{align*}
+    %   This has the following solutions
+    %   \begin{align*}
+    %     x(s,\xi) = bs + \xi,\,\, t(s,\xi) = s,\,\,u(s,\xi) = g(\xi)e^{cs}
+    %   \end{align*}
+    %   Now change of variables lends
+    %   \[s = t,\,\,\xi = x - bt\]
+    %   so we have that $u(x,t) = g(x-bt)e^{ct}$.
+    %   \item Find the general solution of
+    %   \[\begin{cases}
+    %     u_t + xu_x = 0 &(x,t)\in \R\otimes (0,\infty) \\
+    %     u(x,0)=g(x) &x\in\R.
+    %   \end{cases}\] 
+    %   \item[] \textit{Solution:} This has characteristic equations
+    %   \begin{align*}
+    %     \frac{\partial x}{\partial s} = x,\,\,
+    %     \frac{\partial t}{\partial s} = 1,\,\,
+    %     \frac{\partial u}{\partial s}=0
+    %   \end{align*}
+    %   subject to the initial conditions
+    %   \begin{align*}
+    %     x(0) = \xi,\,\,
+    %     t(0) = 0,\,\,
+    %     u(0) = g(\xi)
+    %   \end{align*}
+    %   This has the following solutions
+    %   \begin{align*}
+    %     x(s,\xi) = \xi e^s,\,\, t(s,\xi) = s,\,\,u(s,\xi) = g(\xi)
+    %   \end{align*}
+    %   Now change of variables lends
+    %   \[s = t,\,\,\xi = xe^{-t}\]
+    %   so we have that $u(x,t) = g(xe^{-t})$.
+    %   \item Find the general solution of
+    %   \[\begin{cases}
+    %     u_t + bu_x = 0\,\,\mathrm{for}\,\,(x,t)\in (0,\infty)\otimes (0,\infty) \\
+    %     u(x,0)=f(x)\,\,\mathrm{and}\,\,u(0,t)=g(t).
+    %   \end{cases}\] 
+    %   \item[] \textit{Solution:} This has characteristic equations
+    %   \begin{align*}
+    %     \frac{\partial x}{\partial s} = b,\,\,
+    %     \frac{\partial t}{\partial s} = 1,\,\,
+    %     \frac{\partial u}{\partial s}=0
+    %   \end{align*}
+    %   subject to the initial conditions
+    %   \begin{align*}
+    %     x(0) = \xi,\,\,
+    %     t(0) = 0,\,\,
+    %     u(0) = f(\xi)
+    %   \end{align*}
+    %   This has the following solutions
+    %   \begin{align*}
+    %     x(s,\xi) = b\xi,\,\, t(s,\xi) = s,\,\,u(s,\xi) = f(\xi)
+    %   \end{align*}
+    %   Now change of variables lends
+    %   \[s = t,\,\,\xi = x - bt\]
+    %   so we have that $u(x,t) = f(x - bt)$. However, this is only along the characteristic line $t = 0$, along the characteristic
+    %   $x = 0$, we need to determine boundary behaviour. Take characteristic $x(t) = \xi + bt$, now choose $t^\star$ s.t. $x(t^\star) = 0$.
+    %   We see that $\xi = - bt^\star$, so substituting this into $x(t)=\xi + bt$, we see that $t^\star = t - x(t)/b$. This means we have 
+    %   $u(x,t) = g(t - x/b)$ along $t - x/b > 0$.\newline
+    %   When $b<0$, characteristic lines $\xi = x - bt$ pass through both boundaries $t = 0$ and $x = 0$. Assuming such a solution exists, this would imply that 
+    %   solutions $u(x,t) = f(x-bt)$ agree with $f(-bt) = g(t)$ or $u(x,t) = g(t-x/b)$ agree with $g(-x/b) = f(x)$. If this were not the case, then any
+    %   solutions would not exist.
+    %   \item Find the general solution of
+    %   \[\begin{cases}
+    %     u_t + \sqrt{x}u_x = 0\,\,\mathrm{for}\,\,(x,t)\in (0,\infty)\otimes (0,\infty) \\
+    %     u(x,0)=f(x)\,\,\mathrm{and}\,\,u(0,t)=g(t).
+    %   \end{cases}\] 
+    %   \item[] \textit{Solution:} This has characteristic equations
+    %   \begin{align*}
+    %     \frac{\partial x}{\partial s} = x^{1/2},\,\,
+    %     \frac{\partial t}{\partial s} = 1,\,\,
+    %     \frac{\partial u}{\partial s}=0
+    %   \end{align*}
+    %   subject to the initial conditions
+    %   \begin{align*}
+    %     x(0) = \xi,\,\,
+    %     t(0) = 0,\,\,
+    %     u(0) = f(\xi)
+    %   \end{align*}
+    %   This has the following solutions with $x > 0$,
+    %   \begin{align*}
+    %     x(s,\xi) = \frac{1}{4}(s + 2\sqrt{\xi})^2,\,\, t(s,\xi) = s,\,\,u(s,\xi) = f(\xi)
+    %   \end{align*}
+    %   Now change of variables lends
+    %   \[s = t,\,\,\xi = \left(\sqrt{x}-\frac{t}{2}\right)^2\]
+    %   Here, we see that when $\xi = 0$, $x = \left(\frac{t}{2}\right)^2$, so when $x < \left(\frac{t}{2}\right)^2$, we have that
+    %   $u(x,t) = f(\left(\sqrt{x}-\frac{t}{2}\right)^2)$. Then when $x > \left(\frac{t}{2}\right)^2$, we see that $x(t) = \left(\sqrt{\xi}+\frac{t}{2}\right)^2$, so for $t^\star$ s.t. $\left(\sqrt{\xi} + \frac{t^\star}{2}\right)^2 = 0$
+    %   so we have that $-\sqrt{\xi} = \left(\frac{{t^\star}}{2}\right)$, meaning that $t^\star = -2\sqrt{x} + t$ so then we have the solution $u(x,t) = g(t-2\sqrt{x})$.
+    % \end{enumerate}
+    % \exercise{2}{Use the method of characteristics to solve the following equation
+    % \[\begin{cases}
+    %   u_t + x|x|u_x = 0 &(x,t)\in \R\otimes(0,\infty) \\
+    %   u(x,0) = f(x) &x\in\R
+    % \end{cases}\]
+    % After finding the general solution, suppose additionally that $f(x)=0$ for $|x|\le r$. Show that there is minimal time $T(r)$ so that for any such $f$ the corresponding solution $u$ satisfies $u(\dot,t)\equiv 0$ for all $t\ge T$, calculate $T(r)$.}
+    % \textit{Solution:} This has characteristic equations
+    % \begin{align*}
+    %   \frac{\partial x}{\partial s} = x|x|,\,\,
+    %   \frac{\partial t}{\partial s} = 1,\,\,
+    %   \frac{\partial u}{\partial s}=0
+    % \end{align*}
+    % subject to the initial conditions
+    % \begin{align*}
+    %   x(0) = \xi,\,\,
+    %   t(0) = 0,\,\,
+    %   u(0) = f(\xi)
+    % \end{align*}
+    % This has the following solutions
+    % \begin{align*}
+    %   x(s,\xi) = \pm\frac{\xi}{\xi s \pm 1},\,\, t(s,\xi) = s,\,\,u(s,\xi) = f(\xi)
+    % \end{align*}
+    % Now change of variables lends
+    % \[s = t,\,\,\xi = \mp\frac{x}{1\mp tx}\]
+    % so when $\xi \ge 0$, we have that $\xi = \frac{x}{1+tx}$ as $\xi \ge 0$ implies that $\dot{x} \ge 0$. Now when $\xi < 0$, we have that $\xi = -\frac{x}{1-tx}$. Now we have the solution
+    % \[u(x,t) = \begin{cases}
+    %   f(\frac{x}{1+tx}) &x\ge 0\\
+    %   f(-\frac{x}{1-tx}) &x\le 0.
+    % \end{cases}\]
+    % Given that $f(x) = 0$ for $|x| \le r$, we see that as $t \to \frac{1}{\mathrm{sgn}{(\xi)}\xi}$, solutions blow up. Consider when 
+    % $t > \frac{1}{\mathrm{sgn}{(\xi)}\xi}$. Now it's sufficient to show that there is a $t^\star$ such that $x(t^\star,\xi) = r$ along the characteristic.
+    % \begin{align*}
+    %   r &= \pm\frac{\xi}{\xi t^\star \pm 1}\\
+    %   \mp r(\xi t^\star \pm 1) &= \xi\\
+    %   \xi t^\star \pm 1 &= \mp\frac{\xi}{r} \\
+    %   t^\star &= \mp \left(\frac{1}{r} +\frac{1}{\xi}\right)
+    % \end{align*}
+    % so we see that $t^\star = \left(\frac{1}{r} +\frac{1}{|\xi|}\right)$ is such $t^\star$ so now, to show there is a minimal $T(r)$, we see that $\lim_{|\xi|\to\infty} t^\star = \frac{1}{r}$, so it has a minimal time $1/r$ where $u(x,t) = 0$ for all $t \ge 1/r$. 
+    \exercise{3}{Let $U$ be a bounded domain of $\R^n$. We say $u\in C^2(U)$ is subharmonic if $-\Delta u \le 0$ in $U$.
+    \begin{enumerate}[(a)]
+      \item Prove for subharmonic $v$ that\[ v(x) \le \frac{1}{|B(x,r)|}\int_{B(x,r)}v(y)dy\,\,\text{ for all $\overline{B(x,r)}\subset U$.}\]
+      \item Prove that the weak maximum principle holds for subharmonic $v\in C^2(U)\cap C(\bar{U})$.
+      \item Let $\phi: \R\to\R$ be smooth and convex. Assume $u$ is harmonic and $v=\phi(u)$. Prove that $v$ is subharmonic.
+      \item Prove $v=|Du|^2$ is subharmonic whenever $u$ is harmonic.
+    \end{enumerate}
+    }
+    \textit{Solution:}
+    \begin{enumerate}[(a)]
+      \item It's sufficient to show that $v(x) \le \frac{1}{|B(x,r)|}\int_{\partial B} v(y)dy$ as 
+      \[\frac{1}{|B(x,r)|}\int_{B} v(y)dy = \frac{1}{|B(x,r)|}\int_0^r d\rho\int_{\partial B} v(y)dy = \frac{1}{|B(x,r)|}\int_{\partial B} v(y)dy.\] Let $\phi(r) = \frac{1}{|B(x,r)|}\int_{\partial B} v(y)dy$. Now we see that (using $\int$ for the mean value integral because I'm not sure how to do that in LaTeX.)
+      \[\phi'(r) = \int_{\partial B(0,1)} Dv(x+rz)\cdot zdS(z)\] letting $y = x+rz$. Using green's theorem, we see that (using the fact that $\Delta v \ge 0$)
+      \[ \phi'(r) = \int_{\partial B(0,1)} Dv(x+rz)\cdot \frac{y-z}{r}dS(y) = \frac{r}{n}\int_{B(x,r)}\Delta v(y)dy \ge 0.\]
+      Because $\phi' \ge 0$, we see that it's increasing,
+      \[ \phi(r) = \int_{\partial B(x,r)}v(y)dy\ge v(x).\]
+      \item Let $v \in C^2(U)\cap C(\bar{U})$. FSoC, suppose 
+      \[\max_{x\in\bar{U}} v(x) > \max_{x\in\partial\bar{U}}v(x).\]
+      Now, there is a point $x_0\in U$ s.t. $v(x_0) > \max_{x\in\partial\bar{U}}{v(x)}$.\newline
+      By part (a), for any $r > 0$ for $B(x_0,r)\subset U$, 
+      \[\int_{B(x_0,r)} v(y) - v(x_0)dy \ge 0\]
+      but $v(y)-v(x_0)$ is nonpositive so $v(y)=v(x_0)$ for all $y\in B(x_0,r)$. Consider $L = \{r > 0|B(x_0,r)\subset U\}$ and $s=\sup{L}$. 
+      Since $B(x_0,s)=\cup_{r\in L}B(x_0,r)\subset U$, we have that for all $y\in B(x_0,s),v(y)=v(x_0)$.\newline
+      It's now sufficient to show that $\overline{B(x_0,s)}\cap \partial U\ne \emptyset$.\newline
+      \textit{Proof of Above:} Suppose $\overline{B(x_0,s)}\cap \partial U$ is empty. Since $\cap{B(x_0,s)}\subset \bar{U}$, then $\overline{B(x_0,s)}\cap (\R^n\setminus U)$ is also empty.
+      Since the ball is compact (Heine-Borel) and $\R^n\setminus U$ is closed, then 
+      \[0 < \inf\{|b-a|\,\,|b\in \overline{B(x_0,s)},\,\,\,a\in(\R^n\setminus U)\} = d.\]
+      However, this means that $B(x_0,s+d/2)\subset U$. But this means $s + d/2\in L$ and $s + d/2 > s = \sup{L}$, which is a contradiction.
+    \item $\phi$ is smooth and convex and $u$ is harmonic. $v = \phi(u)$ so
+    \begin{align*}
+      \Delta v&= \nabla \cdot (\nabla v) \\
+      \nabla v &= \phi'(u)\nabla u \\
+      \nabla\cdot (\nabla v) &= \nabla\cdot(\phi'(u)\nabla u) \\
+      &= (\phi''(u)\nabla u)\cdot\nabla u + \phi'(u)\nabla\cdot(\nabla u) \\
+      &= (\phi''(u)\nabla u)\cdot\nabla u = \phi''(u)|\nabla u|^2\ge 0
+    \end{align*}
+    because $\phi$ is convex, it has $\phi'' \ge 0$. This implies that $-\Delta v \le 0$, and thus $v$ is subharmonic.
+    \item Since $u$ is harmonic, $u_{x_i}$ for $i=1,\dots,n$ is harmonic as well. $(u_{x_i})^2$ is subharmonic by (c). Now 
+     \[|Du|^2 = \sum_{i=1}^n (u_{x_i})^2\]
+     which is subharmonic as it's the sum of subharmonic functions.
+    \end{enumerate}
+
+    \exercise{4}{If $u$ is weakly harmonic, then $u$ is $C^2$ and harmonic.}
+    \textit{Solution:} Because $u$ is weakly harmonic, for test functions $\phi\in C^\infty_c$,
+    \[\int_{U}u\Delta\phi dx = 0.\]
+    Define a mollifier $\eta$ s.t. 
+    \[\eta(x) :=\begin{cases}
+    C\exp{\left(\frac{1}{|x|^2-1}\right)} &\mathit{if}\,\,|x|<1 \\
+    0 &\mathit{if}\,\, |x|\ge 1
+    \end{cases}\]
+    Where $C$ is chosen such that $\int_{\R^n}\eta dx = 1$. Then, we can define $u_\epsilon = \eta_\epsilon \star u$. Now, for $\epsilon > 0$ set
+    \[\eta_\epsilon(x) := \frac{1}{\epsilon^n}\eta\left(\frac{x}{\epsilon}\right)\]
+    Now define the set $U_\epsilon := \{x\in U\,\,:\,\,d(x,\partial U) > \epsilon\}$ where $d$ is the distance metric.
+    Because $\eta_\epsilon$ is supported on $B(0,\epsilon)$, we see that $\eta_\epsilon(x-y)$ is compactly supported in $U$ for any $x\in U_\epsilon$.\newline
+    Fix $x \in U_\epsilon$, and because $u$ is continuous and $\eta_{\epsilon}(x-y)$ being continuously differentiable,
+    \begin{align*}
+      \Delta u_\epsilon &= \Delta_x (\eta_\epsilon \star u)\\
+      &= \Delta_x \int_{\R^n}\eta_\epsilon(x-y)u(y)dy \\
+      &= \Delta_x \int_{U} \eta_{\epsilon}(x-y)u(y)dy \\
+      &= \int_U\Delta_x \left[\eta_\epsilon(x-y)\right]u(y)dy \\
+      &= \int_U\Delta y \left[\eta_\epsilon(x-y)\right]u(y)dy \\
+      &= \int_U\Delta \phi udy \\
+      &= 0
+    \end{align*}
+    where $\phi = \eta_\epsilon(x-y)$. We see that $\Delta u_\epsilon$ is harmonic.
+    Now, choose $\epsilon_2 > 0$ and set $u_{\epsilon\epsilon_2} := \eta_{\epsilon_2}\star u_\epsilon$. We see that $\eta_{\epsilon_2}(x-y)$ is compactly supported on $U_{\epsilon}$ for $x\in U_{\epsilon + \epsilon_2}$.
+    Computing in polar coordinates gives
+    \begin{align*}
+      u_{\epsilon\epsilon_2} &= \int_{U_\epsilon}\eta_{\epsilon_2}(x-y)u_\epsilon(y)dy \\
+      &= \frac{1}{\epsilon_2^n}\int_{B(x,\epsilon_2)}\eta\left(\frac{|x-y|}{\epsilon_2}\right)u_\epsilon(y)dy \\
+      &= \frac{1}{\epsilon_2^n}\int_0^{\epsilon_2}\eta\left(\frac{r}{\epsilon_2}\right)\int_{\partial B(x,r)}u_\epsilon(y)dS(y)dr \\
+      &= u_\epsilon(x)\int_{B(x,\epsilon)}\eta\left(\frac{x-y}{\epsilon_2}\right)dy \\
+      &= u_\epsilon(x)\int_{B(0,\epsilon)}\eta\left(y\right)dy \\
+      &= u_\epsilon(x)
+    \end{align*}
+    Because convolution is associative, for $x\in U_{\epsilon+\epsilon_2}$, we have that $u_{\epsilon_2\epsilon} = u_{\epsilon\epsilon_2} = u_\epsilon \to u(x)$ uniformly. Furthermore,
+    \[u(x) = u_{\epsilon_2}(x)\] so we can conclude that for each $\epsilon,\epsilon_2$, $u = u_{\epsilon_2} \in C^\infty(U_{\epsilon + \epsilon_2})$ and harmonic.
+    \exercise{5}{Let $U$ be a bounded domain of $\R^n$ and $u\in C^2(U)\cap C(\overline{U})$ which is harmonic in $U$. Suppose that $u(x_0)=\min_{\overline{U}}u=0$ at some 
+    $x_0\in \partial U$. Suppose that there exists $x_1$ so that $B(x_1,r)\in U$ an $\partial(x_1,r)\cap\partial U = \{x_0\}$. Prove that if $u$ is not constant, then 
+    \[ \frac{\partial u}{\partial \upsilon}(x_0) < 0\]
+    where $\upsilon$ is the outward unit normal to $B(x_1,r)$ at $x_0$.}
+    \textit{Solution:} 
+    The solution $v = -u$ is still harmonic in the same domain $U$, so by the Strong maximum principle because $u =-v$ is not constant, $v(x_0) = 0$ is a maximum of $v$ and hence $v < 0 \in U$. 
+    Furthermore, $u > 0$ in $U$.
+    \exercise{6}{Let $U$ be a bounded domain of $\R^n$ with $C^2$ boundary, in particular it has an interior tangent ball at every boundary point. Use the result of the previous problem to show that any two solutions of the Neumann problem
+    \[\begin{cases}
+      -\Delta u = f &\text{in}\quad U \\
+      \frac{\partial u}{\partial \upsilon} = h &\text{on}\quad \partial U
+    \end{cases}\]
+    differ by a constant.}
+    Consider $u_1,u_2$ solutions to the above. Now consider $\omega = u_2 - u_1$. We see that
+    \[\begin{cases}
+      -\Delta \omega = 0 &\text{in}\quad U \\
+      \frac{\partial \omega}{\partial \upsilon} = 0 &\text{on}\quad \partial U
+    \end{cases}\]
+    So $\omega$ is harmonic, so using Green's we see that
+    \[\int_U \omega\Delta\omega dx = \int_{\partial U}\omega\frac{\partial \omega}{\partial \upsilon} dS(\upsilon) - \int_U |\nabla \omega|^2dx.\]
+    Since $\frac{\partial \omega}{\partial \upsilon} = \Delta \omega = 0$, 
+    \[\int_U |\nabla \omega|^2dx = 0 \implies \omega \text{ constant.}\]
+    Hence $u_2 = u_1 + \text{ constant}$.
+    \end{document}

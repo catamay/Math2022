@@ -1,0 +1,43 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[shortlabels]{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{float}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{subfigure}
+\definecolor{problem}{rgb}{0.8,0.8,0.8}
+\newcommand{\problem}[2]{
+\vspace{0.2in}\begin{mdframed}[
+  backgroundcolor=problem,
+  skipabove=\topsep,
+  skipbelow=\topsep
+  ]
+  \emph{Exercise {#1}:} {#2}
+\end{mdframed}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\LIM}{\mathop{\textup{LIM}}}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Kirby, Topics in Optimal Transportation}
+\begin{document}
+    \problem{1.1}{let $K$ be a compact of $C([0,1];\R);$ show that $K$ has empty interior. Deduce that $C_0(C([0,1];\R)) = \{0\}$, and in particular the conclusion of Reisz' Theorem does not apply to $C([0,1]; \R)$.}
+    By Ascoli's theorem, $K$ is uniformly bounded, meaning that there exists $M\in \R$ such that $\sup_{f\in K}|f|\le M$. $K$ is equicontinuous, meaning for all $\epsilon > 0$, there exists $\delta > 0$ such that whenever $|x-y|\le\delta$
+    \[ \sup_{f\in K}|f(x)-f(y)| \le \epsilon.\]
+    Let $u\in K$. Fix $\epsilon > 0$. 
+    \problem{1.2}{show that $L^\infty((0,1)), C_b(\R^n)$ are not separable, but that $C_0(\R^n)$ is.}
+    For $L^\infty((0,1))$, consider the set of characteristic functions $X=\{\chi_{B_r(1/2)}\}_{0< r < 1/2}\subset L^\infty((0,1))$. For each $f,g\in X$, $\|f-g\|_{L^\infty} = 1$ provided that $f\ne g$. Hence, if $D$ were a countable dense subset of $L^\infty((0,1))$, then for all $\epsilon > 0$, there is $f\in D$ such that for some $g\in X$, $\|f-g\|_{L^\infty} < \epsilon$. However, this would directly imply that $X$ is countable as each pair of functions in $X$ differ in norm by exactly 1, and hence a contradiction.\newline
+    Similarly, for $C_b(\R^n)$, the same class of functions over $\R^n$ can be produced with $X=\{\chi_{B_r(0)}\}_{r > 0}$. Then, clearly for $f,g\in X$ with $f\ne g$, $\|f-g\|_{\sup} = 1$.\newline
+    For $C_0(\R^n)$
+\end{document}

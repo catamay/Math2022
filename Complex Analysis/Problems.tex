@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[shortlabels]{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{float}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{subfigure}
+\definecolor{problem}{rgb}{0.8,0.8,0.8}
+\newcommand{\comp}[2]{
+\vspace{0.2in}\begin{mdframed}[
+  backgroundcolor=problem,
+  skipabove=\topsep,
+  skipbelow=\topsep
+  ]
+  \emph{Computation {#1}:} {#2}
+\end{mdframed}}
+\newcommand{\exercise}[2]{
+\vspace{0.2in}\begin{mdframed}[
+  backgroundcolor=problem,
+  skipabove=\topsep,
+  skipbelow=\topsep
+  ]
+  \emph{Exercise {#1}:} {#2}
+\end{mdframed}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\LIM}{\mathop{\textup{LIM}}}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Aidan Copinga, MATH6220}
+\begin{document}
+    \comp{1}{Find a number $z$ so that $z^2=i$. Write it in the form $z=x+iy$.}
+    \textit{Solution:} We wish to find a number $z$ such that
+    \[ (x+iy)^2 = i.\]
+    So $x^2-y^2=0$ and $2xy=1$. Thus we have $x=y=\pm\frac{\sqrt{2}}{2}$ and hence
+    \[z=\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2},\quad z = -\frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}.\]
+    \exercise{1}{Stein Shakarchi 3,4,5,7,23,24}
+    \begin{enumerate}
+      \item[3.] With $\omega = se^{i\phi}$, where $s\ge 0$ and $\phi\in \R$, solve the equation $z^n = \omega$ in $\C$ where $n$ is a natural number. How many solutions are there?
+      \item[] \textit{Solution:} Write $z$ as $re^{i\theta}$ where $r\ge 0$ and $\theta\in \R$. Now,
+      \[ r^n e^{ni\theta} = se^{i\phi}\] 
+      so we have that $r = s^{1/n}$ and $\theta = \phi / n$. \textit{Uhh, what's the number of soln here.}
+      \item[4.] Show that it is impossible to define a total ordering on $\C$.
+      \item[] \textit{Solution:} Assume such a relation, $\succ$, exists. Now, consider that $i \succ 0$. Furthermore, multiplying by $i$, we see that $-1 \succ 0$. Now, using (iii) again, multiplying by $-1$ gives $(-1)(-1) = 1 \succ 0$. This is a contradiction to (i) given that both $1 \succ 0$ and $-1\succ 0$ hold.
+      \item[] \textit{Solution:} Assume such a relation, $\succ$, exists with $i\succ 0$. Using condition (iii), observe that 
+      \begin{align*}
+        i\cdot i &\succ 0\cdot i \implies -1 \succ 0\\
+        -1 \cdot i &\succ 0 \cdot i \implies -i\succ 0\\
+        i \cdot (-i) &\succ 0\cdot (-i) \implies 1 \succ 0.
+      \end{align*}
+      This breaks condition (i), so we've arrived at a contradiction, and there is no such relation.
+      \item[5.] Prove that an open set $\Omega$ is pathwise connected if and only if $\Omega$ is connected.
+      \begin{enumerate}
+        \item Suppose first that $\Omega$ is open and pathwise connected, and that it can be written as $\Omega = \Omega_1 \cup \Omega_2$ where $\Omega_1$ and $\Omega_2$ are disjoint non-empty open sets. Choose two points $\omega_1\in\Omega_1$ and $\omega_2\in\Omega_2$ and let $\gamma$ denote a curve in $\Omega$ joining $\omega_1$ to $\omega_2$. Consider a parametrization $z:[0,1]\to\Omega$ of this curve with $z(0)=\omega_1$ and $z(1)=\omega_2$, and let
+        \[t^\star = \sup_{0\le t\le 1}\{t:z(s)\in\Omega_1\,\,\text{for all $0\le s < t$}\}.\]
+        Arrive at a contradiction by considering the point $z(t^\star)$.
+        \item[] \textit{Solution:} 0 is contained in the set $T_1 = \{t : z(s)\in \Omega_1\,\, \text{for all $0\le s < t$}\}$. Furthermore, when $t^\star = 1$, $z(t^\star)\in \Omega_2$ so the set $T_2 = \{t : z(s)\in \Omega_2 \,\,\text{for all $t \le s \le 1$}\}$ is non-empty. Now, $T_1\cup T_2 = [0,1]$, but intervals in $\R$ are connected
+      \end{enumerate}
+    \end{enumerate}
+\end{document}
