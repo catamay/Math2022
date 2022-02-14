@@ -45,12 +45,77 @@
     \[ (x+iy)^2 = i.\]
     So $x^2-y^2=0$ and $2xy=1$. Thus we have $x=y=\pm\frac{\sqrt{2}}{2}$ and hence
     \[z=\frac{\sqrt{2}}{2} + i\frac{\sqrt{2}}{2},\quad z = -\frac{\sqrt{2}}{2} - i\frac{\sqrt{2}}{2}.\]
+    \comp{1.1}{Shakarchi. Describe geometrically the sets of points in $z$ in the complex plane defined by the list in Sharkarchi.}
+    \textit{Solution:}
+    \begin{enumerate}
+      \item This is the line consisting of all points that are equidistant from both $z_1,z_2$.
+      \item $z\overline{z}=1$ is the unit circle.
+      \item This is the line where all numbers have real part equal 3.
+      \item The first case is the open half plane with real part greater than $c$. The second is closed.
+      \item This is the line which has real part $\text{re}(a)\text{re}(z) - \text{im}(a)\text{im}(z) + \text{re}(b)$.
+      \item $|z|^2 = (x+1)^2 \implies y^2 =2x+1$. This is the complex numbers on this parabola opening to the right.
+      \item This is a line with imaginary part $c$ for any $c\in\R$.
+    \end{enumerate}
+    \comp{9}{Shakarchi. Show that in polar coordinates, the Cauchy-Riemann equations take the form
+    \[\partial_r u = \frac{1}{r} \partial_\theta v\quad \partial_\theta u = -r\partial_r v.\]
+    Use this to show that $\log(z)=\log(r)+i\theta$ is holomorphic in $\C\setminus (-\infty,0]$.}
+    \textit{Solution:}
+    \[\partial_r u = \partial_x u \partial_r x + \partial_y u \partial_r y\quad \partial_\theta u = \partial_x u \partial_\theta x + \partial_y u \partial_\theta y\]
+    Using the fact that $x=r\cos{\theta},y=r\sin{\theta}$, we have that
+    \[u_r = u_x\cos{\theta} + u_y\sin{\theta},\,\,u_\theta = -u_xr\sin{\theta} + u_yr\cos{\theta}\]
+    Now for $u,v$, we have that they satisfie Cauchy Riemann So
+    \[v_r = -u_y\cos{\theta} + u_x\sin{\theta}\,\, v_\theta =u_yr\sin{\theta} + u_xr\cos{\theta}\]
+    It follows directly that 
+    \[ru_r = v_\theta,\,\, u_\theta = -rv_r.\]
+    When $z = re^{i\theta},$
+    $\log{z} = \log{r} + i\theta$, so we have that 
+    \[ru_r = r/r = 1 = v_\theta,\,\,u_\theta = 0 = -r\cdot 0 = -rv_r.\]
+    So whenever $\theta \neq \pi$, we have holomorphicity.
+    \comp{16}{Shakarchi. Determine the radius of convergence of the series in Shakarchi.}
+    \begin{enumerate}
+      \item $a_n=(\log{n})^2$. We want $R = \limsup|a_n|^{1/n}$. Furthermore, we have 
+      \[\lim_{n\to\infty} |\log{n}^2|^{1/n} = L\]
+      Taking the $\log$ of both sides of the limit, we see that 
+      \[\lim_{n\to\infty} \log{|\log{n}^2|}/n \to 0\]
+      because $O(\log{\log{n}^2}) < O(n)$. So we see that $R = 1$.
+      \item $a_n=n!$. We have 
+      \[|n!|^{1/n}\]
+      so taking the log on both sides gives
+      $\lim \log{n!}/n \to \infty$ as $O(\log{n!}) > O(n)$ given that $n!\approx O(n^ne^{-n})$. So $R = 0$.
+      \item $a_n = \frac{n^2}{4^n+3n}$. Upon first glance, clearly $a_n\to 0$ so $R=\infty$.
+      \item $a_n = \frac{(n!)^3}{(3n)!} \approx \frac{c^3n^{3n+3/2}e^{-3x}}{cn^{3n+1/2}e^{-3x}} = \frac{c^2n^{3/2}}{n^{1/2}} = c^2n$. As $n\to\infty$, this goes to $\infty$ so $R=0$.
+    \end{enumerate}
+    \comp{25}{Shakarchi. Cauchy's Theorem preliminaries.}
+    \begin{enumerate}
+      \item Solve 
+      \[\int_C z^ndz\]
+      for the positive oriented circle containing the origin.
+      \item[] \textit{Solution:} 
+      \[\int_C z^ndz = \int_0^{2\pi}(re^{it})^nire^{it}dt = ir^{n+1}\int_0^{2\pi}(e^{it})^{n+1}dt.\]
+      We see that when $n \ne -1$, then $\int z^ndz = 0$ because  $e^{0} = e^{i2\pi}$. Now when $n=-1$, we have that
+      the integral is $2\pi$ because it's the definite integral of 1 from $0$ to $2\pi$.
+      \item Now assume the circle does not contain the origin.
+      \item[] \textit{Solution:}
+      When $n \ge 0$, the case is trivially $0$ as we have the integral above shifted to $|z-z_0|$. We have that when $m < 0$,
+      \[(1+z)^m = \sum_{k=0}^\infty\binom{m}{k}z^k = \sum_{k=0}^\infty (-1)^k\binom{m+k-1}{k}z^k.\]
+      Then, for small enough radius of the contour,
+      \[\int_0^{2\pi}(2+re^{it})^{m}ire^{it}dt = c^{m}ir\int_0^{2\pi}\left(1+\frac{re^{it}}{c}\right)^me^{it}dt = c^{-m}ir\sum_{k=0}^\infty (-1)^k\binom{m+k-1}{k}\frac{r^k}{c^k}\]
+      Now, we see that $\int_0^{2\pi}e^{i(k+1)t}dt = 0$.
+      \item Show that if $|a| < r < |b|$, then 
+      \[\int_C \frac{1}{(z-a)(z-b)}dz = \frac{2\pi i}{a-b}.\]
+      By partial fractions we have
+      \[\frac{1}{a-b}\left(\int_C \frac{1}{z-a} - \frac{1}{z-b}\right) = \frac{1}{a-b}\int_C\frac{1}{w}dw\]
+      where $w = z-a$. The integral of $1/(z-b)$ is 0 because $|b| > r$. Furthermore, now we have $a\in C$, so the integral is equal to (by part a)
+      \[ \frac{2\pi i}{a-b}.\]
+
+
+    \end{enumerate}
     \exercise{1}{Stein Shakarchi 3,4,5,7,23,24}
     \begin{enumerate}
       \item[3.] With $\omega = se^{i\phi}$, where $s\ge 0$ and $\phi\in \R$, solve the equation $z^n = \omega$ in $\C$ where $n$ is a natural number. How many solutions are there?
       \item[] \textit{Solution:} Write $z$ as $re^{i\theta}$ where $r\ge 0$ and $\theta\in \R$. Now,
       \[ r^n e^{ni\theta} = se^{i\phi}\] 
-      so we have that $r = s^{1/n}$ and $\theta = \phi / n$. \textit{Uhh, what's the number of soln here.}
+      so we have that $r = s^{1/n}$ and $\theta = \phi / n$. We see that solutions are the same up to $2n\pi$.
       \item[4.] Show that it is impossible to define a total ordering on $\C$.
       \item[] \textit{Solution:} Assume such a relation, $\succ$, exists. Now, consider that $i \succ 0$. Furthermore, multiplying by $i$, we see that $-1 \succ 0$. Now, using (iii) again, multiplying by $-1$ gives $(-1)(-1) = 1 \succ 0$. This is a contradiction to (i) given that both $1 \succ 0$ and $-1\succ 0$ hold.
       \item[] \textit{Solution:} Assume such a relation, $\succ$, exists with $i\succ 0$. Using condition (iii), observe that 
@@ -65,7 +130,58 @@
         \item Suppose first that $\Omega$ is open and pathwise connected, and that it can be written as $\Omega = \Omega_1 \cup \Omega_2$ where $\Omega_1$ and $\Omega_2$ are disjoint non-empty open sets. Choose two points $\omega_1\in\Omega_1$ and $\omega_2\in\Omega_2$ and let $\gamma$ denote a curve in $\Omega$ joining $\omega_1$ to $\omega_2$. Consider a parametrization $z:[0,1]\to\Omega$ of this curve with $z(0)=\omega_1$ and $z(1)=\omega_2$, and let
         \[t^\star = \sup_{0\le t\le 1}\{t:z(s)\in\Omega_1\,\,\text{for all $0\le s < t$}\}.\]
         Arrive at a contradiction by considering the point $z(t^\star)$.
-        \item[] \textit{Solution:} 0 is contained in the set $T_1 = \{t : z(s)\in \Omega_1\,\, \text{for all $0\le s < t$}\}$. Furthermore, when $t^\star = 1$, $z(t^\star)\in \Omega_2$ so the set $T_2 = \{t : z(s)\in \Omega_2 \,\,\text{for all $t \le s \le 1$}\}$ is non-empty. Now, $T_1\cup T_2 = [0,1]$, but intervals in $\R$ are connected
+        \item[] \textit{Solution:} 0 is contained in the set $T_1 = \{t : z(s)\in \Omega_1\,\, \text{for all $0\le s < t$}\}$. Furthermore, when $t^\star = 1$, $z(t^\star)\in \Omega_2$ so the set $T_2 = \{t : z(s)\in \Omega_2 \,\,\text{for all $t \le s \le 1$}\}$ is non-empty. Now, $T_1\cup T_2 = [0,1]$, but intervals in $\R$ are connected, so this is a contradiction.
+        \item[]Define $\Omega_1,\Omega_2$, let $z\in \Omega_1$. Since $\Omega$ is open and $z\in\Omega$, there exists a ball $B(z,\delta)\subset\Omega$. To show that $B\subset \Omega_1$, let $s\in B$ and consider
+        $f:[0,1]\to\C$ given by $f(t)=st+z(1-t).$ Now, $|f(t)-z| = t|s-z| < \delta$. The image of $f$ is contained in $B$ so we can see that $s\in \Omega_1$.
+        Suppose $\Omega_2$ is not open, then there is some $z\in\Omega_2$ such that every ball around $z$ contains a point of $\Omega_1$. $B$ is one such ball, so consider $s\in \Omega_1\cap B(z,\delta)$.
+        Similarly, define $f$ such that $|f(t)-z| = t|s-z| < \delta$, so $w$ is path connected to the point $s$, but that means that $z\in \Omega_1$, which means $\Omega_2$ must be open. Now $\Omega_1$ is non-empty so $\Omega_2=\emptyset$ by connectedness.  
       \end{enumerate}
+      \item[7.] Let $z,w$ be two complex numbers such that $\bar{z}w \ne 1$. Prove that 
+      \[\left|\frac{w-z}{1-\bar{w}z}\right| < 1\] if $|z|,|w| < 1$ with equality when $|z|$ or $|w|$ equal 1.\newline
+      Then, prove that for a fixed $w$ in the unit disc $\mathbb{D}$, the mapping
+      \[F: z\mapsto \frac{w-z}{1-\bar{w}z}\]
+      for the given properties.
+      \item[] \textit{Solution:}
+      Suppose that $|w|<1$ and $|z|=1$ then
+      \[\left|\frac{w-z}{1-\bar{w}z}\right|= \left|\frac{w-z}{\bar{z}-\bar{w}}\right| = 1\] 
+      Because $|w| < 1$, we see that the function $f(z) = (w-z)/(1-\bar{w}z)$ is holomorphic on $\mathbb{D}$. Thus, by the maximum modulus principle, it satisfies $|f(z) < 1$ in $\mathbb{D}$ because it is not constant.\newline
+      We already have that $F(\mathbb{D}) \subset \mathbb{D}$ by above. Clearly, $F(0)=w$ and $F(w)=0$. From above, we have $F(\partial\mathbb{D})\subseteq\partial\mathbb{D}$. $F^{-1}$ equals itself, so it's clearly bijective.
+      \item[23]Prove that $f$ is infinitely differentiable on $\R$ and $f^{(n)}(0)=0$ for all $n\ge 1$. Conclude that $f$ does not have a converging power series expansion near the origin.
+      \item[] We see that $f'(x) = -\frac{\exp{-1/x^2}}{x^3}$, and as $x\to 0$, $e^{-1/x^2}\to 0$ faster than $x^3$, so $f'(x)\to 0$ as $x\to 0$. This follows for every $(n)$ s.t. $f^{(n)}(x)\approx (-1)^n\frac{e^{-1/x^2}}{x^{2+n}}$ for $n\ge 1$. We see this tends to $0$, so $f$ is infinitely differentiable on $\R$.
+      This function can be written using $\omega = 1/x$ so we see that $\exp{-\omega^2} = 1 - \omega + \frac{1}{2}\omega^2 -\dots$, but this actually adopts the Laurent series, as $\omega = x^{-1}$. If there were a polynomial series, then its radius of convergence
+      must be infinite, but the derivatives are all 0 at $x=0$, so an extension of the summation must be applied. 
+      \item[24] Reversal of curves
+      \item[] We see that
+      \[\int_\gamma f(z)dz = \int_{a}^{b}f(\gamma(t))\gamma'(t)dt = -\int_{b}^af(\gamma(t))\gamma'(t)dt = -\int_{-\gamma}f(z)dz.\]  
     \end{enumerate}
+    \exercise{2}{Prove that if $f:\C\to\C$ is $C^2$,, and $f$ is holomorphic on $\C$ then $f'$ is holomorphic.}
+    \textit{Solution:} Because $f$ is holomorphic, it satisfies the 
+    cauchy riemann equations with 
+    \[\partial_x u = \partial_y v,\quad \partial_y u = -\partial_x v\] 
+    Additionally, we know that 
+    \[\frac{\partial^2 f}{\partial x^2},\frac{\partial^2 f}{\partial y^2}, \frac{\partial^2 f}{\partial y\partial x}\]
+    exist (with the last one being equal to its mixed case as it's continuous).
+    Recall that $f'(z) = 2\frac{\partial u}{\partial z} = \frac{\partial u}{\partial x} + i\frac{\partial v}{\partial x}$
+    let $U = \frac{\partial u}{\partial x}$ and $V = \frac{\partial v}{\partial x}$. Now,
+    \[ \partial_x U = \partial_{xx} u = \partial_{xy}v = \partial_{y}V,\quad \partial_y U = \partial_{xy} u = \partial_{yx}u = -\partial_{xy}v = -\partial_{y}V.\]
+    Hence, $f$ has holomorphic derivative.
+    \exercise{3}{Let $\gamma$ be a smooth curve in $\C$, when does $\overline{\int_{\gamma}f(z)dz} = \int_{gamma}\overline{f(z)}dz$ for all $f$ continuous?}
+    WLOG, let $\gamma : [0,1] \to \C$ because $\gamma$ is smooth, it's sufficiently regular, so we can parametrize it over the contour.
+    \[\int_C f(z)dz = \int_{[0,1]}f(y(t))y'(t)dt\]
+    we can take conjugates to yield $\overline{\int_{[0,1]}f(y(t))y'(t)dt} = \int_{[0,1]}\overline{f(y(t))y'(t)}dt = \int_{C}\overline{f(z)}\overline{dz}$
+    from the fact that the former is a Riemann integral over $[0,1]$, so the conjugate can be applied over each sum.\newline
+    Now, we see that there is equality when $\overline{dz} = dz$.
+    \exercise{4}{Suppose that $f: \mathbb{D}\to\C$ is holomorphic and $|f'(z)| \le M$ then $|f(z)-f(0)\le M|z|$. Formulate and prove an analogous bound for $|f(z)-f(w)|$ when $f:\Omega\to\C$ where $\Omega$ is a general path-connected domain.}
+    \textit{Solution:}
+    We see that $|f'(z)| = \lim_{w\to z}\frac{|f(z)-f(w)|}{|z-w|}\le M$. Furthermore, we have that 
+    \[ \frac{|f(z)-f(w)|}{|z-w|} \le M \implies |f(z)-f(w)|\le M|z-w|.\]
+    \exercise{5}{Show that if $f$ is holomorphic on an open connected set $\Omega \subset \C$ and $f'(z) = 0$ in $\Omega$ then $f$ is constant. What if $\Omega$ is not connected?}
+    \textit{Solution:}
+    Because $\Omega$ is open and connected, it is also path connected. Let $z_0\in \Omega$, and any $w\in \Omega$. There is a curve $\gamma: [0,1]\to \Omega$ such that $\gamma(0)=z_0$ and $\gamma(1)=w$. We then have
+    \[f(w)-f(z_0) = \int_{\gamma}f'(z)dz = \int_\gamma 0dz = 0\]
+    Hence $f(z_0) = f(w)$ for any $w\in \Omega$, so $f(w)$ is constant in $\Omega$. However, if $\Omega$ is disconnected, consider $A,B\subset \C$ be disjoint, open sets. Then $A\cup B$ is disconnected. Let $f(A) = 1$ and $f(B) = 0$, then $f'(z) = 0$, but $f$ is not constant. 
+    \exercise{6}{Show that there is a holomorphic function on $\C\setminus(-\infty,0]$ which is equal to $z^{1/2}$ on the positive reals.}
+    $\log{(r)} + i\theta$ is holomorphic on $r > 0$ and $-\pi < \theta < \pi$. The function $e^{z/2}$ is also holomorphic. A composition of Holomorphic functions is still harmonic so let
+    \[f(r,\theta) = e^{\log{(r)}/2 + i\theta/2} = r^{1/2}e^{i\theta/2} \implies f(z) = z^{1/2}.\]
+    So along $z \in \R^+$, we see that $f(z) = \sqrt{z}$. Holomorphicity comes from the branch cut on $(-\infty,0]$, or when $\theta = \pm \pi$. which is not in the domain.
 \end{document}

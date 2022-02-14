@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.1.8)  30 JAN 2022 18:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12) (preloaded format=pdflatex 2022.1.8)  12 FEB 2022 18:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -88,12 +88,26 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
 \mathdisplay@stack=\toks23
 LaTeX Info: Redefining \[ on input line 2938.
 LaTeX Info: Redefining \] on input line 2939.
+) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup6
+) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/amscls\amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks24
+\thm@bodyfont=\toks25
+\thm@headfont=\toks26
+\thm@notefont=\toks27
+\thm@headpunct=\toks28
+\thm@preskip=\skip52
+\thm@postskip=\skip53
+\thm@headsep=\skip54
+\dth@everypar=\toks29
 ) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
-\enitkv@toks@=\toks24
-\labelindent=\skip52
+\enitkv@toks@=\toks30
+\labelindent=\skip55
 \enit@outerparindent=\dimen148
-\enit@toks=\toks25
+\enit@toks=\toks31
 \enit@inbox=\box52
 \enit@count@id=\count269
 \enitdp@description=\count270
@@ -101,7 +115,7 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
  (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks26
+\KV@toks@=\toks32
 ) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
 Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
  (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
@@ -182,47 +196,47 @@ Package zref Info: New property: abspage on input line 66.
 ) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/needspace\needspace.sty
 Package: needspace 2010/09/12 v1.3d reserve vertical space
 )
-\mdf@templength=\skip53
+\mdf@templength=\skip56
 \c@mdf@globalstyle@cnt=\count274
-\mdf@skipabove@length=\skip54
-\mdf@skipbelow@length=\skip55
-\mdf@leftmargin@length=\skip56
-\mdf@rightmargin@length=\skip57
-\mdf@innerleftmargin@length=\skip58
-\mdf@innerrightmargin@length=\skip59
-\mdf@innertopmargin@length=\skip60
-\mdf@innerbottommargin@length=\skip61
-\mdf@splittopskip@length=\skip62
-\mdf@splitbottomskip@length=\skip63
-\mdf@outermargin@length=\skip64
-\mdf@innermargin@length=\skip65
-\mdf@linewidth@length=\skip66
-\mdf@innerlinewidth@length=\skip67
-\mdf@middlelinewidth@length=\skip68
-\mdf@outerlinewidth@length=\skip69
-\mdf@roundcorner@length=\skip70
-\mdf@footenotedistance@length=\skip71
-\mdf@userdefinedwidth@length=\skip72
-\mdf@needspace@length=\skip73
-\mdf@frametitleaboveskip@length=\skip74
-\mdf@frametitlebelowskip@length=\skip75
-\mdf@frametitlerulewidth@length=\skip76
-\mdf@frametitleleftmargin@length=\skip77
-\mdf@frametitlerightmargin@length=\skip78
-\mdf@shadowsize@length=\skip79
-\mdf@extratopheight@length=\skip80
-\mdf@subtitleabovelinewidth@length=\skip81
-\mdf@subtitlebelowlinewidth@length=\skip82
-\mdf@subtitleaboveskip@length=\skip83
-\mdf@subtitlebelowskip@length=\skip84
-\mdf@subtitleinneraboveskip@length=\skip85
-\mdf@subtitleinnerbelowskip@length=\skip86
-\mdf@subsubtitleabovelinewidth@length=\skip87
-\mdf@subsubtitlebelowlinewidth@length=\skip88
-\mdf@subsubtitleaboveskip@length=\skip89
-\mdf@subsubtitlebelowskip@length=\skip90
-\mdf@subsubtitleinneraboveskip@length=\skip91
-\mdf@subsubtitleinnerbelowskip@length=\skip92
+\mdf@skipabove@length=\skip57
+\mdf@skipbelow@length=\skip58
+\mdf@leftmargin@length=\skip59
+\mdf@rightmargin@length=\skip60
+\mdf@innerleftmargin@length=\skip61
+\mdf@innerrightmargin@length=\skip62
+\mdf@innertopmargin@length=\skip63
+\mdf@innerbottommargin@length=\skip64
+\mdf@splittopskip@length=\skip65
+\mdf@splitbottomskip@length=\skip66
+\mdf@outermargin@length=\skip67
+\mdf@innermargin@length=\skip68
+\mdf@linewidth@length=\skip69
+\mdf@innerlinewidth@length=\skip70
+\mdf@middlelinewidth@length=\skip71
+\mdf@outerlinewidth@length=\skip72
+\mdf@roundcorner@length=\skip73
+\mdf@footenotedistance@length=\skip74
+\mdf@userdefinedwidth@length=\skip75
+\mdf@needspace@length=\skip76
+\mdf@frametitleaboveskip@length=\skip77
+\mdf@frametitlebelowskip@length=\skip78
+\mdf@frametitlerulewidth@length=\skip79
+\mdf@frametitleleftmargin@length=\skip80
+\mdf@frametitlerightmargin@length=\skip81
+\mdf@shadowsize@length=\skip82
+\mdf@extratopheight@length=\skip83
+\mdf@subtitleabovelinewidth@length=\skip84
+\mdf@subtitlebelowlinewidth@length=\skip85
+\mdf@subtitleaboveskip@length=\skip86
+\mdf@subtitlebelowskip@length=\skip87
+\mdf@subtitleinneraboveskip@length=\skip88
+\mdf@subtitleinnerbelowskip@length=\skip89
+\mdf@subsubtitleabovelinewidth@length=\skip90
+\mdf@subsubtitlebelowlinewidth@length=\skip91
+\mdf@subsubtitleaboveskip@length=\skip92
+\mdf@subsubtitlebelowskip@length=\skip93
+\mdf@subsubtitleinneraboveskip@length=\skip94
+\mdf@subsubtitleinnerbelowskip@length=\skip95
  (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/mdframed\md-frame-0.mdf
 File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 )
@@ -231,33 +245,33 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \mdf@splitbox@one=\box56
 \mdf@splitbox@two=\box57
 \mdf@splitbox@save=\box58
-\mdfsplitboxwidth=\skip93
-\mdfsplitboxtotalwidth=\skip94
-\mdfsplitboxheight=\skip95
-\mdfsplitboxdepth=\skip96
-\mdfsplitboxtotalheight=\skip97
-\mdfframetitleboxwidth=\skip98
-\mdfframetitleboxtotalwidth=\skip99
-\mdfframetitleboxheight=\skip100
-\mdfframetitleboxdepth=\skip101
-\mdfframetitleboxtotalheight=\skip102
-\mdffootnoteboxwidth=\skip103
-\mdffootnoteboxtotalwidth=\skip104
-\mdffootnoteboxheight=\skip105
-\mdffootnoteboxdepth=\skip106
-\mdffootnoteboxtotalheight=\skip107
-\mdftotallinewidth=\skip108
-\mdfboundingboxwidth=\skip109
-\mdfboundingboxtotalwidth=\skip110
-\mdfboundingboxheight=\skip111
-\mdfboundingboxdepth=\skip112
-\mdfboundingboxtotalheight=\skip113
-\mdf@freevspace@length=\skip114
-\mdf@horizontalwidthofbox@length=\skip115
-\mdf@verticalmarginwhole@length=\skip116
-\mdf@horizontalspaceofbox=\skip117
-\mdfsubtitleheight=\skip118
-\mdfsubsubtitleheight=\skip119
+\mdfsplitboxwidth=\skip96
+\mdfsplitboxtotalwidth=\skip97
+\mdfsplitboxheight=\skip98
+\mdfsplitboxdepth=\skip99
+\mdfsplitboxtotalheight=\skip100
+\mdfframetitleboxwidth=\skip101
+\mdfframetitleboxtotalwidth=\skip102
+\mdfframetitleboxheight=\skip103
+\mdfframetitleboxdepth=\skip104
+\mdfframetitleboxtotalheight=\skip105
+\mdffootnoteboxwidth=\skip106
+\mdffootnoteboxtotalwidth=\skip107
+\mdffootnoteboxheight=\skip108
+\mdffootnoteboxdepth=\skip109
+\mdffootnoteboxtotalheight=\skip110
+\mdftotallinewidth=\skip111
+\mdfboundingboxwidth=\skip112
+\mdfboundingboxtotalwidth=\skip113
+\mdfboundingboxheight=\skip114
+\mdfboundingboxdepth=\skip115
+\mdfboundingboxtotalheight=\skip116
+\mdf@freevspace@length=\skip117
+\mdf@horizontalwidthofbox@length=\skip118
+\mdf@verticalmarginwhole@length=\skip119
+\mdf@horizontalspaceofbox=\skip120
+\mdfsubtitleheight=\skip121
+\mdfsubsubtitleheight=\skip122
 \c@mdfcountframes=\count275
 
 ****** mdframed patching \endmdf@trivlist
@@ -272,9 +286,9 @@ Package zref Info: New property: mdf@pagevalue on input line 895.
 ) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count280
-\float@exts=\toks27
+\float@exts=\toks33
 \float@box=\box59
-\@float@everytoks=\toks28
+\@float@everytoks=\toks34
 \@floatcapt=\box60
 ) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
@@ -292,15 +306,15 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen156
 \Gm@layouthoffset=\dimen157
 \Gm@layoutvoffset=\dimen158
-\Gm@dimlist=\toks29
+\Gm@dimlist=\toks35
  (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/subfigure\subfigure.sty
 Package: subfigure 2002/07/30 v2.1.4 subfigure package
-\subfigtopskip=\skip120
-\subfigcapskip=\skip121
+\subfigtopskip=\skip123
+\subfigcapskip=\skip124
 \subfigcaptopadj=\dimen159
-\subfigbottomskip=\skip122
+\subfigbottomskip=\skip125
 \subfigcapmargin=\dimen160
-\subfiglabelskip=\skip123
+\subfiglabelskip=\skip126
 \c@subfigure=\count284
 \c@lofdepth=\count285
 \c@subtable=\count286
@@ -310,36 +324,36 @@ Package: subfigure 2002/07/30 v2.1.4 subfigure package
 * Local config file subfigure.cfg used *
 ****************************************
 (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/subfigure\subfigure.cfg)
-\subfig@top=\skip124
-\subfig@bottom=\skip125
+\subfig@top=\skip127
+\subfig@bottom=\skip128
 ) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
 Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and footers
-\f@nch@headwidth=\skip126
-\f@nch@O@elh=\skip127
-\f@nch@O@erh=\skip128
-\f@nch@O@olh=\skip129
-\f@nch@O@orh=\skip130
-\f@nch@O@elf=\skip131
-\f@nch@O@erf=\skip132
-\f@nch@O@olf=\skip133
-\f@nch@O@orf=\skip134
+\f@nch@headwidth=\skip129
+\f@nch@O@elh=\skip130
+\f@nch@O@erh=\skip131
+\f@nch@O@olh=\skip132
+\f@nch@O@orh=\skip133
+\f@nch@O@elf=\skip134
+\f@nch@O@erf=\skip135
+\f@nch@O@olf=\skip136
+\f@nch@O@orf=\skip137
 ) (Problems.aux)
 \openout1 = `Problems.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
  (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count288
@@ -347,12 +361,12 @@ LaTeX Font Info:    ... okay on input line 42.
 \scratchbox=\box61
 \nofMPsegments=\count289
 \nofMParguments=\count290
-\everyMPshowfont=\toks30
+\everyMPshowfont=\toks36
 \MPscratchCnt=\count291
 \MPscratchDim=\dimen162
 \MPnumerator=\count292
 \makeMPintoPDFobject=\count293
-\everyMPtoPDFconversion=\toks31
+\everyMPtoPDFconversion=\toks37
 ) (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -393,30 +407,37 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 195.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 416.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 416.
 (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 195.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 416.
  (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Package mdframed Info: Not enough space on this page on input line 195.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 416.
+ (C:\Users\akcop\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+Package mdframed Info: Not enough space on this page on input line 416.
  [1{C:/Users/akcop/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
-] [2] [3] (Problems.aux) ) 
+] (Problems.aux) ) 
 Here is how much of TeX's memory you used:
- 5702 strings out of 478659
- 96903 string characters out of 2845921
- 430916 words of memory out of 3000000
- 23715 multiletter control sequences out of 15000+600000
- 406173 words of font info for 38 fonts, out of 8000000 for 9000
+ 5819 strings out of 478659
+ 99203 string characters out of 2845921
+ 426392 words of memory out of 3000000
+ 23819 multiletter control sequences out of 15000+600000
+ 405970 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 82i,12n,90p,493b,362s stack positions out of 5000i,500n,10000p,200000b,80000s
-<C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on Problems.pdf (3 pages, 142751 bytes).
+ 82i,11n,90p,493b,252s stack positions out of 5000i,500n,10000p,200000b,80000s
+<C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Problems.pdf (1 page, 113499 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
+ 61 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

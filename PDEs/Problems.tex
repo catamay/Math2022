@@ -2,6 +2,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
 \usepackage[shortlabels]{enumitem}
 \usepackage{graphicx}
 \usepackage{xcolor}
@@ -185,104 +187,251 @@
     %   t^\star &= \mp \left(\frac{1}{r} +\frac{1}{\xi}\right)
     % \end{align*}
     % so we see that $t^\star = \left(\frac{1}{r} +\frac{1}{|\xi|}\right)$ is such $t^\star$ so now, to show there is a minimal $T(r)$, we see that $\lim_{|\xi|\to\infty} t^\star = \frac{1}{r}$, so it has a minimal time $1/r$ where $u(x,t) = 0$ for all $t \ge 1/r$. 
-    \exercise{3}{Let $U$ be a bounded domain of $\R^n$. We say $u\in C^2(U)$ is subharmonic if $-\Delta u \le 0$ in $U$.
-    \begin{enumerate}[(a)]
-      \item Prove for subharmonic $v$ that\[ v(x) \le \frac{1}{|B(x,r)|}\int_{B(x,r)}v(y)dy\,\,\text{ for all $\overline{B(x,r)}\subset U$.}\]
-      \item Prove that the weak maximum principle holds for subharmonic $v\in C^2(U)\cap C(\bar{U})$.
-      \item Let $\phi: \R\to\R$ be smooth and convex. Assume $u$ is harmonic and $v=\phi(u)$. Prove that $v$ is subharmonic.
-      \item Prove $v=|Du|^2$ is subharmonic whenever $u$ is harmonic.
-    \end{enumerate}
-    }
-    \textit{Solution:}
-    \begin{enumerate}[(a)]
-      \item It's sufficient to show that $v(x) \le \frac{1}{|B(x,r)|}\int_{\partial B} v(y)dy$ as 
-      \[\frac{1}{|B(x,r)|}\int_{B} v(y)dy = \frac{1}{|B(x,r)|}\int_0^r d\rho\int_{\partial B} v(y)dy = \frac{1}{|B(x,r)|}\int_{\partial B} v(y)dy.\] Let $\phi(r) = \frac{1}{|B(x,r)|}\int_{\partial B} v(y)dy$. Now we see that (using $\int$ for the mean value integral because I'm not sure how to do that in LaTeX.)
-      \[\phi'(r) = \int_{\partial B(0,1)} Dv(x+rz)\cdot zdS(z)\] letting $y = x+rz$. Using green's theorem, we see that (using the fact that $\Delta v \ge 0$)
-      \[ \phi'(r) = \int_{\partial B(0,1)} Dv(x+rz)\cdot \frac{y-z}{r}dS(y) = \frac{r}{n}\int_{B(x,r)}\Delta v(y)dy \ge 0.\]
-      Because $\phi' \ge 0$, we see that it's increasing,
-      \[ \phi(r) = \int_{\partial B(x,r)}v(y)dy\ge v(x).\]
-      \item Let $v \in C^2(U)\cap C(\bar{U})$. FSoC, suppose 
-      \[\max_{x\in\bar{U}} v(x) > \max_{x\in\partial\bar{U}}v(x).\]
-      Now, there is a point $x_0\in U$ s.t. $v(x_0) > \max_{x\in\partial\bar{U}}{v(x)}$.\newline
-      By part (a), for any $r > 0$ for $B(x_0,r)\subset U$, 
-      \[\int_{B(x_0,r)} v(y) - v(x_0)dy \ge 0\]
-      but $v(y)-v(x_0)$ is nonpositive so $v(y)=v(x_0)$ for all $y\in B(x_0,r)$. Consider $L = \{r > 0|B(x_0,r)\subset U\}$ and $s=\sup{L}$. 
-      Since $B(x_0,s)=\cup_{r\in L}B(x_0,r)\subset U$, we have that for all $y\in B(x_0,s),v(y)=v(x_0)$.\newline
-      It's now sufficient to show that $\overline{B(x_0,s)}\cap \partial U\ne \emptyset$.\newline
-      \textit{Proof of Above:} Suppose $\overline{B(x_0,s)}\cap \partial U$ is empty. Since $\cap{B(x_0,s)}\subset \bar{U}$, then $\overline{B(x_0,s)}\cap (\R^n\setminus U)$ is also empty.
-      Since the ball is compact (Heine-Borel) and $\R^n\setminus U$ is closed, then 
-      \[0 < \inf\{|b-a|\,\,|b\in \overline{B(x_0,s)},\,\,\,a\in(\R^n\setminus U)\} = d.\]
-      However, this means that $B(x_0,s+d/2)\subset U$. But this means $s + d/2\in L$ and $s + d/2 > s = \sup{L}$, which is a contradiction.
-    \item $\phi$ is smooth and convex and $u$ is harmonic. $v = \phi(u)$ so
-    \begin{align*}
-      \Delta v&= \nabla \cdot (\nabla v) \\
-      \nabla v &= \phi'(u)\nabla u \\
-      \nabla\cdot (\nabla v) &= \nabla\cdot(\phi'(u)\nabla u) \\
-      &= (\phi''(u)\nabla u)\cdot\nabla u + \phi'(u)\nabla\cdot(\nabla u) \\
-      &= (\phi''(u)\nabla u)\cdot\nabla u = \phi''(u)|\nabla u|^2\ge 0
-    \end{align*}
-    because $\phi$ is convex, it has $\phi'' \ge 0$. This implies that $-\Delta v \le 0$, and thus $v$ is subharmonic.
-    \item Since $u$ is harmonic, $u_{x_i}$ for $i=1,\dots,n$ is harmonic as well. $(u_{x_i})^2$ is subharmonic by (c). Now 
-     \[|Du|^2 = \sum_{i=1}^n (u_{x_i})^2\]
-     which is subharmonic as it's the sum of subharmonic functions.
-    \end{enumerate}
+    % \exercise{3}{Let $U$ be a bounded domain of $\R^n$. We say $u\in C^2(U)$ is subharmonic if $-\Delta u \le 0$ in $U$.
+    % \begin{enumerate}[(a)]
+    %   \item Prove for subharmonic $v$ that\[ v(x) \le \frac{1}{|B(x,r)|}\int_{B(x,r)}v(y)dy\,\,\text{ for all $\overline{B(x,r)}\subset U$.}\]
+    %   \item Prove that the weak maximum principle holds for subharmonic $v\in C^2(U)\cap C(\bar{U})$.
+    %   \item Let $\phi: \R\to\R$ be smooth and convex. Assume $u$ is harmonic and $v=\phi(u)$. Prove that $v$ is subharmonic.
+    %   \item Prove $v=|Du|^2$ is subharmonic whenever $u$ is harmonic.
+    % \end{enumerate}
+    % }
+    % \textit{Solution:}
+    % \begin{enumerate}[(a)]
+    %   \item It's sufficient to show that $v(x) \le \frac{1}{|B(x,r)|}\int_{\partial B} v(y)dy$ as 
+    %   \[\frac{1}{|B(x,r)|}\int_{B} v(y)dy = \frac{1}{|B(x,r)|}\int_0^r d\rho\int_{\partial B} v(y)dy = \frac{1}{|B(x,r)|}\int_{\partial B} v(y)dy.\] Let $\phi(r) = \frac{1}{|B(x,r)|}\int_{\partial B} v(y)dy$. Now we see that (using $\int$ for the mean value integral because I'm not sure how to do that in LaTeX.)
+    %   \[\phi'(r) = \int_{\partial B(0,1)} Dv(x+rz)\cdot zdS(z)\] letting $y = x+rz$. Using green's theorem, we see that (using the fact that $\Delta v \ge 0$)
+    %   \[ \phi'(r) = \int_{\partial B(0,1)} Dv(x+rz)\cdot \frac{y-z}{r}dS(y) = \frac{r}{n}\int_{B(x,r)}\Delta v(y)dy \ge 0.\]
+    %   Because $\phi' \ge 0$, we see that it's increasing,
+    %   \[ \phi(r) = \int_{\partial B(x,r)}v(y)dy\ge v(x).\]
+    %   \item Let $v \in C^2(U)\cap C(\bar{U})$. FSoC, suppose 
+    %   \[\max_{x\in\bar{U}} v(x) > \max_{x\in\partial\bar{U}}v(x).\]
+    %   Now, there is a point $x_0\in U$ s.t. $v(x_0) > \max_{x\in\partial\bar{U}}{v(x)}$.\newline
+    %   By part (a), for any $r > 0$ for $B(x_0,r)\subset U$, 
+    %   \[\int_{B(x_0,r)} v(y) - v(x_0)dy \ge 0\]
+    %   but $v(y)-v(x_0)$ is nonpositive so $v(y)=v(x_0)$ for all $y\in B(x_0,r)$. Consider $L = \{r > 0|B(x_0,r)\subset U\}$ and $s=\sup{L}$. 
+    %   Since $B(x_0,s)=\cup_{r\in L}B(x_0,r)\subset U$, we have that for all $y\in B(x_0,s),v(y)=v(x_0)$.\newline
+    %   It's now sufficient to show that $\overline{B(x_0,s)}\cap \partial U\ne \emptyset$.\newline
+    %   \textit{Proof of Above:} Suppose $\overline{B(x_0,s)}\cap \partial U$ is empty. Since $\cap{B(x_0,s)}\subset \bar{U}$, then $\overline{B(x_0,s)}\cap (\R^n\setminus U)$ is also empty.
+    %   Since the ball is compact (Heine-Borel) and $\R^n\setminus U$ is closed, then 
+    %   \[0 < \inf\{|b-a|\,\,|b\in \overline{B(x_0,s)},\,\,\,a\in(\R^n\setminus U)\} = d.\]
+    %   However, this means that $B(x_0,s+d/2)\subset U$. But this means $s + d/2\in L$ and $s + d/2 > s = \sup{L}$, which is a contradiction.
+    % \item $\phi$ is smooth and convex and $u$ is harmonic. $v = \phi(u)$ so
+    % \begin{align*}
+    %   \Delta v&= \nabla \cdot (\nabla v) \\
+    %   \nabla v &= \phi'(u)\nabla u \\
+    %   \nabla\cdot (\nabla v) &= \nabla\cdot(\phi'(u)\nabla u) \\
+    %   &= (\phi''(u)\nabla u)\cdot\nabla u + \phi'(u)\nabla\cdot(\nabla u) \\
+    %   &= (\phi''(u)\nabla u)\cdot\nabla u = \phi''(u)|\nabla u|^2\ge 0
+    % \end{align*}
+    % because $\phi$ is convex, it has $\phi'' \ge 0$. This implies that $-\Delta v \le 0$, and thus $v$ is subharmonic.
+    % \item Since $u$ is harmonic, $u_{x_i}$ for $i=1,\dots,n$ is harmonic as well. $(u_{x_i})^2$ is subharmonic by (c). Now 
+    %  \[|Du|^2 = \sum_{i=1}^n (u_{x_i})^2\]
+    %  which is subharmonic as it's the sum of subharmonic functions.
+    % \end{enumerate}
 
-    \exercise{4}{If $u$ is weakly harmonic, then $u$ is $C^2$ and harmonic.}
-    \textit{Solution:} Because $u$ is weakly harmonic, for test functions $\phi\in C^\infty_c$,
-    \[\int_{U}u\Delta\phi dx = 0.\]
-    Define a mollifier $\eta$ s.t. 
-    \[\eta(x) :=\begin{cases}
-    C\exp{\left(\frac{1}{|x|^2-1}\right)} &\mathit{if}\,\,|x|<1 \\
-    0 &\mathit{if}\,\, |x|\ge 1
-    \end{cases}\]
-    Where $C$ is chosen such that $\int_{\R^n}\eta dx = 1$. Then, we can define $u_\epsilon = \eta_\epsilon \star u$. Now, for $\epsilon > 0$ set
-    \[\eta_\epsilon(x) := \frac{1}{\epsilon^n}\eta\left(\frac{x}{\epsilon}\right)\]
-    Now define the set $U_\epsilon := \{x\in U\,\,:\,\,d(x,\partial U) > \epsilon\}$ where $d$ is the distance metric.
-    Because $\eta_\epsilon$ is supported on $B(0,\epsilon)$, we see that $\eta_\epsilon(x-y)$ is compactly supported in $U$ for any $x\in U_\epsilon$.\newline
-    Fix $x \in U_\epsilon$, and because $u$ is continuous and $\eta_{\epsilon}(x-y)$ being continuously differentiable,
+    % \exercise{4}{If $u$ is weakly harmonic, then $u$ is $C^2$ and harmonic.}
+    % \textit{Solution:} Because $u$ is weakly harmonic, for test functions $\phi\in C^\infty_c$,
+    % \[\int_{U}u\Delta\phi dx = 0.\]
+    % Define a mollifier $\eta$ s.t. 
+    % \[\eta(x) :=\begin{cases}
+    % C\exp{\left(\frac{1}{|x|^2-1}\right)} &\mathit{if}\,\,|x|<1 \\
+    % 0 &\mathit{if}\,\, |x|\ge 1
+    % \end{cases}\]
+    % Where $C$ is chosen such that $\int_{\R^n}\eta dx = 1$. Then, we can define $u_\epsilon = \eta_\epsilon \star u$. Now, for $\epsilon > 0$ set
+    % \[\eta_\epsilon(x) := \frac{1}{\epsilon^n}\eta\left(\frac{x}{\epsilon}\right)\]
+    % Now define the set $U_\epsilon := \{x\in U\,\,:\,\,d(x,\partial U) > \epsilon\}$ where $d$ is the distance metric.
+    % Because $\eta_\epsilon$ is supported on $B(0,\epsilon)$, we see that $\eta_\epsilon(x-y)$ is compactly supported in $U$ for any $x\in U_\epsilon$.\newline
+    % Fix $x \in U_\epsilon$, and because $u$ is continuous and $\eta_{\epsilon}(x-y)$ being continuously differentiable,
+    % \begin{align*}
+    %   \Delta u_\epsilon &= \Delta_x (\eta_\epsilon \star u)\\
+    %   &= \Delta_x \int_{\R^n}\eta_\epsilon(x-y)u(y)dy \\
+    %   &= \Delta_x \int_{U} \eta_{\epsilon}(x-y)u(y)dy \\
+    %   &= \int_U\Delta_x \left[\eta_\epsilon(x-y)\right]u(y)dy \\
+    %   &= \int_U\Delta y \left[\eta_\epsilon(x-y)\right]u(y)dy \\
+    %   &= \int_U\Delta \phi udy \\
+    %   &= 0
+    % \end{align*}
+    % where $\phi = \eta_\epsilon(x-y)$. We see that $\Delta u_\epsilon$ is harmonic.
+    % Now, choose $\epsilon_2 > 0$ and set $u_{\epsilon\epsilon_2} := \eta_{\epsilon_2}\star u_\epsilon$. We see that $\eta_{\epsilon_2}(x-y)$ is compactly supported on $U_{\epsilon}$ for $x\in U_{\epsilon + \epsilon_2}$.
+    % Computing in polar coordinates gives
+    % \begin{align*}
+    %   u_{\epsilon\epsilon_2} &= \int_{U_\epsilon}\eta_{\epsilon_2}(x-y)u_\epsilon(y)dy \\
+    %   &= \frac{1}{\epsilon_2^n}\int_{B(x,\epsilon_2)}\eta\left(\frac{|x-y|}{\epsilon_2}\right)u_\epsilon(y)dy \\
+    %   &= \frac{1}{\epsilon_2^n}\int_0^{\epsilon_2}\eta\left(\frac{r}{\epsilon_2}\right)\int_{\partial B(x,r)}u_\epsilon(y)dS(y)dr \\
+    %   &= u_\epsilon(x)\int_{B(x,\epsilon)}\eta\left(\frac{x-y}{\epsilon_2}\right)dy \\
+    %   &= u_\epsilon(x)\int_{B(0,\epsilon)}\eta\left(y\right)dy \\
+    %   &= u_\epsilon(x)
+    % \end{align*}
+    % Because convolution is associative, for $x\in U_{\epsilon+\epsilon_2}$, we have that $u_{\epsilon_2\epsilon} = u_{\epsilon\epsilon_2} = u_\epsilon \to u(x)$ uniformly. Furthermore,
+    % \[u(x) = u_{\epsilon_2}(x)\] so we can conclude that for each $\epsilon,\epsilon_2$, $u = u_{\epsilon_2} \in C^\infty(U_{\epsilon + \epsilon_2})$ and harmonic.
+    % \exercise{5}{Let $U$ be a bounded domain of $\R^n$ and $u\in C^2(U)\cap C(\overline{U})$ which is harmonic in $U$. Suppose that $u(x_0)=\min_{\overline{U}}u=0$ at some 
+    % $x_0\in \partial U$. Suppose that there exists $x_1$ so that $B(x_1,r)\in U$ an $\partial(x_1,r)\cap\partial U = \{x_0\}$. Prove that if $u$ is not constant, then 
+    % \[ \frac{\partial u}{\partial \upsilon}(x_0) < 0\]
+    % where $\upsilon$ is the outward unit normal to $B(x_1,r)$ at $x_0$.}
+    % \textit{Solution:} 
+    % The solution $v = -u$ is still harmonic in the same domain $U$, so by the Strong maximum principle because $u =-v$ is not constant, $v(x_0) = 0$ is a maximum of $v$ and hence $v < 0 \in U$. 
+    % Furthermore, $u > 0$ in $U$.\newline
+    % Because $u$ is harmonic and positive, we have that by poisson's formula, for $R > r$, 
+    % \[u(x) = \frac{1}{\alpha(n)}\int_{B(x_1,r)}\frac{R^2-r^2}{R|x_1-y|^n}u(y)dy\] 
+    % The kernel in the integrand has 
+    % \[ \frac{R-r}{R(R+r)^{n-1}}\le \frac{R^2-r^2}{R|x-y|^n}.\]
+    % Harnack's Inequality follows with
+    % \[ \frac{R-r}{\alpha(n)R(R+r)^{n-1}}\int_{B(x_1,r)}u(y)dy\le \frac{1}{\alpha(n)}\int_{B(x_1,r)}\frac{R^2-r^2}{R|x_1-y|^n}u(y)dy\]
+    % It then follows from the mean value property that
+    % \[ \frac{R-r}{R(1+(r/R))^{n-1}}u(x_1)\le u(x)\]
+    % for every point $|x-x_1|<r\le R$. This result is satisfied by Poisson's formula and the mean value property (as the general statement is proved in Evans.)\newline
+    % The limit 
+    % \[\limsup_{h\to 0} \frac{u(x_0)-u(x_0-h\upsilon)}{h}\]
+    % by change of variables can be changed to
+    % \[\limsup_{r\to R} \frac{u(x_0)-u(x_0\left(\frac{r}{R}\right))}{R-r}\]
+    % (Instead of looking at $u$ at the point $x_0-h\upsilon$, the latter looks at the point $rx_0/R$ as $r\to R$, which is looking in the opposite direction.)
+    % We see that
+    % \[\frac{-u(x_0\left(\frac{r}{R}\right))}{R-r} \le  -\frac{1}{R-r}\frac{R-r}{(1+(r/R))^{n-1}}u(x_1) = -\frac{1}{(1 + (r/R))^{n-1}}u(x_1) < -\frac{1}{2^{n-1}}u(x_1) < 0.\]
+    % So clearly its $\limsup$ is negative, and hence, has a negative directional derivative at $x_0$.
+    % \exercise{6}{Let $U$ be a bounded domain of $\R^n$ with $C^2$ boundary, in particular it has an interior tangent ball at every boundary point. Use the result of the previous problem to show that any two solutions of the Neumann problem
+    % \[\begin{cases}
+    %   -\Delta u = f &\text{in}\quad U \\
+    %   \frac{\partial u}{\partial \upsilon} = h &\text{on}\quad \partial U
+    % \end{cases}\]
+    % differ by a constant.}
+    % Consider $u_1,u_2$ solutions to the above. Now consider $\omega = u_2 - u_1$. We see that
+    % \[\begin{cases}
+    %   -\Delta \omega = 0 &\text{in}\quad U \\
+    %   \frac{\partial \omega}{\partial \upsilon} = 0 &\text{on}\quad \partial U
+    % \end{cases}\]
+    % So $\omega$ is harmonic, so using Green's we see that
+    % \[\int_U \omega\Delta\omega dx = \int_{\partial U}\omega\frac{\partial \omega}{\partial \upsilon} dS(\upsilon) - \int_U |\nabla \omega|^2dx.\]
+    % Since $\frac{\partial \omega}{\partial \upsilon} = \Delta \omega = 0$, 
+    % \[\int_U |\nabla \omega|^2dx = 0 \implies \omega \text{ constant.}\]
+    % Hence $u_2 = u_1 + \text{ constant}$.
+    % \exercise{7}{Let $U$ be a bounded domain of $\R^n$ and $b:\overline{U}\to \R^n$ be continuous. Prove there is at most one solution $u\in C^2(U)\cap C(\overline{U})$ of the Dirichlet problem,
+    % \[\begin{cases}
+    %   -\Delta u + b(x) \cdot \nabla u = f(x) &\text{in } U \\
+    %   u=g(x) &\text{on } \partial U.
+    % \end{cases}\]}
+    % \textit{Solution:} 
+    % Assume $-\Delta u + b(x)\cdot\nabla u < 0$, and that $x\in \partial U$ is a maximum of $u(x)$. This means,
+    % \[\Delta u = \sum \frac{\partial_{ii}^2u}{\partial x_{ii}^2} \le 0\]
+    % where $x_{ij}$ is an entry of the Hessian matrix of second partial derivatives, and such $\Delta u \le 0$. Furthermore, because 
+    % $u(x)$ is a maximum, it has that $D_{x_i} u(x) = 0$ for each $x_i$ (and hence $\nabla u(x) = 0$.) This means that
+    % \[-\Delta u + b(x)\cdot \nabla u(x) = -\Delta u \ge 0\]
+    % but by assumption, this is a contradiction.\newline
+    % Now Assume $-\Delta u + b(x)\cdot\nabla u \le 0$, and that $x\in \partial U$ is a maximum of $u(x)$.
+    % Introduce a perturbation term $v_\delta$ such that
+    % \[v_\delta(x) = u(x) + \delta v(x).\]
+    % Let $v(x_l): \overline{U}\to\R^n$ such that $v(x_l)=0$ for every $1 < l \le n$.
+    % Now we have that
+    % \begin{align*}
+    %   -\Delta v_\delta + b(x)\cdot \nabla v_\delta(x) &= -\Delta u + b(x)\cdot \nabla u - \Delta \delta v + b(x)\cdot \nabla \delta v \\
+    %   &<-\delta\Delta v + \delta b(x)\cdot\nabla v \\
+    %   &= -\delta \frac{d^2 v}{dx_1^2} + \delta b(x_1)\frac{dv}{dx_1} < 0\star
+    % \end{align*}
+    % To show $\star$: because $b:\overline{U}\to\R^n$, let $B = \sup_{\overline{U}} |b(x_1)|$. Then, let $r < 0$ so that $-\frac{d^2 v}{dx_1^2} + B\frac{dv}{dx_1} = r$. We see that 
+    % \[v(x_1) = c_1\frac{e^{Bx}}{B} + \frac{rx}{B} + c_2\]
+    % WLOG, let $c_1=1, c_2=0$. Now we have that We see that $v_\delta = u + \delta v(x) \to u$ as $\delta \to 0$ uniformly on $U$, so the maximum is achieved on $U$ with 
+    % \[u\le v_\delta \le u + \delta \max_{\overline{U}}\left(\frac{e^{Bx}}{B} + \frac{rx}{B}\right).\]
+    % Let $w = u_1-u_2$ where $u_1,u_2$ are solutions of the above. We have that
+    % \[-\Delta w + b(x)\cdot \nabla w = 0,\quad w = 0 \text{ on $\partial U$}\]
+    % However, by the weak maximum principle proved just above, $w$ is 0 on the boundary so it must be a maximum, and hence $0$.
+    % \exercise{10}{If $u$ is harmonic and 
+    % \[\lim_{R\to\infty}\frac{1}{R^2}\sup_{B(0,R)} |u(x)| = 0,\]
+    % show that $u$ is linear.}
+    % By Theorem 2.2.7, estimate $|D^2u|$ by 
+    % \[|D^2u|\le \frac{4(2^{n+1}n)^2}{R^2\alpha(n)R^n}\|u\|_{L^1}\]
+    % Now, we can manipulate this given that $B(0,R)$ is bounded for each $R$.
+    % \begin{align*}
+    %   |D^2u|&\le \frac{4(2^{n+1}n)^2}{R^2\alpha(n)R^n}\|u\|_{L^1} \le \frac{4(2^{n+1}n)^2}{R^2}\|u\|_{L^\infty} = \frac{4(2^{n+1}n)^2}{R^2}\sup_{B(0,R)} |u(x)|
+    % \end{align*}
+    % We now see that we have the second derivative of $u$ bounded by 
+    % \[\frac{C}{R^2}\sup_{B(0,R)} |u(x)|\]
+    % so this clearly tends towards 0 by assumption. Hence, $u(x)$ is linear.
+    % \exercise{12}{Consider the problem of minimizing the Dirichlet energy
+    % \[I[v] = \int_U|Dv|^2dx\]
+    % over the admissable class 
+    % \[\mathcal{A} = \left\{v\in C^2(\overline{U}):v\vert_{\partial U} = 0\,\,\text{and}\,\,\int_U|v|^2dx=1.\right\}\]
+    % Show that if $u$ satisfies 
+    % \[I[u]=\min I[v]\]
+    % then $u$ solves the Dirichlet eigenvalue problem with eigenvalue $\lambda_0=\min I[v]$. Show that if $\lambda_1$ is another eigenvalue of the Dirichlet Laplacian on $U$, then $\lambda_1\ge \lambda_0$.}
+    % \begin{proof}[Solution]
+    % Because $u$ minimizes $I[v]$, let $v\in C^\infty_c(U)$
+    % \[i[\tau] := I\left[\frac{u + \tau v}{\|u+\tau v\|_{L^2}}\right].\]
+    % We see that each $\frac{u + \tau v}{\int_{U}|u+\tau v|^2}\in\mathcal{A}$ for each $\tau$, the scalar function $i$ has a minimum at 0, and thus
+    % \[i_\tau(0)=0.\]
+    % Then $i(\tau)$ has 
+    % \[ i(\tau) = \frac{1}{\|u+\tau v\|_{L^2}^2}\int_U|Du + \tau Dv|^2dx = \frac{1}{\int_U|u|^2 + 2\tau|uv|+|v|^2dx}\int_U |Du|^2 + 2\tau Du\cdot Dv + \tau^2|Dv|^2dx\]
+    % So we see that 
+    % \[0 = i'(0) = \frac{1}{\|u\|_{L^2}^2}\int_U Du\cdot Dv dx + \frac{-\int_Uuvdx}{\|u\|_{L^2}^4}\int_U|Du|^2dx= \int_U (-\Delta u) v dx - \frac{\int_Uuvdx}{\|u\|_{L^2}^2}\int_U|Du|^2dx\]
+    % Now we see that, if we allow $u\in\mathcal{A}$,
+    %   \[0=\int_U (-\Delta u)vdx - \int_Uuvdx \int_U|Du|^2dx =\int_U (-\Delta u)vdx - \int_U(I[u]u)vdx.\]
+    %   So $-\Delta u = \lambda_0u$ with $\lambda_0 = I[u]$.\newline
+    %   Now let $\lambda_1$ is another eigenvalue of the Dirichlet problem, with $w\in C^2(\overline{U})$ so
+    %   \begin{equation}\label{eq:Dirich}
+    %     \begin{cases}
+    %     -\Delta w = \lambda_1 w &x\in U\\
+    %     w = 0 &x\in\partial U
+    %   \end{cases}.\end{equation}
+    %   Then a normalized $w_2 = \frac{1}{\|w\|_{L^2}}w$ is a solution to \eqref{eq:Dirich} as
+    %   \begin{align*}
+    %     \Delta \left(\frac{1}{\|w\|_{L^2}}w\right) = \frac{1}{\|w\|_{L^2}}\Delta w
+    %   \end{align*}
+    %   by linearity of the Laplacian. Furthermore, $w_2\in \mathcal{A}$, so if $w_2 = u$, we see that $\lambda_0 = \lambda_1$ by the argument above.
+    %   However, when $w_2\ne u$, we see that if $\lambda_1 < \lambda_0$, then $\int_U |Dw_2|^2dx < \int_U |Du|^2dx$, which is a contradiction, so $\lambda_0 \le \lambda_1$.
+    % \end{proof}
+    % \exercise{13}{Consider the problem of minimizing the Dirichlet energy
+    % \[I[v] = \int_U\frac{1}{2}|Dv|^2-fvdx\]
+    % over the admissable class 
+    % \[\mathcal{A} = C^2(\overline{U})\]
+    % Show that if $u$ satisfies 
+    % \[I[u]=\min I[v]\]
+    % then $u$ solves the Neumann problem.}
+    % \begin{proof}[Solution]
+    % Because $u$ minimizes $I[v]$, let $v\in C^\infty_c(U)$ so $v$ vanishes on $\partial U$,
+    % \[i[\tau] := I\left[u + \tau v\right].\]
+    % We see that each $u + \tau v\in\mathcal{A}$ for each $\tau$, the scalar function $i$ has a minimum at 0, and thus
+    % \[i_\tau(0)=0.\]
+    % Then $i(\tau)$ has 
+    % \[ i(\tau) = \int_U\frac{1}{2}|Du + \tau Dv|^2 - (u+\tau v)fdx = \int_U \frac{1}{2}|Du|^2 + \tau Du\cdot Dv + \frac{\tau^2}{2}|Dv|^2 - (u+\tau v)fdx\]
+    % So we see that 
+    % \[0 = i'(0) = \int_U Du\cdot Dv - vf dx = \int_U (-\Delta u-f)vdx\]
+    % which is $0$ whenever $\Delta u = f$. Now, in order to show that the boundary conditions are satisfied, allow $w\in C^\infty_c(\overline{U}).$
+    % We know that in $U$, $u + \tau w$ minimizes $I$, and is a solution, so $-\Delta u = f$. Furthermore, taking the derivative w.r.t $\tau$ like before, we see that
+    % \[0= \int_{U} Du\cdot Dw - wfdx = \int_{\partial U} w\frac{du}{d\nu} dS - \int_U (-\Delta u - f)wdx = \int_{\partial U} w\frac{du}{d\nu} dS.\]
+    % This implies that $\frac{du}{d\nu}$ needs to vanish on $\partial U$, so the Neumann boundary condition is satisfied.
+    % \end{proof}
+    % \exercise{14}{Let $u$ be the solution of the Dirichlet problem on $U = \R_+^n$ given by the Poisson formula for the half-space. $g$ is bounded and $g(x) = |x|$ for $x\in\partial\R^n_+$. Show $Du$ is not bounded near $x=0$.}
+    % \[u(x) = \frac{2x_n}{n\alpha(n)}\int_{\partial \R^n_+}\frac{g(y)}{|x-y|^n}dS(y).\] Let $x = \lambda e_n = [0,0,\dots,\lambda]$. Now we see that
+    % Following the hint, note that $u(0)=g(0)= 0$, so we estimate the derivative $Du$ with $x$, 
+    % \begin{align*}
+    %   \frac{(u(x) - u(0))}{\lambda} = \frac{2e_n}{n\alpha(n)}\int_{\partial \R_+^n}\frac{|y|}{|\lambda + |y||^n}dS(y).
+    % \end{align*}
+    % Now consider the integral over $\Omega = \partial\R_+^n \cap \{|y|\le 1\}$ with
+    % \begin{align*}
+    %   \frac{(u(x) - u(0))}{\lambda} &=\frac{2e_n}{n\alpha(n)}\int_\Omega \frac{|y|}{|\lambda + |y||^n}dS(y) \\
+    %   &= (n-1)\alpha(n-1)\int_0^1\frac{r^{n-1}}{|\lambda - r|^n}dr \\
+    %   &= (n-1)\alpha(n-1)\int_0^1\frac{1}{r((\lambda/r)^2 - 1)^{n/2}}dr
+    % \end{align*}
+    % However, this integral diverges, hence $Du$ cannot be bounded as $Du\cdot x$ is unbounded as $\lambda\to 0$.
+    \exercise{16}{The Kelvin transform $\mathcal{K} u = \bar{u}$ of a function $u:\R^n\to \R$ is 
+    \[\bar{u}: u(x/|x|^2)|x|^{2-n}\]
+    with $\bar{x}=x/|x|^2$. Show that if $u$ is harmonic, then so is $\bar{u}$.}
+    First, compute $D_x\bar{x}$
     \begin{align*}
-      \Delta u_\epsilon &= \Delta_x (\eta_\epsilon \star u)\\
-      &= \Delta_x \int_{\R^n}\eta_\epsilon(x-y)u(y)dy \\
-      &= \Delta_x \int_{U} \eta_{\epsilon}(x-y)u(y)dy \\
-      &= \int_U\Delta_x \left[\eta_\epsilon(x-y)\right]u(y)dy \\
-      &= \int_U\Delta y \left[\eta_\epsilon(x-y)\right]u(y)dy \\
-      &= \int_U\Delta \phi udy \\
-      &= 0
+      D_x\bar{x} = \frac{I|x|^2 - 2xx^T}{|x|^4}
     \end{align*}
-    where $\phi = \eta_\epsilon(x-y)$. We see that $\Delta u_\epsilon$ is harmonic.
-    Now, choose $\epsilon_2 > 0$ and set $u_{\epsilon\epsilon_2} := \eta_{\epsilon_2}\star u_\epsilon$. We see that $\eta_{\epsilon_2}(x-y)$ is compactly supported on $U_{\epsilon}$ for $x\in U_{\epsilon + \epsilon_2}$.
-    Computing in polar coordinates gives
+    Now compute $D_x\bar{x}(D_x\bar{x})^T$
     \begin{align*}
-      u_{\epsilon\epsilon_2} &= \int_{U_\epsilon}\eta_{\epsilon_2}(x-y)u_\epsilon(y)dy \\
-      &= \frac{1}{\epsilon_2^n}\int_{B(x,\epsilon_2)}\eta\left(\frac{|x-y|}{\epsilon_2}\right)u_\epsilon(y)dy \\
-      &= \frac{1}{\epsilon_2^n}\int_0^{\epsilon_2}\eta\left(\frac{r}{\epsilon_2}\right)\int_{\partial B(x,r)}u_\epsilon(y)dS(y)dr \\
-      &= u_\epsilon(x)\int_{B(x,\epsilon)}\eta\left(\frac{x-y}{\epsilon_2}\right)dy \\
-      &= u_\epsilon(x)\int_{B(0,\epsilon)}\eta\left(y\right)dy \\
-      &= u_\epsilon(x)
+      D_x\bar{x}(D_x\bar{x})^T &= \frac{1}{|x|^8}(I|x|^2-2xx^T)(I|x|^2-2xx^T)^T \\
+      &=\frac{1}{|x|^8}(I|x|^2-2xx^T)(I|x|^2-2xx^T) \\
+      &= \frac{1}{|x|^8}(I|x|^4-4|x|^2xx^T+4|x|^2xx^T) = I/|x|^4 = |\bar{x}|^4I
     \end{align*}
-    Because convolution is associative, for $x\in U_{\epsilon+\epsilon_2}$, we have that $u_{\epsilon_2\epsilon} = u_{\epsilon\epsilon_2} = u_\epsilon \to u(x)$ uniformly. Furthermore,
-    \[u(x) = u_{\epsilon_2}(x)\] so we can conclude that for each $\epsilon,\epsilon_2$, $u = u_{\epsilon_2} \in C^\infty(U_{\epsilon + \epsilon_2})$ and harmonic.
-    \exercise{5}{Let $U$ be a bounded domain of $\R^n$ and $u\in C^2(U)\cap C(\overline{U})$ which is harmonic in $U$. Suppose that $u(x_0)=\min_{\overline{U}}u=0$ at some 
-    $x_0\in \partial U$. Suppose that there exists $x_1$ so that $B(x_1,r)\in U$ an $\partial(x_1,r)\cap\partial U = \{x_0\}$. Prove that if $u$ is not constant, then 
-    \[ \frac{\partial u}{\partial \upsilon}(x_0) < 0\]
-    where $\upsilon$ is the outward unit normal to $B(x_1,r)$ at $x_0$.}
-    \textit{Solution:} 
-    The solution $v = -u$ is still harmonic in the same domain $U$, so by the Strong maximum principle because $u =-v$ is not constant, $v(x_0) = 0$ is a maximum of $v$ and hence $v < 0 \in U$. 
-    Furthermore, $u > 0$ in $U$.
-    \exercise{6}{Let $U$ be a bounded domain of $\R^n$ with $C^2$ boundary, in particular it has an interior tangent ball at every boundary point. Use the result of the previous problem to show that any two solutions of the Neumann problem
-    \[\begin{cases}
-      -\Delta u = f &\text{in}\quad U \\
-      \frac{\partial u}{\partial \upsilon} = h &\text{on}\quad \partial U
-    \end{cases}\]
-    differ by a constant.}
-    Consider $u_1,u_2$ solutions to the above. Now consider $\omega = u_2 - u_1$. We see that
-    \[\begin{cases}
-      -\Delta \omega = 0 &\text{in}\quad U \\
-      \frac{\partial \omega}{\partial \upsilon} = 0 &\text{on}\quad \partial U
-    \end{cases}\]
-    So $\omega$ is harmonic, so using Green's we see that
-    \[\int_U \omega\Delta\omega dx = \int_{\partial U}\omega\frac{\partial \omega}{\partial \upsilon} dS(\upsilon) - \int_U |\nabla \omega|^2dx.\]
-    Since $\frac{\partial \omega}{\partial \upsilon} = \Delta \omega = 0$, 
-    \[\int_U |\nabla \omega|^2dx = 0 \implies \omega \text{ constant.}\]
-    Hence $u_2 = u_1 + \text{ constant}$.
+    as $\left|\frac{x}{|x|}\right| = \left|\frac{1}{|x|}\right|$.\newline
+    Now, we compute as $\Delta \bar{x} = n(2-n)\frac{x}{|x|^4}$. Furthermore, we can compute $\Delta u(\bar{x})$ with
+    \[\Delta (u(\bar{x})) = \sum_{i=1}^n \partial_{x_i} \bar{x}^T D^2u(\bar{x})\partial_{x_i}\bar{x} + Du(\bar{x})^T\Delta \bar{x} = \text{Tr}((D\bar{x})^TD^2uD\bar{x}) + Du\cdot \Delta \bar{x}.\]
+    We see that $\text{Tr}((D\bar{x})^TD^2uD\bar{x}) = |\bar{x}|^4\Delta u$ from the hint above. Now, we compute $\Delta \bar{u}$ with chain rule,
+    \[\Delta \bar{u} = |\bar{x}|^{n-2}|\bar{x}|^4(\Delta u) + u(\bar{x})\Delta(|\bar{x}|^{n-2}) + 2DuD\bar{x}(D|\bar{x}|^{n-2})^T + |\bar{x}|^{n-2}Du\cdot\Delta \bar{x}.\]
+    The first two terms are equivalently $0$ because $\Delta |\bar{x}|^{2-n} = \sum_{j=1}^n (n-2)\left(1 - \frac{nx_j^2}{|x|^2}\right)$ and $u$ is harmonic.\newline
+    Now we see that 
+    \[2DuD\bar{x}(D|\bar{x}|^{n-2})^T = 2Du\left(|x|^{-2}\left(I - 2 \frac{xx^T}{|x|^2}\right)\right)(2-n)|x|^{-n}x^T = 2(n-2)|x|^{-2-n}Du\cdot x^T = -|\bar{x}|^{n-2}Du\cdot\Delta \bar{x}.\]
+    This term allows $\Delta \bar{u} = 0$ so the Kelvin transform of $u$ is also harmonic.
+
     \end{document}
