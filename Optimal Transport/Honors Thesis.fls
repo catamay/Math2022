@@ -849,6 +849,13 @@ INPUT .\transport.jpg
 INPUT .\transport.jpg
 INPUT C:\Users\akcop\AppData\Local\MiKTeX\fonts\map\pdftex\pdftex.map
 INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmti10.tfm
+INPUT .\monge.jpg
+INPUT .\monge.jpg
+INPUT monge.jpg
+INPUT .\monge.jpg
+INPUT .\monge.jpg
+INPUT .\monge.jpg
+INPUT .\monge.jpg
 INPUT .\kantorovich.jpg
 INPUT .\kantorovich.jpg
 INPUT kantorovich.jpg
@@ -876,8 +883,6 @@ INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr10.pfb
 INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
 INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr5.pfb
-INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
-INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
 INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\akcop\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb

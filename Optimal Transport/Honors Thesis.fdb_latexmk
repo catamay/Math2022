@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1644817531 "c:/Users/akcop/Math/Optimal Transport/Honors Thesis.tex" "Honors Thesis.pdf" "Honors Thesis" 1644817533
-  "C:/Users/akcop/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1644122191 81760 910369822cd2d7c359b2482f4c0de4ca ""
+["pdflatex"] 1644982154 "c:/Users/akcop/Math/Optimal Transport/Honors Thesis.tex" "Honors Thesis.pdf" "Honors Thesis" 1644982156
+  "C:/Users/akcop/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1644854111 83358 a8328cf182cf32ae8c92cd2e930e6977 ""
   "C:/Users/akcop/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1643518026 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/akcop/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1643518027 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "C:/Users/akcop/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs7.tfm" 1643518028 692 1b6510779f0f05e9cbf03e0f6c8361e6 ""
@@ -41,7 +41,6 @@
   "C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1247596667 36281 c355509802a035cadc5f15869451dcee ""
   "C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb" 1247596667 31809 8670ca339bf94e56da1fc21c80635e2a ""
-  "C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1247596667 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1247596667 32762 7fee39e011c23b3589931effd97b9702 ""
   "C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1247596667 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "C:/Users/akcop/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
@@ -146,12 +145,13 @@
   "C:/Users/akcop/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1636284872 56029 3f7889dab51d620aa43177c391b7b190 ""
   "C:/Users/akcop/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1602241898 2275 d29aca6fd67823551cb07584e3681d5d ""
   "C:/Users/akcop/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1602241898 20688 beaddf14d96104d4bf016523be5395c5 ""
-  "Honors Thesis.aux" 1644817532 4750 f0b4cc9c9a30b158933ff3cdb0ac6e5d "pdflatex"
-  "Honors Thesis.out" 1644817532 3327 d79ff784a34743d17ef505134c433221 "pdflatex"
-  "Honors Thesis.tex" 1644817529 18283 feca8eab72a86110cdd6f4a9e75ad38a ""
-  "Honors Thesis.toc" 1644817532 1646 4ebb339070aad3e3257e7fd68e4a5be9 "pdflatex"
-  "c:/Users/akcop/Math/Optimal Transport/Honors Thesis.tex" 1644817529 18283 feca8eab72a86110cdd6f4a9e75ad38a ""
+  "Honors Thesis.aux" 1644982155 5331 33bf0191c75c9d609f7c6fce80df6d75 "pdflatex"
+  "Honors Thesis.out" 1644982155 3327 d79ff784a34743d17ef505134c433221 "pdflatex"
+  "Honors Thesis.tex" 1644982150 19176 a4258949ccd97c904b50c518e5fa7d30 ""
+  "Honors Thesis.toc" 1644982155 1646 23cbf7f8b8631f945291142232ab71bb "pdflatex"
+  "c:/Users/akcop/Math/Optimal Transport/Honors Thesis.tex" 1644982150 19176 a4258949ccd97c904b50c518e5fa7d30 ""
   "kantorovich.jpg" 1644176281 50340 5ddbcc9e6005cb523b9d3814e07b6029 ""
+  "monge.jpg" 1644977663 23822 961a89f63579cbf9fcae1b10fb016570 ""
   "transport.jpg" 1644110845 24438 ba638e52b384946f0c87799611c56b06 ""
   (generated)
   "Honors Thesis.aux"

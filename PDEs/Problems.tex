@@ -411,27 +411,42 @@
     %   &= (n-1)\alpha(n-1)\int_0^1\frac{1}{r((\lambda/r)^2 - 1)^{n/2}}dr
     % \end{align*}
     % However, this integral diverges, hence $Du$ cannot be bounded as $Du\cdot x$ is unbounded as $\lambda\to 0$.
-    \exercise{16}{The Kelvin transform $\mathcal{K} u = \bar{u}$ of a function $u:\R^n\to \R$ is 
-    \[\bar{u}: u(x/|x|^2)|x|^{2-n}\]
-    with $\bar{x}=x/|x|^2$. Show that if $u$ is harmonic, then so is $\bar{u}$.}
-    First, compute $D_x\bar{x}$
-    \begin{align*}
-      D_x\bar{x} = \frac{I|x|^2 - 2xx^T}{|x|^4}
-    \end{align*}
-    Now compute $D_x\bar{x}(D_x\bar{x})^T$
-    \begin{align*}
-      D_x\bar{x}(D_x\bar{x})^T &= \frac{1}{|x|^8}(I|x|^2-2xx^T)(I|x|^2-2xx^T)^T \\
-      &=\frac{1}{|x|^8}(I|x|^2-2xx^T)(I|x|^2-2xx^T) \\
-      &= \frac{1}{|x|^8}(I|x|^4-4|x|^2xx^T+4|x|^2xx^T) = I/|x|^4 = |\bar{x}|^4I
-    \end{align*}
-    as $\left|\frac{x}{|x|}\right| = \left|\frac{1}{|x|}\right|$.\newline
-    Now, we compute as $\Delta \bar{x} = n(2-n)\frac{x}{|x|^4}$. Furthermore, we can compute $\Delta u(\bar{x})$ with
-    \[\Delta (u(\bar{x})) = \sum_{i=1}^n \partial_{x_i} \bar{x}^T D^2u(\bar{x})\partial_{x_i}\bar{x} + Du(\bar{x})^T\Delta \bar{x} = \text{Tr}((D\bar{x})^TD^2uD\bar{x}) + Du\cdot \Delta \bar{x}.\]
-    We see that $\text{Tr}((D\bar{x})^TD^2uD\bar{x}) = |\bar{x}|^4\Delta u$ from the hint above. Now, we compute $\Delta \bar{u}$ with chain rule,
-    \[\Delta \bar{u} = |\bar{x}|^{n-2}|\bar{x}|^4(\Delta u) + u(\bar{x})\Delta(|\bar{x}|^{n-2}) + 2DuD\bar{x}(D|\bar{x}|^{n-2})^T + |\bar{x}|^{n-2}Du\cdot\Delta \bar{x}.\]
-    The first two terms are equivalently $0$ because $\Delta |\bar{x}|^{2-n} = \sum_{j=1}^n (n-2)\left(1 - \frac{nx_j^2}{|x|^2}\right)$ and $u$ is harmonic.\newline
-    Now we see that 
-    \[2DuD\bar{x}(D|\bar{x}|^{n-2})^T = 2Du\left(|x|^{-2}\left(I - 2 \frac{xx^T}{|x|^2}\right)\right)(2-n)|x|^{-n}x^T = 2(n-2)|x|^{-2-n}Du\cdot x^T = -|\bar{x}|^{n-2}Du\cdot\Delta \bar{x}.\]
-    This term allows $\Delta \bar{u} = 0$ so the Kelvin transform of $u$ is also harmonic.
-
+    % \exercise{16}{The Kelvin transform $\mathcal{K} u = \bar{u}$ of a function $u:\R^n\to \R$ is 
+    % \[\bar{u}: u(x/|x|^2)|x|^{2-n}\]
+    % with $\bar{x}=x/|x|^2$. Show that if $u$ is harmonic, then so is $\bar{u}$.}
+    % First, compute $D_x\bar{x}$
+    % \begin{align*}
+    %   D_x\bar{x} = \frac{I|x|^2 - 2xx^T}{|x|^4}
+    % \end{align*}
+    % Now compute $D_x\bar{x}(D_x\bar{x})^T$
+    % \begin{align*}
+    %   D_x\bar{x}(D_x\bar{x})^T &= \frac{1}{|x|^8}(I|x|^2-2xx^T)(I|x|^2-2xx^T)^T \\
+    %   &=\frac{1}{|x|^8}(I|x|^2-2xx^T)(I|x|^2-2xx^T) \\
+    %   &= \frac{1}{|x|^8}(I|x|^4-4|x|^2xx^T+4|x|^2xx^T) = I/|x|^4 = |\bar{x}|^4I
+    % \end{align*}
+    % as $\left|\frac{x}{|x|}\right| = \left|\frac{1}{|x|}\right|$.\newline
+    % Now, we compute as $\Delta \bar{x} = n(2-n)\frac{x}{|x|^4}$. Furthermore, we can compute $\Delta u(\bar{x})$ with
+    % \[\Delta (u(\bar{x})) = \sum_{i=1}^n \partial_{x_i} \bar{x}^T D^2u(\bar{x})\partial_{x_i}\bar{x} + Du(\bar{x})^T\Delta \bar{x} = \text{Tr}((D\bar{x})^TD^2uD\bar{x}) + Du\cdot \Delta \bar{x}.\]
+    % We see that $\text{Tr}((D\bar{x})^TD^2uD\bar{x}) = |\bar{x}|^4\Delta u$ from the hint above. Now, we compute $\Delta \bar{u}$ with chain rule,
+    % \[\Delta \bar{u} = |\bar{x}|^{n-2}|\bar{x}|^4(\Delta u) + u(\bar{x})\Delta(|\bar{x}|^{n-2}) + 2DuD\bar{x}(D|\bar{x}|^{n-2})^T + |\bar{x}|^{n-2}Du\cdot\Delta \bar{x}.\]
+    % The first two terms are equivalently $0$ because $\Delta |\bar{x}|^{2-n} = \sum_{j=1}^n (n-2)\left(1 - \frac{nx_j^2}{|x|^2}\right)$ and $u$ is harmonic.\newline
+    % Now we see that 
+    % \[2DuD\bar{x}(D|\bar{x}|^{n-2})^T = 2Du\left(|x|^{-2}\left(I - 2 \frac{xx^T}{|x|^2}\right)\right)(2-n)|x|^{-n}x^T = 2(n-2)|x|^{-2-n}Du\cdot x^T = -|\bar{x}|^{n-2}Du\cdot\Delta \bar{x}.\]
+    % This term allows $\Delta \bar{u} = 0$ so the Kelvin transform of $u$ is also harmonic.
+      \exercise{17}{Let $U$ be a bounded domain in $\R^n$ and $\alpha \in (0,1)$. Suppose that $u\in C^2(U)\cap C(\overline{U})$ solves 
+      \[\begin{cases}
+        -\Delta u = |u|^\alpha &\text{in } U\\
+        u(x) = 0 &\text{on } \partial U.
+      \end{cases}\]
+      Show that 
+      \[ \sup_U|u|\le C\]
+      where $C$ depends only on $n,\alpha$, and $\text{diam}(U)$.}
+      \begin{proof}[Solution]
+        By Evans 2.6, 
+        \[\max_{\bar{U}} |u| \le \frac{\max_{\overline{U}}|x|^2}{2n}\max_{\overline{U}}|u|^\alpha\]
+      \end{proof}
+      \exercise{21}{}
+      \begin{proof}[Solution]
+         Because $v$ is a subsolution, $-\Delta v \le 0$ in $B(0,1)\setminus \{0\}$ and $v\le 0$ on $\partial B(0,1)$. 
+      \end{proof}
     \end{document}

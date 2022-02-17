@@ -30,7 +30,13 @@
   urlcolor=blue,%
   pdfnewwindow=true,%
   pdfstartview=FitBH}   
-  
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\LIM}{\mathop{\textup{LIM}}}
 \let\fullref\autoref
 %
 %  \autoref is very crude.  It uses counters to distinguish environments
@@ -181,7 +187,7 @@ In the most simple terms, the optimal transport problem is just that-what is the
 \subsection{Problem}\hfill\\
 
 Start with a simple example where we have a pile of dirt, and a hole to fill completely with the dirt.
-To transport the dirt from this pile to the hole, clearly, the volume of the hole and the pile must be the same. As is suggested in \autoref{villani}, we normalize this mass to $1$.\newline
+To transport the dirt from this pile to the hole, clearly, the volume of the hole and the pile must be the same. As is suggested in \cite{villani}, we normalize this mass to $1$.\newline
 To model this rigorously, allow the pile to be space $X$ and the hole to be space $Y$. It's natural to define probability measures $\mu,\nu$ on $X,Y$ respectively.
 In other words, for measurable $A\subset X$ and $B\subset Y$, $\mu(A)$ is the volume in the pile $X$ and $\nu(B)$ is the volume to be filled in hole $Y$.\newline
 Now, introduce cost function $c: X\times Y \to \mathbb{R}$ such that for points $x\in X,y\in Y$, $c(x,y)$ represents how much energy is exhausted transporting point $x$ in the pile to point $y$ in the hole.\newline
@@ -214,15 +220,20 @@ In order to describe the Monge Formulation, we denote the set of all $T$ such th
 \end{equation}
 \begin{defn}[Monge Formulation of the transport problem]\label{defn:monge}
   \begin{equation}
-    \underset{\mathcal{T}(\mu,\nu)}{\text{minimize}}\left\{\int_X c(x,T(x))d\mu(x)\right\}
+    \mathbb{M} = \underset{\mathcal{T}(\mu,\nu)}{\text{minimize}}\left\{\int_X c(x,T(x))d\mu(x)\right\}
   \end{equation}
 \end{defn}
 In other words, \autoref{defn:monge} is minimizing the energy required from transporting $X\overset{T(x)}{\to}Y$. 
-\begin{exmp}[Dirt piles in the Monge case]
-  Let's consider that on a high level, transport maps are the method one uses to move dirt from $X$ to a hole in $Y$ and $c$ can be the time required.\newline
-  We see that if the transport map were moving every individual dirt particle into a hole in $Y$, the amount of time required would be substantial compared to 
-  a method such as using a shovel to transport many dirt particles to a hole in $Y$.\newline 
-  Importantly, however, in every transport map, dirt particles (or a set of particles) are transported to exactly one hole. This is what's happening in \autoref{fig:tran}.
+\begin{exmp}[Discrete Monge Problem]\label{exmp:monge}
+Consider $\mu = \frac{2}{3}\delta_{x_1} + \frac{1}{3}\delta_{x_2}$ and $\nu = \frac{2}{3}\delta_{y_1} + \frac{1}{3}\delta_{y_2}$. We see that the only transport map that exists is the map where $T(x_1) = y_1$ and $T(x_2)=y_2$ as such mass is not split.
+However, in order to make the optimal transport map less trivial, we can allow $\mu = \frac{1}{n}\sum_{i=1}^n\delta_{x_i}$ and $\nu = \frac{1}{n}\sum_{i=1}^n\delta_{y_i}$ to create the discrete Monge optimal transportation problem. \newline
+Now, we can allow $j = \sigma(i)$ where $\sigma \in S_n$ with $S_n$ be the permutations of $\{1,2\dots,n\}$. In other words, $\sigma$ is a transport map where we can define the discrete monge problem as 
+\[\mathbb{M}_{\text{disc}} = \inf_{\sigma\in S_n}\left\{\frac{1}{n}\sum_{i=1}^nc(x_i,y_{\sigma(i)})\right\}.\]
+\begin{figure}[H]
+  \includegraphics[scale=0.3]{monge.jpg}
+  \caption{We see that $x_1\to y_1$ and $x_2\to y_2$ is the only valid transport map $T$ such that mass is not split. These are solutions to what are discrete optimal transport problems.}
+  \label{fig:monge}
+\end{figure}
 \end{exmp}
 \subsection{Kantorovich Formulation}\hfill\\
 
@@ -241,7 +252,7 @@ To define  Kantorovich's Formulation, we define the set of all probability measu
 \end{equation}
 \begin{defn}[Kantorovich Formulation of the transport problem]\label{defn:kantorovich}
   \begin{equation}
-    \underset{\Pi(\mu,\nu)}{\text{minimize}}\left\{\int_{X\times Y} c(x,y)d\pi(x,y)\right\}.
+    \mathbb{K} = \underset{\Pi(\mu,\nu)}{\text{minimize}}\left\{\int_{X\times Y} c(x,y)d\pi(x,y)\right\}.
   \end{equation}
 \end{defn}
 This formulation is typically referred to as a relaxation of \autoref{defn:monge}, or that Monge's problem is stronger than Kantorovich's.
@@ -262,10 +273,13 @@ This formulation is typically referred to as a relaxation of \autoref{defn:monge
 \end{proof}
 We see that the Monge Formulation is the stronger case, where we restrict mass in $X$ from being able to be split. However, \autoref{prop:equiv} can also be framed as stating that a Kantorovich Formulation with mass
 that cannot be split is a Monge Problem.
-\begin{exmp}[Dirt Piles in the Kantorovich Case]
-  Because now we're dealing with product measures, it's natural to think about the case where mass is split. One way to think about this the transport plan of using a larger
-  shovel that may hold too much mass for one hole, but can hold enough to fill multiple. This is equivalent to the mass in the shovel being some product measure in $\Pi$, where 
-  now transport is dependent on both $X$ and $Y$. This is described in \autoref{fig:kant}.
+\begin{exmp}[Discrete Kantorovich Problem]
+  Consider $\mu = \sum_{i=1}^n\alpha_i\delta_{x_i}$ and $\nu = \sum_{i=1}^n\beta_{i}\delta_{y_i}$ where $\sum_{i=1}^n \alpha_i = \sum_{i=1}^n\beta_i = 1$ and $\alpha_i \ge 0$ and $\beta_i \ge 0$. Unlike \autoref{exmp:monge}, $\alpha_i = \beta_i = \frac{1}{n}$ need not be true. Transport plans can be represented as $\pi = \pi_{ij}$\cite{thorpe} where $\pi$ is a $n\times n$ bistochastic matrix in the sense that
+  \[B = \left\{\pi \bigg\vert\pi_{ij} \ge 0 \text{ for all $1 \le i,j\le n$}, \quad \sum_{i=1}^n\pi_{ij} = 1 \text{ for all $1\le j\le n$,}\quad \sum_{j=1}^n\pi_{ij} = 1 \text{ for all $1\le i\le n$.}\right\}\]
+  So now the discrete Kantorovich problem becomes 
+  \begin{equation}
+    \mathbb{K}_{\text{disc}} = \inf_{\pi\in B}\sum_{i,j}\pi_{ij}c(x_i,y_j).
+  \end{equation}
   \begin{figure}[H]
     \includegraphics[scale=0.3]{kantorovich.jpg}
     \caption{We see in this case the mass $\pi(x,y)$ has been split into multiple holes in $Y$ between steps where red denotes the mass added to $Y$ and subtracted from $X$.}
@@ -274,8 +288,8 @@ that cannot be split is a Monge Problem.
 \end{exmp} 
 \section{Kantorovich Duality}
 
-For linear optimization problems, it is well known that they admit a dual problem, and Kantorovich in 1942 showed duality for \autoref{defn:kantorovich} for $c(x,y) = d(x,y)$ where $d$ is the distance metric, but it still holds in generality. 
-To begin to understand Kantorovich's dual problem, we can think of Caffarelli's Shipper's Problem described in \autoref{bib:villani}
+For linear optimization problems, it is well known that they admit a dual problem, and Kantorovich in 1942 showed duality for \autoref{defn:kantorovich} for $c(x,y) = d(x,y)$ where $d$ is the distance metric in $\R^n$, but it still holds in generality. 
+To begin to understand Kantorovich's dual problem, we can think of Caffarelli's Shipper's Problem described in \cite{villani}.
 \begin{exmp}[Shipper's Problem]\label{exmp:ship}
   It costs $c(x_1,y_1)$ dollars for a factory to transport coal from mine $x_1$ to factory $y_1$. I tell the mine owner that I can charge them $\phi(x_1)$ dollars to pick up at mine $x_1$ and charge $\psi(y_1)$ to deliver to factory $y_1$, then, in order for the factory owner to agree to my terms, 
   \[\phi(x)+\psi(y)\le c(x,y)\]
@@ -298,17 +312,15 @@ Let $X$ and $Y$ be Polish spaces, let $\mu\in \mathcal{P}(X)$ and $\nu\in\mathca
     \inf_{\Pi(\mu,\nu)} I(\pi) = \sup_{\Phi_c}{J(\phi,\psi)}.
   \end{equation}
 \end{thm}
-It is not a priori clear that $\sup J$ is the same upon restricting $\Phi_c$ to bounded continuous functions $C_b$, so we'll consider $\Phi_c\cap C_b$ and $\Phi_c\cap L^1$. With this,
-we can begin the proof.
-\begin{prop}[Easy part of Kantorovich Duality]\label{prop:kant}
-  Under the same assumptions as \autoref{thm:kant},
-  \begin{equation}
-    \sup_{\Phi_c \cap C_b} J(\phi,\psi) \le \sup_{\Phi_c\cap L^1} J(\phi,\psi) \le \inf_{\Pi(\mu,\nu)}I[\pi].
-  \end{equation}
-\end{prop}
-\begin{proof}
-  $C_b(X)\times C_b(Y) \subset L^1(X)\times L^1(Y)$ so the left inequality is trivial. 
-\end{proof}
+We can construct a minimax principle in order to give an informal proof of \autoref{thm:kant}. We see 
+\begin{equation}\label{eqn:minimax}
+  \inf_{\pi\in\Pi(\mu,\nu)} \int_{X\times Y}c(x,y)d\pi = \inf_{\pi\in M_+(X\times Y)} \int_{X\times Y} c(x,y)d\pi(x,y)+ \begin{cases}0 &\pi\in\Pi(\mu,\nu) \\ +\infty &\text{otherwise.}\end{cases} 
+\end{equation}
+where $M_+$ is the set of nonnegative Borel measures on $X\times Y$. We can rewrite the righthand side of \autoref{eqn:minimax} with
+\[\begin{cases}
+  0 &\pi\in \Pi \\
+  +\infty &\text{otherwise.}
+\end{cases} = \sup_{(\phi,\psi)}\int_{X}\phi(x)d\mu + \int_{Y}\psi(y)d\nu- \int_{X\times Y} [\phi(x)+\psi(y)]d\pi(x,y).\]
 \section{Existence of Transport Plans/Maps}
 \subsection{Existence of Transport Plans}
 \subsection{Brenier / Knott-Smith Optimality}
@@ -347,24 +359,14 @@ And you should reference anything you use.   Especially if you quote any result 
 give a reference.   And never ever should you copy material directly or more or less directly, from a source.
 
 \begin{thebibliography}{9}
-
-\bibitem{ams} http://www.ams.org/publications/authors/tex/amslatex
-
-\bibitem{amsshort}
-Michael Downes.
-Short Math Guide for \LaTeX.
-http://tex.loria.fr/general/downes-short-math-guide.pdf
-
-\bibitem{May}
-J. P. May.
-A Concise Course in Algebraic Topology.
-University of Chicago Press. 1999. 
-
-\bibitem{notsoshort}
-Tobias Oekiter, Hubert Partl, Irene Hyna and Elisabeth Schlegl.
-The Not So Short Introduction to \LaTeX 2e.
-https://tobi.oetiker.ch/lshort/lshort.pdf
-
+\bibitem{villani}
+Villani C.
+Topics in Optimal Transportation.
+American Mathematical Society, 2003.
+\bibitem{thorpe}
+Thorpe M.
+Introduction to Optimal Transport.
+University of Cambridge, 2018.
 \end{thebibliography}
 
 \end{document}
