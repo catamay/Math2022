@@ -1,0 +1,212 @@
+\documentclass[psamsfonts]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage[shortlabels]{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{float}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{subfigure}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[shortlabels]{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{float}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{subfigure}
+\usepackage{hyperref}
+\let\fullref\autoref
+\def\makeautorefname#1#2{\expandafter\def\csname#1autorefname\endcsname{#2}}
+%\makeautorefname{equation}{Equation}%
+\def\equationautorefname~#1\null{(#1)\null}
+\makeautorefname{footnote}{footnote}%
+\makeautorefname{item}{item}%
+\makeautorefname{figure}{Figure}%
+\makeautorefname{table}{Table}%
+\makeautorefname{part}{Part}%
+\makeautorefname{appendix}{Appendix}%
+\makeautorefname{chapter}{Chapter}%
+\makeautorefname{section}{Section}%
+\makeautorefname{subsection}{Section}%
+\makeautorefname{subsubsection}{Section}%
+\makeautorefname{theorem}{Theorem}%
+\makeautorefname{thm}{Theorem}%
+\makeautorefname{sta}{Statement}%
+\makeautorefname{cor}{Corollary}%
+\makeautorefname{lem}{Lemma}%
+\makeautorefname{prop}{Proposition}%
+\makeautorefname{pro}{Property}
+\makeautorefname{conj}{Conjecture}%
+\makeautorefname{conj}{Convention}%
+\makeautorefname{defn}{Definition}%
+\makeautorefname{notn}{Notation}
+\makeautorefname{notns}{Notations}
+\makeautorefname{rem}{Remark}%
+\makeautorefname{rems}{Remarks}%
+\makeautorefname{quest}{Question}%
+\makeautorefname{exmp}{Example}%
+\makeautorefname{ax}{Axiom}%
+\makeautorefname{claim}{Claim}%
+\makeautorefname{ass}{Assumption}%
+\makeautorefname{asses}{Assumptions}%
+\makeautorefname{con}{Construction}%
+\makeautorefname{prob}{Problem}%
+\makeautorefname{warn}{Warning}%
+\makeautorefname{obs}{Observation}%
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{sta}{Statement}[section]
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem{prob}{Problem}[section]
+\newtheorem{conj}{Conjecture}[section]
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+\newtheorem{conv}{Convention}[section]
+\newtheorem{ass}{Assumption}[section]
+\newtheorem{asses}{Assumptions}[section]
+\newtheorem{ax}{Axiom}[section]
+\newtheorem{con}{Construction}[section]
+\newtheorem{exmp}{Example}[section]
+\newtheorem{notn}{Notation}[section]
+\newtheorem{notns}{Notations}[section]
+\newtheorem{pro}{Property}[section]
+\newtheorem{quest}{Question}[section]
+\newtheorem{rem}{Remark}[section]
+\newtheorem{rems}{Remarks}[section]
+\newtheorem{warn}{Warning}[section]
+\newtheorem{sch}{Scholium}[section]
+\newtheorem{obs}{Observation}[section]
+
+%%%% hack to get fullref working correctly
+\makeatletter
+\let\c@obs=\c@thm
+\let\c@cor=\c@thm
+\let\c@prop=\c@thm
+\let\c@lem=\c@thm
+\let\c@prob=\c@thm
+\let\c@con=\c@thm
+\let\c@conj=\c@thm
+\let\c@defn=\c@thm
+\let\c@notn=\c@thm
+\let\c@notns=\c@thm
+\let\c@exmp=\c@thm
+\let\c@ax=\c@thm
+\let\c@pro=\c@thm
+\let\c@ass=\c@thm
+\let\c@warn=\c@thm
+\let\c@rem=\c@thm
+\let\c@conv=\c@thm
+\let\c@sch=\c@thm
+\numberwithin{equation}{section}
+\makeatother
+\definecolor{problem}{rgb}{0.8,0.8,0.8}
+\newcommand{\comp}[2]{
+\vspace{0.2in}\begin{mdframed}[
+  backgroundcolor=problem,
+  skipabove=\topsep,
+  skipbelow=\topsep
+  ]
+  \emph{Computation {#1}:} {#2}
+\end{mdframed}}
+\newcommand{\exercise}[2]{
+\vspace{0.2in}\begin{mdframed}[
+  backgroundcolor=problem,
+  skipabove=\topsep,
+  skipbelow=\topsep
+  ]
+  \emph{Exercise {#1}:} {#2}
+\end{mdframed}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\ep}{\varepsilon}
+\newcommand{\LIM}{\mathop{\textup{LIM}}}
+
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Aidan Copinga, Dynamics}
+\begin{document}
+\section{Feb 14: Classification of Dynamical Systems}
+\subsection{Classification is difficult}
+Orbit equivalence is an example that describes this difficulty.
+\begin{defn}[Orbit equivalence]
+    All aperiodic systems are equivalent up to measurable change of 
+    coordinates.
+\end{defn}
+\begin{defn}[Rigidity Theorem]
+    Note well define, but if some "nice" condition is met, the system is a "nice" one.
+\end{defn}
+\begin{exmp}[Marked Length Spectrum (Otal's theorem)]\label{exmp:Otal}
+    If $S$ is a negatively curved surface and there is a surface $S'$ of constant curvature and a 
+    homeomorphism $\phi: S\to S'$ such that for every free homotopy class $\gamma$, the length of $\gamma$ with 
+    \[l_{S'}(\phi(\gamma)) = l_S(\gamma).\] Then there is an isometry $\phi_0 : S\to S'$.
+\end{exmp}
+Importantly, there is some structure on the space being asked, and we wish to find some algebraic structure (for it to be considered "nice"). In the case of \autoref{exmp:Otal}, we are looking to build
+$SL(2,\R)$ structure.
+\begin{thm}[Another Rigidity Theorem]
+    If $\phi_t:M\to M$ is an Anosov flow on a 3-manifold $M$, and $h_{\text{top}}(\gamma_t) = h_\mu(\phi_t)$ for an invariant volume $\mu$, 
+    Then $\phi_t$ is either:
+    \begin{itemize}
+        \item Conjugate to geodesic flow on $T$'s for a hyperbolic surface $S$.
+        \item Constant-time suspension of an Anosov automorphism of $\Pi^2$.
+    \end{itemize}
+\end{thm}
+Let $\mathcal{X}^\infty(M) = \{C^\infty \text{ vector fields on } M\}$, then in the Lie algebraic sense, $[X,Y]\cdot f = XYf - YXf$.
+\begin{thm}[Frobenius]
+    If $D$ is a distribution on $M$, then $D$ is the tangent bundle for some center manifold $N$ ($D =  TN$), then 
+    $N\iff$ for all $x,y\in \mathcal{X}(M)$ such that $X_p,Y_0\in D_0$ for all $p\in M$ then $[X,Y]_p\in D_p$ for all $p\in M$.
+\end{thm}
+\begin{thm}
+    Let $M$ be a $C^\infty$ manifold, and $\gamma\subset \mathcal{X}^\infty(M)$ is a vector subspace such that fro all $x,y\in\gamma$, $[x,y]\in \gamma$
+    and $\gamma$ is finite dimensional, then there is a simply connected lie group $G$ such that $\text{Lie}(G) = \gamma$ and an action $G\to M$ such that $T_p(G\cdot p) = \gamma_p$ (the operation is almost reversible, that is, it is only locally unique.)
+\end{thm}
+\textit{Big Idea from today's talk}: Bring Bracky assumption to the Lie Group level. \newline
+We can assume that because $\gamma$ is finite dimensional and a Lie Algebra, we can reframe this with
+\[\phi_t^{(1)},\dots,\phi_t^{(n)}\]
+which are $n$-many flows where we don't assume regularity to do this solely topologically.\newline
+\begin{defn}[Graev]
+    Let $H_1,\dots,H_n$ be topological groups. Then, up to continuous isomorphism, there exists a unique group $H_1\star\dots\star H_n$ such that:
+    \begin{itemize}
+        \item $H_i \to H_1\star \dots\star H_n$ embeds as a homeomorphism onto its image.
+        \item If $\phi_i : H_i\to G$ be any family of continuous homeomorphisms, there exists a unique extension $\Phi : H_1\star\dots\star H_n \to G$.
+    \end{itemize} 
+    Punishing me for not learning Tickzd. The above can be written as a commutative diagram.
+\end{defn}
+\begin{defn}[Free Products] Elements of a free product are
+    \begin{itemize}
+        \item $h_1^{(i)}\star h_2^{(ii)} \star \dots \star h_{m}^{(im)}$ where each $h_k^{ik}\in H_{l_k}$.
+    \end{itemize}
+    The only relations that one can use in a free product are the ones that are forced in a group.
+\end{defn}
+\begin{thm}[$\delta$ domain]
+    If $H_i$ is a Lie group, $H_i\star\dots\star H_n$ is a CW-complex topology. It is $\infty$-dimensional.
+\end{thm}
+This is a rather weak topology, but it preserves Graev's definition.
+\begin{exmp}[Word lengths in $\R$]
+    \begin{itemize}
+        \item At word length 0, there is only the identity element $e$
+        \item At word length 1, there is a single copy of $\R^2$ intersecting
+        \item At word length 2, there is an intersection of two copies $\R^2$ which represent the combinations of words.
+        \item At word length 3, the structure becomes more complicated, but in the case of $g0g$ for $g\in \R$, it collapses onto a line.
+    \end{itemize}
+\end{exmp}
+Goal for 2/21: \textbf{Show that Stabilizers are normal}.
+\end{document}
