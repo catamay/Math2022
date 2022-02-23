@@ -164,7 +164,7 @@
 \bibliographystyle{plain}
 
 %--------Meta Data: Fill in your info------
-\title{Optimal Transport and Wasserstein Space}
+\title{Optimal Transport and Applications}
 
 \author{Aidan Copinga}
 
@@ -175,7 +175,7 @@
 \begin{abstract}
 
 In the 18th century, a problem was created about the best way to transport munitions to each barracks in France. This problem, now called optimal transportation, has shown useful in many fields of mathematics, from PDEs to image processing and machine learning.
-In the most simple terms, the optimal transport problem is just that-what is the optimal way to transport items from one place to another. Typically, we call these transport maps. That being said, it has quite rigorous and fascinating mathematical consequences.
+This paper introduces the Monge-Kantorovich Problem and its dual problem. Using this, we are able to discuss existence of transport plans and maps of the Monge-Kantorovich problem. Finally, we cover the Wasserstein Space and applications with respect to gradient flows.
 
 \end{abstract}
 
@@ -183,6 +183,7 @@ In the most simple terms, the optimal transport problem is just that-what is the
 
 \tableofcontents
 
+\section*{Acknowledgments}
 \section{Formulation of Optimal Transport}
 \subsection{Problem}\hfill\\
 
@@ -281,20 +282,24 @@ that cannot be split is a Monge Problem.
     \mathbb{K}_{\text{disc}} = \inf_{\pi\in B}\sum_{i,j}\pi_{ij}c(x_i,y_j).
   \end{equation}
   \begin{figure}[H]
-    \includegraphics[scale=0.3]{kantorovich.jpg}
-    \caption{We see in this case the mass $\pi(x,y)$ has been split into multiple holes in $Y$ between steps where red denotes the mass added to $Y$ and subtracted from $X$.}
+    \includegraphics[scale=0.3]{discretekant.jpg}
+    \caption{Letting $\mu = \frac{2}{3}\delta_{x_1} + \frac{1}{3}\delta_{x_2}$ and $\nu = \frac{2}{3}\delta_{y_1} + \frac{1}{3}\delta_{y_2}$, we see there is no concentration along the diagonal for $\pi$, hence mass is split, but this transport plan is still valid.}
     \label{fig:kant}
   \end{figure}
 \end{exmp} 
 \section{Kantorovich Duality}
 
-For linear optimization problems, it is well known that they admit a dual problem, and Kantorovich in 1942 showed duality for \autoref{defn:kantorovich} for $c(x,y) = d(x,y)$ where $d$ is the distance metric in $\R^n$, but it still holds in generality. 
+For linear optimization problems, it is well known that they admit a dual problem, and Kantorovich in 1942 showed duality for \autoref{defn:kantorovich} for $c(x,y) = d(x,y)$ where $d$ is the distance metric in $\R^n$, but it still holds in general Polish spaces. 
 To begin to understand Kantorovich's dual problem, we can think of Caffarelli's Shipper's Problem described in \cite{villani}.
 \begin{exmp}[Shipper's Problem]\label{exmp:ship}
   It costs $c(x_1,y_1)$ dollars for a factory to transport coal from mine $x_1$ to factory $y_1$. I tell the mine owner that I can charge them $\phi(x_1)$ dollars to pick up at mine $x_1$ and charge $\psi(y_1)$ to deliver to factory $y_1$, then, in order for the factory owner to agree to my terms, 
   \[\phi(x)+\psi(y)\le c(x,y)\]
   for every location $x$ and destination $y$. However, I can make this sum as close as I want to $c(x,y)$ because I have the liberty to choose $\phi,\psi$. In other words, the most money I can make is equal to the least effort it would take the factory owner (just simply transporting it with cost $c(x,y)$) which is exactly what a dual problem would suggest.
 \end{exmp}
+\begin{figure}[H]
+  \includegraphics[scale=0.3]{Shippers.jpg}
+  \caption{The easiest thing for the owners to do is pay $c(M,F)$, but they can pay less by going through my shipping service which costs $\phi(M) + \psi(F)$.}
+\end{figure}
 \subsection{Kantorovich Duality}
 \begin{thm}[Kantorovich Duality]\label{thm:kant}
 Let $X$ and $Y$ be Polish spaces, let $\mu\in \mathcal{P}(X)$ and $\nu\in\mathcal{P}(Y)$, and let\hfill\break $c: X\otimes Y\to \mathbb{R}^+\cup\{+\infty\}$ be a lower semicontinuous cost function.
@@ -304,7 +309,7 @@ Let $X$ and $Y$ be Polish spaces, let $\mu\in \mathcal{P}(X)$ and $\nu\in\mathca
   Define $\Pi(\mu,\nu)$ to be the set of all Borel probability measures $\pi$ on $X\otimes Y$ such that for all measurable subsets $A\subset X$ and $B\subset Y$,
   \[\pi(A\otimes Y) = \mu(A),\quad \pi(X\otimes B)= \nu(B),\]
   and define $\Phi_c$ to be the set of all measurable functions $(\phi,\psi)$ satisfying
-  \begin{equation}
+  \begin{equation}\label{eqn:dualconst}
     \phi(x) + \psi(y) \le c(x,y)
   \end{equation}
   for $d\mu-$almost every $x\in X$, $d\nu-$almost every $y\in Y$. Then,
@@ -314,49 +319,100 @@ Let $X$ and $Y$ be Polish spaces, let $\mu\in \mathcal{P}(X)$ and $\nu\in\mathca
 \end{thm}
 We can construct a minimax principle in order to give an informal proof of \autoref{thm:kant}. We see 
 \begin{equation}\label{eqn:minimax}
-  \inf_{\pi\in\Pi(\mu,\nu)} \int_{X\times Y}c(x,y)d\pi = \inf_{\pi\in M_+(X\times Y)} \int_{X\times Y} c(x,y)d\pi(x,y)+ \begin{cases}0 &\pi\in\Pi(\mu,\nu) \\ +\infty &\text{otherwise.}\end{cases} 
+  \inf_{\pi\in\Pi(\mu,\nu)} \int_{X\times Y}c(x,y)d\pi = \inf_{\pi\in M_+(X\times Y)} \left\{\int_{X\times Y} c(x,y)d\pi(x,y)+ \left\{\begin{matrix}0 &\pi\in\Pi(\mu,\nu) \\ +\infty &\text{otherwise.}\end{matrix}\right\} \right\}
 \end{equation}
 where $M_+$ is the set of nonnegative Borel measures on $X\times Y$. We can rewrite the righthand side of \autoref{eqn:minimax} with
-\[\begin{cases}
-  0 &\pi\in \Pi \\
-  +\infty &\text{otherwise.}
-\end{cases} = \sup_{(\phi,\psi)}\int_{X}\phi(x)d\mu + \int_{Y}\psi(y)d\nu- \int_{X\times Y} [\phi(x)+\psi(y)]d\pi(x,y).\]
-\section{Existence of Transport Plans/Maps}
+\[\left\{\begin{matrix}0 &\pi\in\Pi(\mu,\nu) \\ +\infty &\text{otherwise.}\end{matrix}\right\} = \sup_{(\phi,\psi)\in L^1(d\mu)\otimes L^1(d\nu)}\left\{\int_{X}\phi(x)d\mu + \int_{Y}\psi(y)d\nu- \int_{X\times Y} [\phi(x)+\psi(y)]d\pi(x,y)\right\}.\]
+as $\pi\in \Pi$ follows the constraints defined in \autoref{eqn:const}. Now, the Monge-Kantorovich problem can be written as 
+\begin{equation}
+  \inf_{\pi\in M_+(X\times Y)}\left\{\int_{X\times Y} c(x,y)d\pi(x,y)+\sup_{(\phi,\psi)}\left\{\int_{X}\phi(x)d\mu + \int_{Y}\psi(y)d\nu- \int_{X\times Y} [\phi(x)+\psi(y)]d\pi(x,y)\right\}\right\}.
+\end{equation}
+Informally exchanging the $\inf$ and $\sup$, we get that the Monge-Kantorovich problem is 
+\begin{equation}\label{eqn:swap}
+  \sup_{(\phi,\psi)}\left\{\inf_{\pi\in M_+(X\times Y)}\left\{\int_{X\times Y} c(x,y) - [\phi(x) - \psi(y)]d\pi(x,y)\right\}+\int_{X}\phi(x)d\mu + \int_{Y}\psi(y)d\nu\right\}.
+\end{equation}
+Now, note that 
+\[ \inf_{\pi\in M_+(X\times Y)}\left\{\int_{X\times Y} c(x,y) - [\phi(x) - \psi(y)]d\pi(x,y)\right\} = \left\{\begin{matrix}0 &\phi(x) + \psi(y) \le c(x,y) \\ +\infty &\text{otherwise.}\end{matrix}\right\}\]
+so the Kantorovich-Monge problem becomes the maximization (dual) problem
+\begin{equation}
+  \mathbb{K}(\mu,\nu) = \sup_{\Phi_c}\left\{\int_{X}\phi(x)d\mu + \int_{Y}\psi(y)d\nu\right\}.
+\end{equation}
+We've assumed that $(\phi,\psi) \in Cb(X)\times C_b(Y)$ as $\phi(x)+\psi(y) \le c(x,y)$ holding everywhere is different to holding almost everywhere. Moreover, we need to make this minimax principle rigorous.
+\subsection{Fenchel-Rockafellar and Convex Analysis Results}
+In order to prove \autoref{thm:kant}, we need a rigorous minimax principle. We start by presenting some results and definitions from convex and functional analysis.
+\begin{defn}[Legendre-Fenchel Transform]
+  Let $\phi: E \to \R\cup \{+\infty\}$ be convex. Then, the Legendre-Fenchel Transform for $f\in E^\star$ is
+  \begin{equation}
+    \phi^\star(f) = \sup_{x\in E}\left[\langle f, x\rangle - \phi(x)\right].
+  \end{equation}  
+\end{defn}
+\begin{defn}[Polish Spaces]
+A Polish space, $X$, satisfies the following 
+\begin{enumerate}
+  \item A Borel probability measure $\mu$ on $X$ is regular
+  \item A probability measure $\mu$ on $X$ is concentrated on a $\sigma$-compact set.
+  \item Any tight family of probability measures in $P(X)$ is relatively sequentially compact in $P(X)$.
+  \item Let $X$ be a metric space. If $F$ a nonnegative lower semi-continuous function on $X$ then it can be written as the supremum of an increasing sequence of uniformly continuous nonnegative functions.
+  \item If $K$ is a compact metric space then $C(K)$ is separable.
+\end{enumerate}
+Details of these are presented in \cite{villani} and \cite{billingsey}.
+\end{defn}
+Now, we introduce the following from \cite{brezis}
+\begin{thm}[Fenchel-Rockafellar]\label{thm:Fenchel}
+  Let $E$ be a normed vector space and $E^\star$ be its topological dual space. Let $\phi,\psi:E\to\R\cup\{+\infty\}$ be convex. If there is some $x_0\in E$ such that $\phi(x_0),\psi(x_0) <+\infty$ and $\phi$ is continuous at $x_0$, then
+  \begin{align*}
+    \inf_{x\in E}\{\phi(x)+\psi(x)\} = \sup_{f\in E^\star}\{-\phi^\star(-f)-\psi^\star(f)\} = \max_{f\in E^\star}\{-\phi^\star(-f)-\psi^\star(f)\} = -\min_{f\in E^\star}\{-\phi^\star(-f)-\psi^\star(f)\}
+  \end{align*}
+  where $\phi^\star(f)$ for $f\in E^\star$ is the \textit{Legendre-Fenchel transform}.
+\end{thm}
+\begin{proof}
+  To be proven. I can base this off of Brezis.
+\end{proof}
+Moreover, we can check that \autoref{thm:Fenchel} is a minimax principle.
+\subsection{Proof of Kantorovich Duality}
+Finally, we can begin to prove Kantorovich Duality as stated in \autoref{thm:kant}. The following lemmas come from \cite{villani}.
+\begin{lem}
+  Under the same conditions as \autoref{thm:kant}, 
+  \begin{equation}\label{eqn:leftineq}\sup_{\Phi_C} J(\phi,\psi) \le \inf_{\Pi(\mu,\nu)} I(\pi).\end{equation}
+\end{lem}
+\begin{proof}
+  Let $(\phi,\psi) \in \Phi_c$ and $\pi\in \Pi(\mu,\nu)$. Then,
+  \[J(\phi,\psi) = \int_X\phi d\mu + \int_Y\psi d\nu = \int_{X\times Y}[\phi(x)+\psi(y)]d\pi(x,y)\]
+  as $\pi$ has marginals $\mu,\nu$.\newline
+  Let $N_x,N_y$ be null sets of $\mu$ and $\nu$ respectively. Because \autoref{eqn:dualconst} holds almost everywhere, \autoref{eqn:dualconst} holds for 
+  $(x,y)\in N_x^c \times N_y^c$. Moreover, $\pi(N_x\times Y) = \mu(N_x) = 0$ and $\pi(X\times N_y) = \nu(N_y) = 0$ so $\pi((N_x^c\times N_y^c)^c) = 0$ so \autoref{eqn:dualconst} holds for $\pi$. Thus,
+  \begin{equation}
+    \int_{X\times Y}[\phi(x)+\psi(y)]d\pi(x,y) \le \int_{X\times Y}c(x,y)d\pi(x,y).
+  \end{equation}
+  \autoref{eqn:leftineq} is recovered upon taking the supremum on the left-hand side and the infimum on the right-hand side.
+\end{proof}
+\begin{lem}
+  Under the same conditions as \autoref{thm:kant}, we have 
+  \[\sup_{\Phi_c} J(\phi,\psi) \ge \inf_{\Pi(\mu,\nu)} I(\pi)\]
+\end{lem}
+\cite{villani} presents the proof in 3 steps of increasing generality:
+  \begin{enumerate}[1.]
+    \item Assuming $X,Y$ are compact and $c(x,y)$ are continuous.
+    \item Keeping the assumption that $c(x,y)$ is continuous, but relaxing compactness of $X,Y$.
+    \item Only assuming that $c(x,y)$ is lower semi-continuous.
+  \end{enumerate}
+  Only 1. will use the minimax principle discussed with \autoref{thm:Fenchel} so the proof will be provided below.
+\begin{proof}[Proof of 1.]
+  
+\end{proof}
+\section{Existence and Characterization}
 \subsection{Existence of Transport Plans}
-\subsection{Brenier / Knott-Smith Optimality}
+\subsection{Existence of Maximizers of the Dual Problem}
+\subsection{Existence of Transport Maps}
 \section{Wasserstein}
 \subsection{Wasserstein Distances}
 \subsection{Wasserstein Topology}
 \section{Gradient Flows and PDEs}
 \subsection{Gradient Flow Motivation}
 \subsection{Benamou-Brenier Theorem}
-\section{Writing}  Before getting to latex comments, I'll say a few words about writing, venting from many years of hard experience. 
-
-It is important that what you write is something you would actually like to read.  There should be no overuse of symbols.
-Clusters of symbols can be barbaric.  There are subjects whose literature is festooned with sentences written almost entirely with symbols like $\exists$, $\forall$.  Don't do that. Never use a symbol for a verb.  Never start a sentence with a symbol or with the word ``And''.
-
-Grammar should be correct.  Never start a sentence with ``Where ...".   
-Mismatches of singular and plural are excruciatingly painful, utterly abhorrent.  You cannot write
-``Let ..., then ..."  That is what is called a run-on sentence. You must write ``Let ... .  Then ... ."
-Alternatively, ``If ..., then ..."  works just fine.
-
-Avoid words or phrases like Simply, Obviously, Just, ..., It is easy to see.  They serve only to intimidate or to browbeat the reader into acquiescence. 
-Especially if English is not your native language, make sure you have  somebody fluent in English check what you have written.     
-
-References to numbered statements are best in the form Theorem 2.3, not just 2.3.  Use  \verb|usepackage{hyperref}| to get this right.  Really.  I will likely return papers unread that don't. 
-Equations should be referred to as (2.3), NOT 2.3 or equation 2.3 or equation (2.3).
 
 
-Bad writing makes for unpleasant papers, no matter how good the material.
-
-\section*{Acknowledgments}  You should thank anyone who deserves thanks, and for sure you should
-thank your mentor.   ``It is a pleasure to thank my mentor, 
-his/her name, for ....  ".   Or add anyone else, for example ``I thank [another participant] for helping 
-me understand [something or other]"
-
-\section{bibliography}  The bibliography should list all sources that you have used and referenced.
-And you should reference anything you use.   Especially if you quote any result without proof, you MUST
-give a reference.   And never ever should you copy material directly or more or less directly, from a source.
+\section{Bibliography}
 
 \begin{thebibliography}{9}
 \bibitem{villani}
@@ -367,7 +423,16 @@ American Mathematical Society, 2003.
 Thorpe M.
 Introduction to Optimal Transport.
 University of Cambridge, 2018.
+\bibitem{brezis}
+Brezis H.
+Functional Analysis, Sobolev Spaces and Partial Differential Equations. 
+Springer Press, 2011.
+\bibitem{billingsey}
+Billingsley P.
+Convergence of Probability Measures.
+John Wiley \& Sons Inc., 1999.
 \end{thebibliography}
+
 
 \end{document}
 

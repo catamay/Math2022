@@ -71,7 +71,7 @@
 \title{Optimal Transport}
 \subtitle{Preliminaries and Applications}
 \author{Kirby}
-\institute{Department of Mathematics\\ University of Utah}
+\institute{Department of Mathematics\\ University of Utah\footnote{This talk is neither property of nor endorsed by the University of Utah.}}
 \date{Feburary 2022}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,7 +107,7 @@
 \vspace{0.5cm}
 \begin{block}<+->{Formulation}
 	\vspace{.1cm}
-	Let $X$ and $Y$ be measure spaces with measures $\mu,\nu$ respectively. In order to transport $x\in X$ to $y\in Y$, we let $\mu(X) = \nu(Y)$. 
+	Let $X$ and $Y$ be measure spaces with probability measures\footnote{The talk will simply label these as measures, but they're all assumed to be probability measures, or measures with $\mu(X) = 1$.} $\mu,\nu$ respectively. In order to transport $x\in X$ to $y\in Y$, we let $\mu(X) = \nu(Y)$. 
 	The optimal transport problem is minimizing the total effort (through nonnegative $c: X\times Y\to \mathbb{R}$) over $\mu$ and $\nu$.
 \end{block}
 \end{center}
@@ -173,8 +173,8 @@
 \begin{center}
 	We no longer have to be restricted to not splitting mass!
 \begin{figure}
-	\includegraphics[scale=0.3]{kantorovich.jpg}
-	\caption{Splitting mass is no problem as now $\pi(x,y)$ can be defined as necessary to provide an optimal transport scheme.}
+	\includegraphics[scale=0.3]{discretekant.jpg}
+	\caption{Using the same $\mu = \frac{2}{3}\delta_{x_1} + \frac{1}{3}\delta_{x_2}$ and $\nu = \frac{2}{3}\delta_{y_1} + \frac{1}{3}\delta_{y_2}$, we can define $\pi$ to no longer be diagonal (not surjective)}
 \end{figure}
 \end{center}
 }
@@ -182,24 +182,29 @@
 \frame{\frametitle{Shipper's Problem}
 It costs $c(x_1,y_1)$ dollars for a factory to transport coal from mine $x_1$ to factory $y_1$. I tell the mine owner that I can charge them $\phi(x_1)$ dollars to pick up at mine $x_1$ and charge $\psi(y_1)$ to deliver to factory $y_1$, then, in order for the factory owner to agree to my terms, 
 \[\phi(x)+\psi(y)\le c(x,y)\]
-for every location $x$ and destination $y$. I can make this sum as close to $c(x,y)$ as I want, so I can maximize my profit while minimizing the factory owner's effort.
+for every mine $x$ and factory $y$. I can make this sum as close to $c(x,y)$ as I want, so I can maximize my profit while minimizing the factory owner's effort.
 }
-
+\frame{\frametitle{Shipper's Problem cont.}
+\begin{figure}
+	\includegraphics[scale=0.3]{shippers.jpg}
+	\caption{The owner has an easy option of just paying $c(M,F)$ for each mine and factory, or they can choose my strategy and pay me $\phi(M) + \psi(F)$.}
+\end{figure}
+}
 \frame{\frametitle{Deriving Duality}
-For a measure $\pi$, we see that we have $I[\pi, \phi,\psi]$ where
+For a measure $\pi$, we see that we have $I[\pi, \phi,\psi]$ defined as
 \[\sup_{\phi\in C(X),\psi\in C(Y)} \left\{\int_X\phi(x)d\mu + \int_Y\psi(y)d\nu - \int_{X\times Y}(\phi(x)+\psi(y)d\pi)\right\}\]
-is $0$ when $\pi\in\Pi(\mu,\nu)$ and $+\infty$ otherwise. Now, writing this as a Kantorovich Problem,
+is $0$ when $\pi\in\Pi(\mu,\nu)$ and $+\infty$ otherwise. Now, writing this as a Kantorovich Problem for any positive radon measure $\pi$,
 \begin{equation}
 	\mathbb{K}(\mu,\nu) = \inf_{\pi\ge 0}\left\{\int_{X\times Y} c(x,y)d\pi(x,y) + \sup_{\phi\in C(X),\psi\in C(Y)} I[\pi, \phi,\psi]\right\}
 \end{equation}
 We can informally$\star$ exchange the $\sup$ and $\inf$ to yield 
 \begin{equation}\label{eqn:minimax}
-	\sup_{\phi,\psi}\left\{\int_X\phi(x)d\mu + \int_Y\psi(y)d\nu + \inf_{\pi\in\Pi}\int_{X\times Y}c(x,y) - (\phi(x)+\psi(y)d\pi))\right\}
+	\sup_{\phi,\psi}\left\{\int_X\phi(x)d\mu + \int_Y\psi(y)d\nu + \inf_{\pi\in\Pi}\int_{X\times Y}c(x,y) - (\phi(x)+\psi(y))d\pi\right\}
 \end{equation}
 }
 \frame{\frametitle{Kantorovich Duality}
 Following from \eqref{eqn:minimax}, we see that
-\[\inf_{\pi\in\Pi}\int_{X\times Y}c(x,y) - (\phi(x)+\psi(y)d\pi)) = \begin{cases}
+\[\inf_{\pi\in\Pi}\int_{X\times Y}c(x,y) - (\phi(x)+\psi(y))d\pi = \begin{cases}
 	0 &\text{if $\phi(x)+\psi(y) \le c(x,y)$} \\
 	+\infty &\text{otherwise.}
 \end{cases}\]
@@ -214,11 +219,17 @@ This gives us the dual problem
 	subject to $\phi(x) + \psi(y) \le c(x,y)$.
 \end{block}
 }
-\frame{\frametitle{Discussing Informal Exchange}
+\frame{\frametitle{Discussing Informal Exchange \& Applications of Duality}
+\begin{block}<+->{Informal$\star$}
 There's more to the proof of Kantorovich Duality in general, but they all rely on a rigorous minimax principle.\newline
 In Villani, this is done using Fenchel-Rockafeller Duality and Legendre Transforms in section 1.1.\newline
-Some more important assumptions is that $X,Y$ are taken to be Polish spaces and $c$ is taken to be lower-semicontinuous in order to guarantee existence of the Kantorovich problem.\newline
-This is definitely something I can talk about more in dms, so if you have specific questions, ping me in a proper channel or message me at kirby\#4923.
+Message me at kirby\#4923 with specific questions.
+\end{block}
+\begin{block}<+->{Applications}
+	Duality is important in the existence of transport maps (Brenier Polar Factorization).\newline
+	The Monge-Kantorovich problem also can be shown to be a "continuous" linear programming problem. The proof of which is in "Partial Differential Equations and
+	Monge-Kantorovich Mass Transfer" by Evans.
+\end{block}
 }
 \section{Wasserstein}
 \frame{\frametitle{Wasserstein Distance}
@@ -229,6 +240,23 @@ is the admissable class of measures $\mu$, even if $\Omega$ is unbounded.
 \begin{lemma}[Kantorovich-Monge forms a metric.]\label{lem:wass}
 	Let $W_p(\mu,\nu) = \left[\inf_{\pi\in\Pi(\mu,\nu)}\int_{X\times X}d(x,y)^pd\pi(x,y)\right]^{1/p}$ defined for $\mu,\nu\in\mathcal{P}_P(X)$ be the Wasserstein Distance. This forms a metric on $X$.
 \end{lemma}
+}
+\frame{\frametitle{Wasserstein Distance cont.}
+We can informally interpret the Wasserstein Distance as the horizontal distance between measures.
+\begin{figure}
+	\includegraphics[scale=0.3]{wasserstein.jpg}
+	\caption{The optimal transport (in green) between $\mu$ and $\nu$ describes the distance between points in $\mu$ and $\nu$ informally. Hence, this is the Wasserstein Distance.}
+\end{figure}
+}
+\frame{\frametitle{Wasserstein Distance Triangle Inequality}
+Assume $\mu,\nu,\eta\in \mathcal{P}_p(X)$ are absolutely continuous. Let $T$ be the optimal map from $\mu$ to $\eta$ and $S$ be the optimal map from $\eta$ to $\nu$.
+Then $S\circ T\in \mathcal{T}(\mu,\nu)$ because $(S\circ T)_\#\mu = S_\#(T_\#\mu) = S_\#\eta = \nu$. Hence,
+\begin{align*}
+	W_p(\mu,\nu)) &\le \left(\int_Xd(x,(S\circ T)(x))^pd\mu(x)\right)^{1/p} = \|d(\text{Id},(S\circ T))\|_{L^p(\mu)} \\
+	&\le \|d(\text{Id},T)\|_{L^p(\mu)} + \|d(T, S\circ T)\|_{L^p(\mu)} \\
+	&= W_p(\mu,\eta) + \|d(\text{Id}, S)\|_{L^p(\eta)} \\
+	&= W_p(\mu,\eta) + \int_{X}d(x,S(x))^pd\eta(x) = W_p(\mu,\eta) + W_p(\eta,\nu).
+\end{align*}
 }
 % \frame{\frametitle{Proof of Lemma \ref{lem:wass}}
 % I will just be doing the triangle inequality as it's the most involved.\newline
@@ -245,10 +273,10 @@ is the admissable class of measures $\mu$, even if $\Omega$ is unbounded.
 % 	\end{align*}
 % }
 \frame{\frametitle{Wasserstein Topology}
-Before showing that the Wasserstein Metric has a corresponding space, we see that if $x_n\to x$ in $X$ then
+We see that if $x_n\to x$ in $X$ then
 \(W_p(\delta_{x_n},\delta_x) = d(x_n,x)^{\inf{(1,p)}} \to 0\). In general, this looks like
 \begin{theorem}[Wasserstein distances metrize weak convergence]
-	Let $p\in(0,\infty)$, let $(\mu_k)_{k=1}^\infty$ be a sequence of measures in $\mathcal{P}_p(X)$ and $\mu\in \mathcal{P}(X)$, then the following are equivalent\footnote{The theorem in Villani is much stronger and gives more equivalences, but due to time, I just want to make this statement.}:
+	Let $p\in(0,\infty)$, let $(\mu_k)_{k=1}^\infty$ be a sequence of measures in $\mathcal{P}_p(X)$ and $\mu\in \mathcal{P}(X)$, then the following are equivalent\footnote{Theorem 7.12 in Villani is much stronger and gives more equivalences, but due to time, I just want to make this statement.}:
 	\begin{enumerate}[(i)]
 		\item $W_p(\mu_k,\mu)\to 0$
 		\item $\mu_k\to\mu$ in the weak sense, meaning for $h\in C_b(X)$,
@@ -257,11 +285,79 @@ Before showing that the Wasserstein Metric has a corresponding space, we see tha
 \end{theorem}
 Furthermore, we usually look at $p=2$, and say $\mathbb{W}_2$ is the space $\mathcal{P}_2(X)$ endowed with the metric $W_2$.
 }
-\section{Gradient Flows}
+\section{Bernamou-Brenier}
 \frame{\frametitle{Continuity Equation}
-\begin{block}<+->{Continuity Equation.}
-	The linear transport equation
-\end{block}
+The continuity equation is defined with 
+\begin{equation}\label{eqn:continuity}p_t + \nabla \cdot (p\vec{v}) = 0\end{equation}
+where $p$ is the fluid density and $\vec{v}$ is the flow vector field.\newline
+Now, consider the smooth vector field $\vec{v}: [0,\infty)\times \mathbb{R}^n\to \mathbb{R}^n.$
+Let $\phi_t: \mathbb{R}^n\to \mathbb{R}^n$ be the flow map such that for each $x\in \mathbb{R}^n$,
+\[\partial_t\phi_t(x) = \vec{v}(t,\phi_t(x)),\quad \phi_0(x) = x.\]
+Given some measure $p_0$ on $\mathbb{R}^n$, we can look at the family of measures 
+\[p_t := (\phi_t)_\# p_0.\]
+}
+\frame{\frametitle{Continuity Equation}
+\begin{theorem}
+	The family of measures $p_t$ is the unique distributional solution of the IVP of \eqref{eqn:continuity} with initial data $p_t\vert_{t=0} = p_0$.
+\end{theorem}
+\begin{proof}
+	Let $\phi\in C^\infty_c(\mathbb{R}^n)$.
+	\begin{align*}
+		&\int_0^T \int_{\mathbb{R}^n}\partial_t\phi(t,x) + \vec{v}(t,x)\cdot \nabla\phi(t,x)dp_t(x)dt\\
+	  = &\int_0^T\int_{\mathbb{R}^n}\partial_t\phi(t,\Phi_t(x)) + \vec{v}(t,\Phi_t(x))\cdot \nabla\phi(t,\Phi_t(x))dp_0(x)dt \\
+	  = &\int_{\mathbb{R}^n}\int_0^T \frac{d}{dt}[\phi(t,\Phi_t(x))]dtdp_0(x) = - \int_{\mathbb{R}^n}\phi(0,x)dp_0(x).
+	\end{align*}
+	Hence $p_t$ is a distributional solution. Uniqueness follows considering $\mu_t = \phi_t-\nu_t$ where $\nu_t$ is another solution.
+\end{proof}
+}
+\frame{\frametitle{Bernamou-Brenier}
+Restrict $0\le t \le 1$ and fix source ($p_0$) and destination ($p_1$) densities.
+\begin{theorem}[Bernamou-Brenier]
+	The minimum effort required to transport $p_0$ to $p_1$ by the flow of the vector field $\vec{v}$ with $p_t$,
+	\begin{equation}
+		\inf\left\{A[p_t,v]\bigg\vert\partial_t p_t + \nabla \cdot (p_t \vec{v}) = 0,p_t\vert_{t=0}=p_0, p_t\vert_{t=1}=p_1\right\}
+	\end{equation} 
+	is equivalent to the squared $2-$Wasserstein Distance $W_2(p_0,p_1)^2$ where \[A[p_t,v] = \int_0^1\int_{\mathbb{R}^n} |\vec{v}(t,x)|^2p_t(x)dxdt\]
+\end{theorem}
+$A$ is also called the action where the inner integral is the kinetic energy $E$ at time $t$. The action can also be interpreted as the average kinetic energy over $0\le t \le 1$. 
+}
+\frame{\frametitle{Bernamou-Brenier}
+\begin{proof}[Proving one side of the equality]
+	Choose admissable $\vec{v},p_t$. We know tht $p_t = (\Phi_t)_\#p_0$ where $\Phi$ is the flow map of $V$.
+	\begin{align*}
+		\int_{\mathbb{R}^n}|\vec{v}(t,x)|^2p_t(x)dx &= \int_{\mathbb{R}^n}|\vec{v}(t,x)|^2 d(\Phi_t)_\#p_0\\
+		&= \int_{\mathbb{R}^n}|\vec{v}(t,\Phi_t(x))|^2p_0(x)dx = \int_{\mathbb{R}^n}|\partial_t\Phi_t(x)|^2p_0dx
+	\end{align*}
+	Using Fubini's theorem and Jensen's inequality,
+	\begin{align*}
+		A[p_t,v] &= \int_0^1\int_{\mathbb{R}^n}|\partial_t\Phi_t(x)|^2p_0dxdt= \int_{\mathbb{R}^n}\left(\int_0^1|\vec{v}(t,\Phi_t(x))|^2dt\right)p_0(x)dx \\
+		&\ge \int_{\mathbb{R}^n}\left(\int_0^1\partial_t\Phi_t(x)dt\right)^2p_0(x) = \int_{\mathbb{R}^n}|\Phi_1(x) - x|^2p_0(x)dx\\
+		& \ge W_2(p_0,p_1)^2.
+	\end{align*}
+\end{proof}
+}
+\frame{\frametitle{Why does this matter?}
+ Gradient Flows in $\mathbb{R}^n$ have structure 
+ \begin{equation}
+	 \dot{x}(t) = -\nabla E(x(t))
+ \end{equation}
+ which may remind one of ODE flows. Usually $E$ is convex and arise from problems 
+ \[\min_{x\in \mathbb{R}^n}\{E(x)\}.\]
+ Wasserstein-Distances define 
+ geodesics in $\mathbb{W}_p$, or rather, $\mathbb{W}_p$ is a Geodesic Space.
+
+}
+\section{End}
+\frame{\frametitle{Questions? Concerns?}
+This was my first talk, so it might have been rough around the edges, but I hoped you enjoyed it.\newline
+Recommended resources:
+\begin{enumerate}
+	\item Cedric Villani - Topics in Optimal Transportation (good overview)
+	\item Fillipo Santambrogio - Optimal Transport for Applied Mathematicians (covers applications nicely)
+	\item Luigi Ambrosio - Gradient Flows (this is dry and very technical)
+	\item Matthew Thorpe - Introduction to Optimal Transport (nice summary of optimal transport, and covers geodesics in Wasserstein)
+\end{enumerate}
+This talk was meant to spur questions or ideas, and applications were covered without proof, so ask me about them, or look up at the resources here :)
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% End Your Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

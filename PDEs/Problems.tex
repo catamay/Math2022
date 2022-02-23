@@ -433,30 +433,77 @@
     % Now we see that 
     % \[2DuD\bar{x}(D|\bar{x}|^{n-2})^T = 2Du\left(|x|^{-2}\left(I - 2 \frac{xx^T}{|x|^2}\right)\right)(2-n)|x|^{-n}x^T = 2(n-2)|x|^{-2-n}Du\cdot x^T = -|\bar{x}|^{n-2}Du\cdot\Delta \bar{x}.\]
     % This term allows $\Delta \bar{u} = 0$ so the Kelvin transform of $u$ is also harmonic.
-      \exercise{17}{Let $U$ be a bounded domain in $\R^n$ and $\alpha \in (0,1)$. Suppose that $u\in C^2(U)\cap C(\overline{U})$ solves 
-      \[\begin{cases}
-        -\Delta u = |u|^\alpha &\text{in } U\\
-        u(x) = 0 &\text{on } \partial U.
-      \end{cases}\]
-      Show that 
-      \[ \sup_U|u|\le C\]
-      where $C$ depends only on $n,\alpha$, and $\text{diam}(U)$.}
+      % \exercise{17}{Let $U$ be a bounded domain in $\R^n$ and $\alpha \in (0,1)$. Suppose that $u\in C^2(U)\cap C(\overline{U})$ solves 
+      % \[\begin{cases}
+      %   -\Delta u = |u|^\alpha &\text{in } U\\
+      %   u(x) = 0 &\text{on } \partial U.
+      % \end{cases}\]
+      % Show that 
+      % \[ \sup_U|u|\le C\]
+      % where $C$ depends only on $n,\alpha$, and $\text{diam}(U)$.}
+      % \begin{proof}[Solution]
+      %   By Evans 2.6, using $x_0$ such that $U\subseteq B(x_0,\text{diam}(U))$,
+      %   \[\max_{\bar{U}} |u| \le \frac{\max_{\overline{U}}|x-x_0|^2}{2n}\max_{\overline{U}}|u|^\alpha\]
+      %   It follows that
+      %   \[\max_{\bar{U}} |u| \le \frac{\max_{\overline{U}}|x-x_0|^2}{2n}\left(\max_{\overline{U}}|u|\right)^\alpha\]
+      %   Furthermore, the ball $B(x_0, \text{diam}(U))$ contains $U$ and so 
+      %   \[\max_{\bar{U}} |u| \le \frac{\text{diam}(U)^2}{2n}\left(\max_{\overline{U}}|u|\right)^\alpha\]
+      %   Now, because $\max_{\bar{U}} |u| \ge 0$ and $0< \alpha < 1$, we can rearrange this to see that 
+      %   \[ \max_{\bar{U}} |u| \le \left(\frac{\text{diam}(U)^2}{2n}\right)^{1/(1-a)}\]
+      % \end{proof}
+      \exercise{18}{Consider the stationary Schrodinger operators.}
       \begin{proof}[Solution]
-        By Evans 2.6, 
-        \[\max_{\bar{U}} |u| \le \frac{\max_{\overline{U}}|x|^2}{2n}\max_{\overline{U}}|u|^\alpha\]
+        \begin{enumerate}
+          \item We can let $V(x) = -\pi$ so then in $\R^1$, it solves the ODE 
+          \[u'' = -\pi u\]
+          which has solution $\sin(\pi x)$, so let this be on the interval $(0,1)\subset \R$. This violates maximum principle as $u(x)$ larger than 0 on its domain.
+          \item By problem 2.6 in Evans, we see that 
+          \[\max_{\overline{U}}|u| \le \frac{\text{diam}(U)^2}{2n}\max_{\overline{U}}(|V(x)u|) \le \frac{M\text{diam}(U)^2}{2n}\max_{\overline{U}}(|u|)\]
+          Now, let $\delta = \sqrt{\frac{n}{M}}$, and we see that whenever $\text{diam}(U) \le \delta$
+          \[ \max_{\overline{U}} |u| \le \frac{1}{2}\max_{\overline{U}}|u|\]
+          which implies that $u = 0$
+          \item Again, using problem 2.6 in Evans, this time fixing $x_2,\dots x_n$ and taking the maximum over $x_1,$
+          \[\max_{x_1\in\overline{U}}|u| \le \frac{\text{diam}(U)^2}{2n}\max_{\overline{U}}(|V(x)u|) \le \frac{M\text{diam}(U)^2}{2n}\max_{x_1\in\overline{U}}(|u|)\]
+          We see that because $x_2,\dots,x_n$ are fixed, $U\subseteq \{0 < x_1 < \text{diam}(U)\}$. Now, letting $\{0 < x_1 < \delta\}$ for $\delta = \sqrt{\frac{n}{M}}$, we see that 
+          \[\max_{x_1\in\overline{U}}|u| \le \frac{1}{2} \max_{x_1\in\overline{U}}|u|\]
+          Hence, $u(x)=0$ for any $x_1$, but this choice of $x_2,\dots x_n$ was arbitrary so $u = 0$ for all $x\in U$ such that $U \subset \{0 < x_1 < \delta\}$.
+        \end{enumerate}
       \end{proof}
-      \exercise{19}{}
-      \begin{proof}[Solution]
-        Let $u$ be a solution, then it has
-        \[u(x) = \int_{\partial B(0,r)}\frac{r^2-|x|^2}{n\alpha(n)r}\frac{u(y)}{|x-y|^n}dS(y)\]
-      \end{proof}
-      \exercise{20}{}
-      \begin{proof}[Solution]
-        Let $u$ be a strict subsolution so $-\Delta u + |Du|^2 < 0$ with $u < v$ on $\partial U$. Then, we see that 
-        \[u - v\]
-      \end{proof}
-      \exercise{21}{}
-      \begin{proof}[Solution]
-        For $n\ge 3$, let $v(x) = \frac{1}{n(n-2)\alpha(n)}|x|^{2-n}$.
-      \end{proof}
+      % \exercise{19}{Show that $u(x) = 0$ on the provided PDE.}
+      % \begin{proof}[Solution]
+      %   Let $u$ be a solution. Then, let $x_0\in U$ and $B(x_0,r)$ be the open ball of radius $r$. Now, consider the set 
+      %   \[\overline{B(x_0,r)\cap U}\]
+      %   By the maximum principle, there is a maximum on $\partial\overline{B(x_0,r)\cap U}$. Similarly, for $u$, there is a minimum on this set (maximum principle on $-u$). Now, 
+      %   noticing that $r = |x-x_0|$, for $\epsilon > 0$, there is $r$ large enough such that $u(x) \le \epsilon$ on $\partial \overline{B(x_0,r)\cap U}$. 
+      %   Moreover, on this set, $|u| \le \epsilon$, so as $r\to\infty$, $|u|(x) = 0$ which implies that $u(x)=0$.
+         
+
+      % \end{proof}
+      % \exercise{20}{Show the comparison principle for 
+      % \[-\Delta w + |Dw|^2 = 0\]}
+      % \begin{proof}[Solution]
+      %   Let $u$ be a strict subsolution so $-\Delta u + |Du|^2 < 0$ with $u < v$ on $\partial U$. Then, let $x_0$ be the maximal point of $u-v$ in $U$. 
+      %   \[\max{(u-v)} \implies  \partial^2_{x}(u-v)(x_0) < 0, |D(u-v)|(x_0) = 0.\]
+      %   However, this would means that $\Delta (u-v) < 0$, which is a contradiction as $-\Delta u < 0$ and $\Delta v = 0$. Furthermore, $u \le v$ in the boundary so $v - u$ is nonnegative in $U$.\newline
+      %   Now let $-\Delta u + |Du|^2 = 0$ with perturbation $t_\epsilon(x) = \epsilon e^{-cx_1}$. We have that for $u + t_\epsilon$ 
+      %   \begin{align*}
+      %     -\Delta (u + t_\epsilon) + |Du + Dt_\epsilon|^2 &= -\Delta u + |Du|^2 -\Delta t_\epsilon + 2Du\cdot Dt_\epsilon + |Dt_\epsilon|^2 \\
+      %     &= -\Delta t_\epsilon + 2Du\cdot Dt_\epsilon + |Dt_\epsilon|^2 \\
+      %     &= -c^2\epsilon e^{-cx_1} -2c\epsilon u_{x_1}e^{-cx_1}+ c^2\epsilon^2e^{-2cx_1} \\
+      %     &= -c^2\epsilon e^{-cx_1} -2c\epsilon u_{x_1}e^{-cx_1} + O(\epsilon^2)
+      %   \end{align*}
+      %   It's now sufficient to show that $-c^2\epsilon e^{-x_1} -2c\epsilon u_{x_1}e^{-x_1} < 0$ in order for $u$ to be approximated by strict subsolutions as $\epsilon$ can be made small enough such that the $c^2\epsilon^2e^{-2cx_1}$ term is smaller than the sum. 
+      %   To do this, we just let $c = \frac{1}{\max\{u_{x_1}\}}$, so now we can make 
+      %   \[-c^2\epsilon e^{-cx_1} -2c\epsilon u_{x_1}e^{-cx_1} + O(\epsilon^2) < 0\]
+      %   for small enough $\epsilon > 0$. So we see that
+      %   \[ -\Delta (u+t_\epsilon) + |D(u+t_\epsilon)|^2 < 0.\]
+      %   Then by the proof for strict subsolutions, $u+t_\epsilon$ has that $u+t_\epsilon \le v$ in $U$, and letting $\epsilon\to 0$, we see that $u\le v$ in $U$.
+      % \end{proof}
+      % \exercise{21}{Show that $u(x) = 0$ for the provided Dirichlet problem.}
+      % \begin{proof}[Solution]
+      %   We know by the maximum principle that $u$ must be non-positive as it is $-1$ on the boundary $x=\{0\}$ and $0$ on the boundary $\partial B$. Let $\Phi(x)$ be the fundamental solution, then we define the function 
+      %   \[v_j(x) = \max\left\{\frac{1}{j}\left(\Phi(1)-\Phi(x)\right), -1\right\}.\]
+      %   $v$ is a subsolution because $-\Delta v \le 0$ and $v_j(0) = -1$ and $v_j = 0$ on $\partial B$. We see that if we let $j\to\infty$, then $v_j\to 0$ pointwise.\newline
+      %   This sequence is non-decreasing, so the supremum of these subsolutions would $u(x)=0$.
+      % \end{proof}
     \end{document}
