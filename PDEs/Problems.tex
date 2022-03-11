@@ -451,24 +451,24 @@
       %   Now, because $\max_{\bar{U}} |u| \ge 0$ and $0< \alpha < 1$, we can rearrange this to see that 
       %   \[ \max_{\bar{U}} |u| \le \left(\frac{\text{diam}(U)^2}{2n}\right)^{1/(1-a)}\]
       % \end{proof}
-      \exercise{18}{Consider the stationary Schrodinger operators.}
-      \begin{proof}[Solution]
-        \begin{enumerate}
-          \item We can let $V(x) = -\pi$ so then in $\R^1$, it solves the ODE 
-          \[u'' = -\pi u\]
-          which has solution $\sin(\pi x)$, so let this be on the interval $(0,1)\subset \R$. This violates maximum principle as $u(x)$ larger than 0 on its domain.
-          \item By problem 2.6 in Evans, we see that 
-          \[\max_{\overline{U}}|u| \le \frac{\text{diam}(U)^2}{2n}\max_{\overline{U}}(|V(x)u|) \le \frac{M\text{diam}(U)^2}{2n}\max_{\overline{U}}(|u|)\]
-          Now, let $\delta = \sqrt{\frac{n}{M}}$, and we see that whenever $\text{diam}(U) \le \delta$
-          \[ \max_{\overline{U}} |u| \le \frac{1}{2}\max_{\overline{U}}|u|\]
-          which implies that $u = 0$
-          \item Again, using problem 2.6 in Evans, this time fixing $x_2,\dots x_n$ and taking the maximum over $x_1,$
-          \[\max_{x_1\in\overline{U}}|u| \le \frac{\text{diam}(U)^2}{2n}\max_{\overline{U}}(|V(x)u|) \le \frac{M\text{diam}(U)^2}{2n}\max_{x_1\in\overline{U}}(|u|)\]
-          We see that because $x_2,\dots,x_n$ are fixed, $U\subseteq \{0 < x_1 < \text{diam}(U)\}$. Now, letting $\{0 < x_1 < \delta\}$ for $\delta = \sqrt{\frac{n}{M}}$, we see that 
-          \[\max_{x_1\in\overline{U}}|u| \le \frac{1}{2} \max_{x_1\in\overline{U}}|u|\]
-          Hence, $u(x)=0$ for any $x_1$, but this choice of $x_2,\dots x_n$ was arbitrary so $u = 0$ for all $x\in U$ such that $U \subset \{0 < x_1 < \delta\}$.
-        \end{enumerate}
-      \end{proof}
+      % \exercise{18}{Consider the stationary Schrodinger operators.}
+      % \begin{proof}[Solution]
+      %   \begin{enumerate}
+      %     \item We can let $V(x) = -\pi$ so then in $\R^1$, it solves the ODE 
+      %     \[u'' = -\pi u\]
+      %     which has solution $\sin(\pi x)$, so let this be on the interval $(0,1)\subset \R$. This violates maximum principle as $u(x)$ larger than 0 on its domain.
+      %     \item By problem 2.6 in Evans, we see that 
+      %     \[\max_{\overline{U}}|u| \le \frac{\text{diam}(U)^2}{2n}\max_{\overline{U}}(|V(x)u|) \le \frac{M\text{diam}(U)^2}{2n}\max_{\overline{U}}(|u|)\]
+      %     Now, let $\delta = \sqrt{\frac{n}{M}}$, and we see that whenever $\text{diam}(U) \le \delta$
+      %     \[ \max_{\overline{U}} |u| \le \frac{1}{2}\max_{\overline{U}}|u|\]
+      %     which implies that $u = 0$
+      %     \item Again, using problem 2.6 in Evans, this time fixing $x_2,\dots x_n$ and taking the maximum over $x_1,$
+      %     \[\max_{x_1\in\overline{U}}|u| \le \frac{\text{diam}(U)^2}{2n}\max_{\overline{U}}(|V(x)u|) \le \frac{M\text{diam}(U)^2}{2n}\max_{x_1\in\overline{U}}(|u|)\]
+      %     We see that because $x_2,\dots,x_n$ are fixed, $U\subseteq \{0 < x_1 < \text{diam}(U)\}$. Now, letting $\{0 < x_1 < \delta\}$ for $\delta = \sqrt{\frac{n}{M}}$, we see that 
+      %     \[\max_{x_1\in\overline{U}}|u| \le \frac{1}{2} \max_{x_1\in\overline{U}}|u|\]
+      %     Hence, $u(x)=0$ for any $x_1$, but this choice of $x_2,\dots x_n$ was arbitrary so $u = 0$ for all $x\in U$ such that $U \subset \{0 < x_1 < \delta\}$.
+      %   \end{enumerate}
+      % \end{proof}
       % \exercise{19}{Show that $u(x) = 0$ on the provided PDE.}
       % \begin{proof}[Solution]
       %   Let $u$ be a solution. Then, let $x_0\in U$ and $B(x_0,r)$ be the open ball of radius $r$. Now, consider the set 
@@ -506,4 +506,56 @@
       %   $v$ is a subsolution because $-\Delta v \le 0$ and $v_j(0) = -1$ and $v_j = 0$ on $\partial B$. We see that if we let $j\to\infty$, then $v_j\to 0$ pointwise.\newline
       %   This sequence is non-decreasing, so the supremum of these subsolutions would $u(x)=0$.
       % \end{proof}
+      % \exercise{25}{Show that 
+      % \[\int \Phi(y,t)|y|^pdy \le Ct^{p/2}.\]}
+      % \begin{proof}[Solution:]
+      %   Substituting $z = \frac{y}{2\sqrt{t}}$ we have that
+      %   \begin{align*}
+      %     \int_{\R^n}\frac{1}{(2\pi t)^{n/2}}e^{-|y|^2/4t}|y|^pdy &= \int_{\R^n}\frac{1}{\pi^{n/2}}e^{-z^2}|2\sqrt{t}z|^pdz \\
+      %     &= \left[\frac{2^p}{\pi^{n/2}}\int_{\R^n}e^{-|z|^2}|z|^pdz\right] t^{p/2}
+      %   \end{align*}
+      %   Because $|z|^p < O(e^{|z|^2}),$ the term in parantheses is finite, and always constant.
+      % \end{proof}
+      \exercise{26}{Let $g:\R^n\to \R$ be boudned and $\alpha-$Holder continuous for some $\alpha\in (0,1]$. Show that for solutions of the heat equation $u(x,t)$ with initial data $g$,
+      \begin{equation}\sup_{x,t}|\partial_t u| + \sup_{x,t}\left\{\sum_{i,j}|\partial^2_{x_ix_j}u|\right\}\le C\sup_{x\ne y}\frac{|g(x)-g(y)|}{|x-y|^\alpha} t^{(\alpha/2) - 1}.\end{equation}}
+      \begin{proof}[Solution:]
+        % By commutativity, we have that 
+        % \[u(x,t) = \int_{\R^n} \Phi(y,t)g(x-y)dy\]
+        % so for $x\ne x_0$, using the fact that $\Phi > 0$,
+        % \[|u(x,t) - u(x_0,t)| \le \int_{\R^n}\Phi(y,t)|g(x-y)-g(x_0-y)| \le |x-x_0|^\alpha\|g\|_{C^\alpha}\]
+        % Note that $\Phi$ is even, so 
+        % \[u(x,t) = \int_{\R^n}\Phi(x,t)g(x+y)dy = g(x) + \frac{1}{2}\int_{\R^n}\Phi(x,t)[g(x+y)-2g(x) + g(x-y)]dy.\]
+        % Moreover, observe that $|g(x-y)-2g(x)-g(x+y)| \le 2\|g\|_{C^\alpha}|y|^\alpha$ from the fact that 
+        % \[ |g(x-y)-2g(x)-g(x+y)| = |g(x-y) - g(x)| + |g(x+y) - g(x)|.\]
+        % Now we have for $t_0\ne t$,
+        % \begin{align*}
+        %   |u(x,t) - u(x,t_0)| &\le \frac{1}{2}\int_{\R^n}|\Phi(x,t) - \Phi(x,t_0)||g(x+y)-2g(x) + g(x-y)|dy \\
+        %   &= \|g\|_{C^\alpha}\int_{\R^n}|\Phi(x,t) - \Phi(x,t_0)||y|^{\alpha}dy\\
+        %   &\le C\|g\|_{C^\alpha}||t|^{\alpha/2} - |t_0|^{\alpha/2}| \le C\|g\|_{C^\alpha}|t-t_0|^{\alpha/2}
+        % \end{align*}
+        % using exercise 25.\newline
+        Using the fact that $\int \partial_{x_ix_j} \Phi(x-y,t)dy = 0$,
+        \begin{align*}
+          \sum_{i,j}\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)g(y)dy &= \sum_{i,j}\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)(g(y)-g(x))dy \\
+          \sum_{i,j}\left|\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)(g(y)-g(x))dy\right| &\le \sum_{i,j}\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)|g(y)-g(x)| \\
+          &\le [g]_{C^\alpha}\sum_{i,j}\int_{\R^n}|\partial_{x_ix_j}\Phi(x-y,t)||x-y|^\alpha dy
+        \end{align*}
+        Moreover, we can similarly write 
+        \[ |\partial_t u| \le \int_{\R^n} |\partial_t \Phi(x-y,t)||g(y)-g(x)|dy \le [g]_{C^\alpha}\int_{\R^n} |\partial_t \Phi(x-y,t)||x-y|^\alpha dy\]
+        These terms are positive, so we can write the equivalent statement 
+        \begin{align*}
+          (1) &\le \sup_{x,t}[g]_{C^\alpha}\left[\int_{\R^n} |\partial_t \Phi(x-y,t)||x-y|^\alpha dy + \sum_{i,j}\int_{\R^n}|\partial_{x_ix_j}\Phi(x-y,t)||x-y|^\alpha dy\right] \\
+          &= \sup_{x,t}[g]_{C^\alpha}\left[\int_{\R^n} \left[|\partial_t \Phi(x-y,t)|+ \sum_{i,j}\partial_{x_ix_j}\Phi(x-y,t)|\right]|x-y|^\alpha dy\right]
+        \end{align*}
+        By change of variables $z = |x-y|/\sqrt{t}$, we have
+        \[ \sup_{x,t}[g]_{C^\alpha}\left[\int_{\R^n} \left[|\partial_t \frac{1}{(4\pi)^{n/2}t^{n/2-1}}e^{-|z|^2/4}|+ \sum_{i,j}|\partial_{x_ix_j}\frac{1}{(4\pi)^{n/2}t^{n/2-1}}e^{-|z|^2/4}|\right]|z\sqrt{t}|^\alpha dy\right]\]
+        simplifying, we have that 
+        \[ (1)\le \sup_{t}t^{\alpha/2- 1}[g]_{C^\alpha}\left[\int_{\R^n} \left[|\frac{1}{(4\pi)^{n/2}t^{n/2-3}}e^{-|z|^2/4}|+ \sum_{i,j}|\partial_{x_ix_j}\frac{1}{(4\pi)^{n/2}t^{n/2-2}}e^{-|z|^2/4}|\right]|z|^\alpha dy\right]\]
+        The supremum is realized when $t=1$ so by exercise 25, we have that 
+        \[ (1)\le C't^{\alpha/2 - 1}[g]_{C^\alpha}\]
+        where $C' = CD$ where $D$ is the integral over $z$, which is a finite quantity.\newline
+        The proof is sufficient to show that $u\in C^{2+\alpha}_1$. Because $\alpha < 1$, (1) describes a decay estimate of the time derivative and the hessian, otherwise
+        allowing $f$ to be holder if $g$ is holder as well. Boundedness is also important as if either $g$ or $f$ blew up to infinity in (in)finite time, then there would be no way to determine the decay of $u$ with respect to time and space.
+
+      \end{proof}
     \end{document}

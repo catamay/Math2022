@@ -108,8 +108,16 @@
 \begin{block}<+->{Formulation}
 	\vspace{.1cm}
 	Let $X$ and $Y$ be measure spaces with probability measures\footnote{The talk will simply label these as measures, but they're all assumed to be probability measures, or measures with $\mu(X) = 1$.} $\mu,\nu$ respectively. In order to transport $x\in X$ to $y\in Y$, we let $\mu(X) = \nu(Y)$. 
-	The optimal transport problem is minimizing the total effort (through nonnegative $c: X\times Y\to \mathbb{R}$) over $\mu$ and $\nu$.
+	The optimal transport problem is minimizing the total effort (through integrating over nonnegative $c: X\times Y\to \mathbb{R}$) over $\mu$ and $\nu$.
 \end{block}
+\end{center}
+}
+\frame{\frametitle{Optimal Transportation}
+\begin{center}
+\begin{figure}
+	\includegraphics[scale=0.3]{transport.jpg}
+	\caption{The question of optimal transport is how to move points of $X$ to $Y$.}
+\end{figure}
 \end{center}
 }
 
@@ -219,24 +227,35 @@ This gives us the dual problem
 	subject to $\phi(x) + \psi(y) \le c(x,y)$.
 \end{block}
 }
-\frame{\frametitle{Discussing Informal Exchange \& Applications of Duality}
-\begin{block}<+->{Informal$\star$}
-There's more to the proof of Kantorovich Duality in general, but they all rely on a rigorous minimax principle.\newline
-In Villani, this is done using Fenchel-Rockafeller Duality and Legendre Transforms in section 1.1.\newline
-Message me at kirby\#4923 with specific questions.
-\end{block}
-\begin{block}<+->{Applications}
-	Duality is important in the existence of transport maps (Brenier Polar Factorization).\newline
-	The Monge-Kantorovich problem also can be shown to be a "continuous" linear programming problem. The proof of which is in "Partial Differential Equations and
-	Monge-Kantorovich Mass Transfer" by Evans.
-\end{block}
+\frame{\frametitle{Discussing Informal Exchange}
+\begin{theorem}[Fenchel-Rockafeller Duality]
+Let $E$ be a normed vector space and $E^\star$ be its topological dual space. Let $\phi,\psi:E\to\mathbb{R}\cup\{+\infty\}$ be convex. If there is some $x_0\in E$ such that $\phi(x_0),\psi(x_0) <+\infty$ and $\phi$ is continuous at $x_0$, then
+  \begin{align*}
+    \inf_{x\in E}\{\phi(x)+\psi(x)\} = \sup_{f\in E^\star}\{-\phi^\star(-f)-\psi^\star(f)\}
+  \end{align*}
+  where   
+  \begin{equation}
+    \phi^\star(f) = \sup_{x\in E}\left[\langle f, x\rangle - \phi(x)\right].
+  \end{equation}  
+  is the Legendre-Fenchel Transform.
+\end{theorem}
+It's seen that this is a rigorous minimax theorem that justifies the exchange of the inf and sup.
+}
+\frame{\frametitle{Applications of Duality}
+Duality is important in showing the existence of transport maps, in fact,
+\begin{theorem}[Brenier Polar Factorization]
+	Let $X,Y$ be measure spaces with probability measures $\mu,\nu$ respectively, then whenever $\mu$ does not give mass to small sets, there is a unique solution $\pi\in\Pi(\mu,\nu)$ to the Monge-Kantorovich problem with
+	\[\pi = (\text{Id}\times \nabla \phi)_\# \mu\]
+	where $\phi$ is a convex function defined $\mu$-almost everywhere. In other words, $\nabla \phi$ is a transport map.
+\end{theorem}
+The proof is quite rigorous involving Knott-Smith optimality, which uses Kantorovich Duality in its proof to describe the existence of a Kantorovich minimizer for lower-semicontinuous cost functions.
 }
 \section{Wasserstein}
 \frame{\frametitle{Wasserstein Distance}
 Let's start by considering Kantorovich-Monge solutions to the transport problem with cost functions $c(x,y) = d(x,y)^p$ where $d$ is the distance on $X$ and $Y$.
 Let $\Omega\subset X$ and set $x_0\in X$.
-\[\mathcal{P}_p(X) = \left\{\mu\in\mathcal{P}(X):\int_{\Omega}d(x,x_0)^p < +\infty\right\}\]
-is the admissable class of measures $\mu$, even if $\Omega$ is unbounded.
+\[\mathcal{P}_p(X) = \left\{\mu\in\mathcal{P}(X):\int_{X}d(x,x_0)^p < +\infty\right\}\]
+is the admissable class of measures $\mu$, even if $X$ is unbounded.
 \begin{lemma}[Kantorovich-Monge forms a metric.]\label{lem:wass}
 	Let $W_p(\mu,\nu) = \left[\inf_{\pi\in\Pi(\mu,\nu)}\int_{X\times X}d(x,y)^pd\pi(x,y)\right]^{1/p}$ defined for $\mu,\nu\in\mathcal{P}_P(X)$ be the Wasserstein Distance. This forms a metric on $X$.
 \end{lemma}
