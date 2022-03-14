@@ -554,27 +554,57 @@ Combining \autoref{eqn:rhs} and \autoref{eqn:lhs}, we see that
 \end{proof}
 \section{Existence and Characterization of Transport Maps}
 Now that we've discussed the Monge-Kantorovich problem and its dual, it's best to describe conditions in which there is existence of optimal transport maps. Transport maps are difficult to characterize 
-so we will be restricting to quadratic costs $c(x,y)=\frac{1}{2}|x-y|^2$. There are generalizations that exist, but with additional burden \cite{thorpe}. Moreover, the second assumption we will make is that $X,Y\subset \R^n$. 
-\subsection{Polar Factorization}
-The following theorem is from \cite{villani}.
-\begin{thm}[Brenier Polar Factorization]\label{thm:polar}
-  Let $W$ and $Y$ be measurable subsets of $\R^n$ with $\lambda\in\mathcal{P}(W)$ and $\nu\in\mathcal{P}(Y)$ with $\int_Y|y|^2d\nu < +\infty$. Let
-  $h : W \to X\subset \R^n$ be an $L^2(d\lambda)$ mapping and $\mu = h_\#\lambda$. Assume that both $\mu$ and $\nu$ give no mass to small sets, then there exists a unique pair $(\nabla \phi,s)$ such that 
-  \[\begin{cases}
-    \phi: Y\to X \text{ is convex.} \\
-    s : W\to Y \text{has $s_\# \lambda = \nu$.} \\
-    h = \nabla \phi\circ s.
-  \end{cases}\]
-  Moreover, $s$ is the unique projection of $h$ onto the set of measure preserving maps $\sigma$ such that $\sigma_\# \lambda = \nu$.
-\end{thm}
-\begin{cor}
-  Under the same assumptions as \autoref{thm:polar}, $\nabla\phi$ is the unique solution to the Monge transportation problem:
-  \[\frac{1}{2}\int_X|x-\nabla\phi(x)|^2d\mu(x) = \frac{1}{2}\inf_{T\in\mathcal{T}(\mu,\nu)}\int_X|x-T(x)|^2d\mu(x).\]
-\end{cor}
+so we will be restricting to quadratic costs $c(x,y)=|x-y|^2$. There are generalizations that exist, but with additional burden \cite{thorpe}. Moreover, the second assumption we will make is that $X,Y\subset \R^n$. 
+\subsection{Characterization of Transport Maps}
 
+The following is theorem 2.12 in \cite{villani}.
+\begin{thm}[Brenier's theorem]\label{thm:brenier}
+Let $\mu,\nu$ be probability measures on $\R^n$ such that $\int |x|^2 d\mu + \int |y|^2d\nu < +\infty$. If $\mu$ does not give mass to small sets, then there is a unique $\pi\in\Pi(\mu,\nu)$ such that 
+\[\pi = (\text{Id}\times \nabla \phi)_\#\mu\]
+where $\phi$ is the unique convex function with $\nabla\phi_\#\mu = \nu$.
+\end{thm}
+\begin{cor}\label{cor:transport}
+  Under the same assumptions as \autoref{thm:brenier}, $\nabla\phi$ is the unique solution to the Monge transportation problem:
+  \[\int_X|x-\nabla\phi(x)|^2d\mu(x) = \inf_{T\in\mathcal{T}(\mu,\nu)}\int_X|x-T(x)|^2d\mu(x).\]
+\end{cor}
+\subsection{Optimality and Convex Analysis}
+First introducing a few definitions in convex analysis.
+\begin{defn}[Convex Conjugate]
+  The convex conjugate of a proper function $\phi: \R^n\to\R\cup\{+\infty\}$ is defined by 
+  \[\phi^\star = \sup_{x\in\R^n}(x\cdot y - \phi(x)).\]
+\end{defn}
+\begin{defn}[Subdifferential]
+  The subdifferential $\partial \phi$ of a convex function is defined by 
+  \[\partial \phi(x) = \{y : \phi(z)\ge \phi(x) + y\cdot(z-x)\text{ for all $z\in \R^n$}\}.\]
+\end{defn}
+We can now characterize the subdifferential.
+\begin{prop}
+  Let $\phi$ be a proper, 
+\end{prop}
+Prior to proving \autoref{thm:brenier}, there are some steps required beforehand. The first of which is the Knott-Smith optimality criterion.
+\begin{thm}[Knott-Smith Optimality Criterion]
+  Let $\mu,\nu$ be under the same assumptions as \autoref{thm:brenier}. There exists a minimizer $\pi^\dagger\in\Pi(\mu,\nu)$ to the Kantorovich optimal transport problem with cost $c(x,y) = |x-y|^2$ if and only if there exists 
+  an $L^1(\mu)$, convex lower semi-continuous function $\phi$ such that $\text{supp}(\pi^\dagger)\subseteq \text{Gra}(\partial \phi)$. Moreover, 
+  the pair $(\phi,\phi^\star)$ is a minimizer to the dual problem where $\phi_c$ is defined as 
+  \begin{align*}
+    \Phi_c = \left\{(\phi,\psi) \in L^1(\mu)\times L^1(\nu) : \phi(x)+\psi(y) \ge x\cdot y\right\}.
+  \end{align*}
+\end{thm}
 \section{Wasserstein}
-\subsection{Motivation}
-A typical notion of distance between probability measures $\mu,\nu$ 
+Metrics such as $L^p$ form a metric based on pointwise differences. We see this when considering the functions $f(x)=\chi_{[0,1]}(x)$ and $f_\delta(x) = \chi_{[\delta,\delta+1]}$, where $\chi_\Omega$ is the indicator function of $\Omega$.
+In particular, we see that 
+\[\|f-f_\delta\|_{L^p}^p = \begin{cases} 2\delta &\text{if $|\delta| < 1$} \\
+2 &\text{otherwise.}\end{cases}\]
+We see that when $|\delta| \ge 1$, the sets $[0,1]$ and $[\delta,\delta+1]$ are disjoint and the $L^p$ distance is constant. This is potentially a problem because if $\delta$ is set large, $\frac{d}{d\delta}\|f_\delta - f \|_{L^p} = 0$, which is a problem in gradient based optimization.\newline
+Rather, if we look for a optimal transport cost using $f$ and $f_\delta$, we have the following problem 
+\[\min_{T_\#f = f_\delta}\ \int_0^1|x-T(x)|^pdx = |\delta|^p\]
+where $f$ and $f_\delta$ are defined as the measures with density $f$ and $f_\delta$ respectively. This example comes from \cite{thorpe}.\newline
+Moreover, if we let $f,g$ be functions in $\R^n$, we can intuitively describe $L^p$ as the vertical distance between functions $f$ and $g$ while the optimal transport problem with cost $d(x,y)^p$ can be seen as the horizontal distance between measures with density $f$ and $g$. The figure from \cite{santambrogio} is shown below.
+\begin{figure}[H]
+  \center
+  \includegraphics[scale=0.5]{banner.jpg}
+  \caption{The "vertical" and "horizontal" differences described between the $L^p$ cost and the optimal transport cost. $T(x)$ is the optimal transport cost, not to be confused with the optimal transport map.}
+\end{figure}
 \subsection{Wasserstein Distances}
 Let's start by considering Kantorovich-Monge solutions to the transport problem with cost functions $c(x,y) = d(x,y)^p$ where $d$ is the distance on $X$ and $Y$.
 Let $\Omega\subset X$ and set $x_0\in X$.
@@ -584,10 +614,16 @@ is the admissable class of measures $\mu$, even if $X$ is unbounded.
 	Let \[W_p(\mu,\nu) = \left[\inf_{\pi\in\Pi(\mu,\nu)}\int_{X\times X}d(x,y)^pd\pi(x,y)\right]^{1/p}\] defined for $\mu,\nu\in\mathcal{P}_P(X)$ be the Wasserstein Distance. This forms a metric on $X$.
 \end{lem}
 \begin{proof}
-  We do this in three steps.
   \begin{enumerate}
-    \item To show.
-    \item To show.
+    \item Because $d(x,y) \ge 0$, it's clear that $W_p$ is nonnegative. 
+    \item The product measure $\mu\times \nu = \nu\times \mu$, so $W_p$ is symmetric.
+    \item[*] It's sufficient to show for (1), (2) that $W_p$ is finite on $P_p$. For any $\Omega\subset X$,
+    \begin{equation}W_p(\mu,\nu) \le p \inf_{\pi\in\Pi(\mu,\nu)}\int_{\Omega\times \Omega} |x|^p + |y|^pd\pi(x,y) = p\int_\Omega|x|^pd\mu(x) + p\int_{\Omega}|y|^pd\nu(y).\end{equation}
+    This is finite because $\mu,\nu\in \mathcal{P}_p(\Omega)$.
+    \item  $W_p(\mu,\mu) = 0$ as $d(x,T(x)) = 0$ if $T_\# \mu = \mu$. Conversely, let $\mu,\nu\in \mathcal{P}_p(X)$ such that $W_p(\mu,\nu) = 0$. Let $\pi$ be an optimal transportation plan. 
+    In order for this to be possible, $\pi$ is supported on the diagonal $x=y$. Hence, for all $\phi\in C_b(X)$,
+    \[ \int \phi d\mu = \int \phi(x)d\pi(x,y) = \int\phi(y)d\pi(x,y) = \int\phi d\nu\]
+    which implies $\mu=\nu$.
     \item   Assume $\mu,\nu,\eta\in \mathcal{P}_p(X)$ are absolutely continuous. Let $T$ be the optimal map from $\mu$ to $\eta$ and $S$ be the optimal map from $\eta$ to $\nu$.
     Then $S\circ T\in \mathcal{T}(\mu,\nu)$ because $(S\circ T)_\#\mu = S_\#(T_\#\mu) = S_\#\eta = \nu$. Hence,
     \begin{align*}
@@ -597,19 +633,74 @@ is the admissable class of measures $\mu$, even if $X$ is unbounded.
       &= W_p(\mu,\eta) + \int_{X}d(x,S(x))^pd\eta(x) = W_p(\mu,\eta) + W_p(\eta,\nu).
       \end{align*}
   \end{enumerate}
-
+\end{proof}
+The proof of the triangle inequality above takes a further assumption that $\mu$ and $\nu$ are absolutely continuous with respect to the Lebesgue measure.
+Moreover, the proof regarding a gluing lemma is found in the proof of theorem 7.3 in \cite{villani}.
+\begin{prop}[Ordering of Wasserstein]
+  For every $p\in [1,+\infty)$, and any $\mu,\nu\in \mathcal{P}_p(X)$, we have that $W_p(\mu,\nu) \ge W_1(\mu,\nu)$. Furthermore, if $X$ is bounded, then $W_p(\mu,\nu)^p \le \text{diam}(X)^{p-1}W_1(\mu,\nu)$.
+\end{prop}
+\begin{proof}
+  By Jensen's inequality,
+  \begin{equation*}
+    \left(\int_{X\times X} d(x,y)^pd\pi(x,y)\right)^{1/p} \ge \int_{X\times X} d(x,y)d\pi(x,y)
+  \end{equation*}
+  Hence, $W_p(\mu,\nu) \ge W_1(\mu,\nu)$ as this holds for all $\pi\in \Pi(\mu,\nu)$.\newline
+  Now if $X$ is bounded, then for all $x,y\in X$,
+  \begin{align*}
+    d(x,y)^p \le (\max_{w,z\in X} d(w,z)^{p-1})d(x,y) = \text{diam}(X)^{p-1}d(x,y). \\
+    \int_{X\times X} d(x,y)d\pi(x,y)\le (\text{diam}(X)^{p-1})\int_{X\times X}d(x,y)d\pi(x,y).
+  \end{align*}
+  It follows $W_p(\mu,\nu) \le \text{diam}(X)^{p-1}W_1(\mu,\nu).$
 \end{proof}
 \subsection{Wasserstein Topology}
 We see that if $x_n\to x$ in $X$ then
-\(W_p(\delta_{x_n},\delta_x) = d(x_n,x)^{\inf{(1,p)}} \to 0\). In general, this looks like
-\begin{thm}[Wasserstein distances metrize weak convergence]
-	Let $p\in(0,\infty)$, let $(\mu_k)_{k=1}^\infty$ be a sequence of measures in $\mathcal{P}_p(X)$ and $\mu\in \mathcal{P}(X)$, then the following are equivalent\footnote{Theorem 7.12 in Villani is much stronger and gives more equivalences, but due to time, I just want to make this statement.}:
-	\begin{enumerate}[(i)]
+\(W_p(\delta_{x_n},\delta_x) = d(x_n,x)^{\inf{(1,p)}} \to 0\). Furthermore, another hint to the topology induced by the Wasserstein distance is the fact that it's not very sensitive to oscillation.
+\begin{exmp}
+  For $k\ge 1$, consider $f_k(x)=1+\sin(2\pi k x)$ on the line segment $[0,1]$. Let $du_k(x) = f_k(x)dx$ and let $\mathcal{L}$ be the Lebesgue measure on $[0,1]$. Let $p\ge 1$ and show that $W_p(\mu_k,\mathcal{L}) \le C_pk^{-1}$ for some constant $C_p$ depending only on $p$.
+\end{exmp}
+\begin{proof}
+  $W_p(\mu_k,\mathcal{L}) \le \int_{[0,1]\times[0,1]}(1+\sin{2\pi k x})|x-y|^pdxdy$
+\end{proof}
+The following theorem is from \cite{villani}.
+\begin{thm}[Wasserstein distances metrize weak convergence]\label{thm:weak}
+	Let $p\in(0,\infty)$, let $(\mu_k)_{k=1}^\infty$ be a sequence of measures in $\mathcal{P}_p(X)$ and $\mu\in \mathcal{P}(X)$, then the following are equivalent
+  	\begin{enumerate}[(i)]
 		\item $W_p(\mu_k,\mu)\to 0$
-		\item $\mu_k\to\mu$ in the weak sense, meaning for $h\in C_b(X)$,
-		\[\lim_{k\to\infty}\int hd\mu_k = \int hd\mu.\]
+		\item $\mu_k\to\mu$ in the weak sense, and for any $x_0\in X$, 
+		\[\lim_{R\to\infty}\limsup_{k\to\infty} \int_{d(x_0,x)\ge R} d(x_0,x)^pd\mu_k(x) = 0.\]
+    \item $\mu_k\to\mu$ in the weak sense, and for any $x_0\in X$, 
+    \[\int d(x_0,x)^pd\mu_k(x) \to \int d(x_0,x)^pd\mu < +\infty.\]
+    \item Whenever a continuous function $\phi$ on $X$ satisfies the growth condition $|\phi(x)| \le C(1+d(x_0,x)^p)$ for some $x_0\in X$ with $C\in \R$, then $\int |\phi(x)|d\mu(x) < +\infty$ and 
+     \[\int \phi d\mu_k \to \int \phi d\mu.\]
 	\end{enumerate} 
 \end{thm}
+\begin{proof}[proof from \cite{villani}]
+  Without loss of generality, let $p\ge 1$ and the assumptions of \autoref{thm:weak} be satisfied.
+  \begin{enumerate}
+    \item[$(iv)$] $\implies (iii)$. We see that for any $x_0\in X$, $d(x_0,x)^p \le 1+d(x_0,x)^p$ and $d$ is continuous so $(iii)$ follows from $(iv)$ because $|d| = d$.
+    \item[$(ii)$] $\implies (iv)$. Pick an arbitrary continuous function $\phi$ satisfying the growth condition in $(iv)$. Now write, for any $R > 1$,
+    \[\phi = \phi_R + \psi_R\]
+    where $\phi_R = \inf(\phi(x), C(1+R^p))$ and $\psi_R = \phi(x) - \phi_R(x)$. We see then that $\psi_R$ is pointwise bounded by $C d(x_0,x)^p\chi_{d(x_0,x) \ge R}$ from the growth condition. Then, 
+    \begin{align*}
+      \left|\int \phi d\mu_k - \int \phi d\mu\right| \le \left|\phi_Rd(\mu_k - \mu)\right| + C\left|\int_{d(x_0,x) \ge R}d(x_0,x)^p[d\mu_k + d\mu](x)\right|
+    \end{align*}
+    Then, it follows 
+    \begin{align*}
+      \limsup_{k\to\infty}\left|\int \phi d\mu_k - \int \phi d\mu\right| \le \limsup_{k\to\infty}C\left|\int_{d(x_0,x) \ge R}d(x_0,x)^p[d\mu_k + d\mu](x)\right|
+    \end{align*}
+    Then, allowing $R\to\infty$, the righthand side tends to 0 as $d(x_0,x) \ge R \to \emptyset$. This shows that $(ii)\implies (iv)$.
+    \item[$(iii)$] $\implies (ii)$. This has an inequality I don't exactly get $\dots$ 
+  \end{enumerate}
+  All that's required now is to show that $(i)\implies(iii)$. However, let's start with noticing 
+  \begin{align*}
+    \int d(x_0,x)^pd\mu(x) &= \lim_{R\to\infty}\lim_{k\to\infty} \int\inf(d(x_0,x),R)^pd\mu_k(x) \\
+    &\le \liminf_{k\to\infty}\int d(x_0,x)^pd\mu_k(x).
+  \end{align*}
+  Therefore, convergence of the moment of order $p$ in $(iii)$ is equivalent to 
+  \begin{equation}
+    \limsup_{k\to\infty}\int d(x_0,x)^pd\mu_k(x)\le \int d(x_0,x)^pd\mu(x).
+  \end{equation}
+\end{proof}
 \subsection{Wasserstein as a Geodesic Space}
 \section{Gradient Flows and PDEs}
 \subsection{Gradient Flow Motivation}
@@ -690,6 +781,10 @@ John Wiley \& Sons Inc., 1999.
 Evans C. L.
 Partial Differential Equations.
 American Mathematical Society, 2010.
+\bibitem{santambrogio}
+Santambrogio, F.
+Optimal Transport for Applied Mathematicians
+Springer Press, 2015
 \end{thebibliography}
 
 
