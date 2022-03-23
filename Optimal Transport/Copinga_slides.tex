@@ -264,7 +264,7 @@ is the admissable class of measures $\mu$, even if $X$ is unbounded.
 We can informally interpret the Wasserstein Distance as the horizontal distance between measures.
 \begin{figure}
 	\includegraphics[scale=0.3]{wasserstein.jpg}
-	\caption{The optimal transport (in green) between $\mu$ and $\nu$ describes the distance between points in $\mu$ and $\nu$ informally. Hence, this is the Wasserstein Distance.}
+	\caption{The optimal transport (in green) between $\mu$ and $\nu$ describes the distance between points in $\mu$ and $\nu$ informally. Moreover, this is the Wasserstein Distance.}
 \end{figure}
 }
 % \frame{\frametitle{Wasserstein Distance Triangle Inequality}
@@ -305,16 +305,16 @@ We can informally interpret the Wasserstein Distance as the horizontal distance 
 % Furthermore, we usually look at $p=2$, and say $\mathbb{W}_2$ is the space $\mathcal{P}_2(X)$ endowed with the metric $W_2$.
 % }
 \section{Benamou-Brenier}
-\frame{\frametitle{Continuity Equation}
-The continuity equation is defined with 
-\begin{equation}\label{eqn:continuity}p_t + \nabla \cdot (p\vec{v}) = 0\end{equation}
-where $p$ is the fluid density and $\vec{v}$ is the flow vector field.\newline
-Now, consider the smooth vector field $\vec{v}: [0,\infty)\times \mathbb{R}^n\to \mathbb{R}^n.$
-Let $\phi_t: \mathbb{R}^n\to \mathbb{R}^n$ be the flow map such that for each $x\in \mathbb{R}^n$,
-\[\partial_t\phi_t(x) = \vec{v}(t,\phi_t(x)),\quad \phi_0(x) = x.\]
-Given some measure $p_0$ on $\mathbb{R}^n$, we can look at the family of measures 
-\[p_t := (\phi_t)_\# p_0.\]
-}
+% \frame{\frametitle{Continuity Equation}
+% The continuity equation is defined with 
+% \begin{equation}\label{eqn:continuity}p_t + \nabla \cdot (p\vec{v}) = 0\end{equation}
+% where $p$ is the fluid density and $\vec{v}$ is the flow vector field.\newline
+% Now, consider the smooth vector field $\vec{v}: [0,\infty)\times \mathbb{R}^n\to \mathbb{R}^n.$
+% Let $\phi_t: \mathbb{R}^n\to \mathbb{R}^n$ be the flow map such that for each $x\in \mathbb{R}^n$,
+% \[\partial_t\phi_t(x) = \vec{v}(t,\phi_t(x)),\quad \phi_0(x) = x.\]
+% Given some measure $p_0$ on $\mathbb{R}^n$, we can look at the family of measures 
+% \[p_t := (\phi_t)_\# p_0.\]
+% }
 \frame{\frametitle{Benamou-Brenier}
 Restrict $0\le t \le 1$ and fix source ($p_0$) and destination ($p_1$) densities.
 \begin{theorem}[Benamou-Brenier]
@@ -329,7 +329,8 @@ $A$ is also called the action where the inner integral is the kinetic energy $E$
 \frame{\frametitle{Applications}
 Benamou-Brenier gives a hint to the Geodesic nature of the Wasserstein distance. That is, $p_t$ is a geodesic curve in $X$ between measures $p_0$ and $p_1$.\newline
 Additionally, we can apply gradient flow structure onto the Wasserstein space with 
-\[\partial_t\rho_t + \nabla\cdot(\vec{v}\rho_t) = 0.\]
+\[\partial_t\rho_t = - \nabla \mathcal{F}(\rho_t)\]
+where one can write this from the continuity equation.
 }
 \section{End}
 \frame{\frametitle{Questions? Concerns?}
@@ -337,10 +338,9 @@ Recommended resources:
 \begin{enumerate}
 	\item Cedric Villani - Topics in Optimal Transportation (good overview)
 	\item Fillipo Santambrogio - Optimal Transport for Applied Mathematicians (covers applications nicely)
-	\item Luigi Ambrosio - Gradient Flows (this is dry and very technical)
-	\item Matthew Thorpe - Introduction to Optimal Transport (nice summary of optimal transport, and covers geodesics in Wasserstein)
+	\item Matthew Thorpe - Introduction to Optimal Transport (nice summary of optimal transport up to gradient flows)
 \end{enumerate}
-This talk was meant to spur questions or ideas, and applications were covered without proof, so ask me through email at u0651651@utah.edu :)
+ideas and applications were covered without proof, so ask me through email at u0651651@utah.edu for more info
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% End Your Document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
