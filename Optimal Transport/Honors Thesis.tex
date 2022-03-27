@@ -14,7 +14,7 @@
 \usepackage{xcolor}
 \usepackage{mdframed}
 \usepackage{float}
-\usepackage[lmargin=1.5in, rmargin=1in, tmargin=1in, bmargin=1in]{geometry}
+\usepackage[lmargin=1.5in, tmargin=1in, bmargin=1in]{geometry}
 \usepackage{subfigure}
 \usepackage{newtxtext}
 
@@ -28,7 +28,6 @@
   citecolor=blue,%
   filecolor=blue,%
   menucolor=blue,%
-  pagecolor=blue,%
   urlcolor=blue,%
   pdfnewwindow=true,%
   pdfstartview=FitBH}   
@@ -183,10 +182,12 @@ This paper introduces the Monge-Kantorovich Problem and its dual problem. Using 
 \section{Formulation of Optimal Transport}
 \subsection{Problem}
 Start with a simple example where we have a pile of dirt, and a hole to fill completely with the dirt.
-To transport the dirt from this pile to the hole, clearly, the volume of the hole and the pile must be the same. As is suggested in \cite{villani}, we normalize this mass to $1$.\newline
+To transport the dirt from this pile to the hole, clearly, the volume of the hole and the pile must be the same. As is suggested in \cite{villani}, we normalize this mass to $1$.
+
 To model this rigorously, allow the pile to be space $X$ and the hole to be space $Y$. It's natural to define probability measures $\mu\in\mathcal{P}(X),\nu\in\mathcal{P}(Y)$ as mass is normalized to $1$.
-In other words, for measurable $A\subset X$ and $B\subset Y$, $\mu(A)$ is the volume in the pile $X$ and $\nu(B)$ is the volume to be filled in hole $Y$.\newline
-Now, introduce cost function $c: X\times Y \to \mathbb{R}$ such that for points $x\in X,y\in Y$, $c(x,y)$ represents how much energy is exhausted transporting point $x$ in the pile to point $y$ in the hole.\newline
+In other words, for measurable $A\subset X$ and $B\subset Y$, $\mu(A)$ is the volume in the pile $X$ and $\nu(B)$ is the volume to be filled in hole $Y$.
+
+Now, introduce cost function $c: X\times Y \to \mathbb{R}$ such that for points $x\in X,y\in Y$, $c(x,y)$ represents how much energy is exhausted transporting point $x$ in the pile to point $y$ in the hole.
 We can now introduce the transportation problem.
 %\comp{}{Given $n$ piles of sand and $m$ holes to be filled completely.}
 \begin{defn}[Transportation Problem]\label{defn:tp}
@@ -198,9 +199,12 @@ Given measure spaces $X,Y$ with probability measures $\mu\in \mathcal{P}(X)$ and
   \caption{Transportation Problem}
   \label{fig:tran}
 \end{figure}
+\subsection{History}
 There are two primary formulation for the transportation problem, the Monge and the Kantorovich formulation. The Monge formulation came historically before Kantorovich's, so I will be introducing it first.
 \subsection{Monge Formulation}
-\autoref{fig:tran} uses the Lagrangian framework in order to describe \autoref{defn:tp}. What this means is that particles $x\in X$ are observed individually as they are transported to $y\in Y$, and importantly, mass cannot be split, or the flows $T: X\to Y$ must be bijective.\newline From here, we introduce
+\autoref{fig:tran} uses the Lagrangian framework in order to describe \autoref{defn:tp}. What this means is that particles $x\in X$ are observed individually as they are transported to $y\in Y$, and importantly, mass cannot be split, or the flows $T: X\to Y$ must be bijective.
+
+From here, we introduce
 the Monge formulation, which observes a transport map $T$ that transports $\mu$ to $\nu$. Before we define it, we must define what is meant by transporting one measure to another.
 \begin{defn}[Transport Maps]\label{defn:transport_map}
   We say that $T: X\to Y$ transports $\mu\in \mathcal{P}(X)$ to $\nu\in\mathcal{P}(Y)$ if 
@@ -221,7 +225,8 @@ In order to describe the Monge Formulation, we denote the set of all $T$ such th
 In other words, \autoref{defn:monge} is minimizing the energy required from transporting $X\overset{T(x)}{\to}Y$. 
 \begin{exmp}[Discrete Monge Problem]\label{exmp:monge}
 Consider $\mu = \frac{2}{3}\delta_{x_1} + \frac{1}{3}\delta_{x_2}$ and $\nu = \frac{2}{3}\delta_{y_1} + \frac{1}{3}\delta_{y_2}$. We see that the only transport map that exists is the map where $T(x_1) = y_1$ and $T(x_2)=y_2$ as such mass is not split.
-However, in order to make the optimal transport map less trivial, we can allow $\mu = \frac{1}{n}\sum_{i=1}^n\delta_{x_i}$ and $\nu = \frac{1}{n}\sum_{i=1}^n\delta_{y_i}$ to create the discrete Monge optimal transportation problem. \newline
+However, in order to make the optimal transport map less trivial, we can allow $\mu = \frac{1}{n}\sum_{i=1}^n\delta_{x_i}$ and $\nu = \frac{1}{n}\sum_{i=1}^n\delta_{y_i}$ to create the discrete Monge optimal transportation problem.
+
 Now, we can allow $j = \sigma(i)$ where $\sigma \in S_n$ with $S_n$ be the permutations of $\{1,2\dots,n\}$. In other words, $\sigma$ is a transport map where we can define the discrete monge problem as 
 \[\mathbb{M}_{\text{disc}} = \inf_{\sigma\in S_n}\left\{\frac{1}{n}\sum_{i=1}^nc(x_i,y_{\sigma(i)})\right\}.\]
 \begin{figure}[H]
@@ -301,7 +306,8 @@ that cannot be split is a Monge Problem. Moreover, we can form a relation betwee
   and by Poincar\'e's inequality, we have that 
   \[\|u_k-\phi\|_{L^2(U)} \le C\|D(u_k-\phi)\|_{L^2(U)}\]
   and thus $u_k$ is bounded in $H^1(U)$. Moreover, there exists a weakly convergence subsequence 
-  \(u_{k_l}\rightharpoonup u\in H^1(U)\) so both \(u_{k_l}\rightharpoonup u,\text{ and }Du_{k_l}\rightharpoonup Du\in L^1(U)\).\newline
+  \(u_{k_l}\rightharpoonup u\in H^1(U)\) so both \(u_{k_l}\rightharpoonup u,\text{ and }Du_{k_l}\rightharpoonup Du\in L^1(U)\).
+
   Because a closed convex subset of a normed space is weakly closed, the norm is weakly semicontinuous, and we can conclude that 
   \[\int_U |Du|^2 dx \le \liminf_{l\to\infty}\int_U |Du_{k_l}|^2dx = m.\]
   Moreover, because $I[u]$ is itself a minimum, it's not difficult to verify that $u$ solves the Dirichlet problem.
@@ -322,7 +328,8 @@ where $v : X\to\R$ over $v$ in a given class. Importantly, condition 2. of \auto
 \end{thm}
 Now, we can discuss minimizers in $W^{1,q}$.
 \begin{thm}
-  If $\mathcal{L}$ is a Lagrangian and the admissable class of functions $\mathcal{A}$ is nonempty, then $I[u] := \min_{v\in\mathcal{A}} I[v]$.\newline
+  If $\mathcal{L}$ is a Lagrangian and the admissable class of functions $\mathcal{A}$ is nonempty, then $I[u] := \min_{v\in\mathcal{A}} I[v]$.
+
   $u$ is the unique minimizer if $\mathcal{L}$ does not depend on $z$ and if there exists $\theta > 0$ such that $\sum_{i,j}\mathcal{L}_{p_ip_j}\xi_i\xi_j\ge \theta|\xi|^2$ for all $p,\xi\in\R^n$ and $x\in X$.
 \end{thm}
 \begin{proof}
@@ -355,7 +362,8 @@ Using \autoref{defn:direct}, we can discuss the existence of transport plans, or
     \pi((X\times Y)\setminus (K\times L)) &\le \pi(X\times (Y\setminus L)) + \pi((X\setminus K)\times Y) \\
     &= \nu(Y\setminus L) + \mu(X\setminus K) \le 2\delta.
   \end{align*}
-  Hence $\Pi(\mu,\nu)$ is tight. Then, by Prokhorov's theorem, $\overline{\Pi(\mu,\nu)}$ is sequentially compact in the weak$\star$ topology.\newline
+  Hence $\Pi(\mu,\nu)$ is tight. Then, by Prokhorov's theorem, $\overline{\Pi(\mu,\nu)}$ is sequentially compact in the weak$\star$ topology.
+
   Let $\pi_n\in\Pi(\mu,\nu)$ be a sequence such that for some $\pi\in M(X\times Y)$, $\pi_n\overset{\star}{\rightharpoonup} \pi$. Fix $d\in X$ and $c\in Y$. Now let $f_1(x,c) \in C_b(X\times Y)$ and $f_2(d,y)\in C_b(X\times Y)$, we see that 
   \begin{align*}
     \int_{X\times Y} f_1(x,y)d\pi_n(x,y) = \int_{X} f_1(x,c)d\mu(x) &\to \int_{X\times Y} f_1(x,c)d\pi(x,y) \\
@@ -363,7 +371,8 @@ Using \autoref{defn:direct}, we can discuss the existence of transport plans, or
     \int_{X\times Y} f_2(x,y)d\pi_n(x,y) = \int_{Y} f_1(d,y)d\nu(y) &\to \int_{X\times Y} f_1(d,y)d\pi(x,y) \\
     &= \int_{X} f_1(d,y)dP^Y_{\#}\pi(y)
   \end{align*}
-  Where $P^\Omega$ is the projection onto $\Omega$. Moreover, this means that $\pi$ has marginals $\mu$ and $\nu$, and hence $\Pi(\mu,\nu)$ is weakly closed as the choice of $f_1,f_2$ was arbitrary.\newline
+  Where $P^\Omega$ is the projection onto $\Omega$. Moreover, this means that $\pi$ has marginals $\mu$ and $\nu$, and hence $\Pi(\mu,\nu)$ is weakly closed as the choice of $f_1,f_2$ was arbitrary.
+
   Let $\pi_n\in \Pi(\mu,\nu)$ be a minimizing sequence such that 
   \[\int_{X\times Y}c(x,y)d\pi_n(x,y) \to \mathbb{K}(\mu,\nu).\]
  Because $\Pi(\mu,\nu)$ is compact, we have $\pi_n\overset{\star}{\rightharpoonup}\gamma\in\Pi(\mu,\nu)$. Because $c$ is lower-semicontinuous and bounded from below,
@@ -461,7 +470,8 @@ Finally, we can begin to prove Kantorovich Duality as stated in \autoref{thm:kan
 \begin{proof}
   Let $(\phi,\psi) \in \Phi_c$ and $\pi\in \Pi(\mu,\nu)$. Then,
   \[J(\phi,\psi) = \int_X\phi d\mu + \int_Y\psi d\nu = \int_{X\times Y}[\phi(x)+\psi(y)]d\pi(x,y)\]
-  as $\pi$ has marginals $\mu,\nu$.\newline
+  as $\pi$ has marginals $\mu,\nu$.
+
   Let $N_x,N_y$ be null sets of $\mu$ and $\nu$ respectively. Because \autoref{eqn:dualconst} holds almost everywhere, \autoref{eqn:dualconst} holds for 
   $(x,y)\in N_x^c \times N_y^c$. Moreover, $\pi(N_x\times Y) = \mu(N_x) = 0$ and $\pi(X\times N_y) = \nu(N_y) = 0$ so $\pi((N_x^c\times N_y^c)^c) = 0$ so \autoref{eqn:dualconst} holds for $\pi$. Thus,
   \begin{equation}
@@ -494,20 +504,23 @@ Finally, we can begin to prove Kantorovich Duality as stated in \autoref{thm:kan
     \end{cases}
   \end{align}
 $\Xi$ is not unique, but still well defined. If $\phi(x) + \psi(y) = \tilde{\phi}(x) + \tilde{\psi}(y)$, then for $s\in\R$, $\phi = \tilde{\phi} + s$ and $\psi = \tilde{\psi} -s$ so \[ \int_X \phi(x)d\mu + \int_Y \psi(y)d\nu = \int_X \tilde{\phi} d\mu + s\left(\int_Xd\mu - \int_Yd\nu\right) + \int_Y\tilde{\psi}d\nu = \int_X \tilde{\phi} d\mu + \int_Y\tilde{\psi}d\nu.\]
-Hence $\Xi$ is well defined.\newline
+Hence $\Xi$ is well defined.
+
 To show that $\Theta$ is convex, let $u,v\in C_b(X\times Y)$ and $\Theta(u),\Theta(v) < +\infty$ so $u(x,y) \ge -c(x,y)$ and $v(x,y) \ge -c(x,y)$. For $t\in [0,1]$, 
 \(tu + (1-t)v \ge c.\) It follows that 
 \[\Theta(tu + (1-t)v) = 0 = t\Theta(u) + (1-t)\Theta(v).\]
 If $\Theta(u) = +\infty$ or $\Theta(v) = +\infty$, then 
 \[\Theta(tu + (1-t)v) \le t\Theta(u) + (1-t)\Theta(v).\]
-Hence $\Theta$ is convex.\newline
+Hence $\Theta$ is convex.
+
 To show that $\Xi$ is convex, let $u(x,y) = \phi_1(x) + \psi_1(y)$ and $v(x,y) = \phi_2(x) + \psi_2(y)$. Now, it follows that 
 \[tu + (1-t)v = t\phi_1 + (1-t)\phi_2 + t\psi_1 + (1-t)\psi_2\]
 so therefore
 \[\Xi(tu + (1-t)v) = \int_{X}t\phi_1 + (1-t)\phi_2d\mu + \int_{Y}t\psi_1 + (1-t)\psi_2d\nu = t\Xi(u) + (1-t)\Xi(v).\]
 Now, if $\Xi(u) = +\infty$ or $\Xi(v) = +\infty$, then clearly 
 \[\Xi(tu + (1-t)v) \le t\Xi(u) + (1-t)\Xi(v).\]
-Hence $\Xi$ is convex.\newline
+Hence $\Xi$ is convex.
+
 Now, if we let $u_0\equiv 1$, we have that $\Theta(u_0),\Xi(u_0) < +\infty$ and $\Theta$ continuous at $u_0$ because $c(x,y)$ is nonnegative. 
 From here, the assumptions of \autoref{thm:Fenchel} are satisfied so 
 \begin{equation}\label{eqn:fenchel}
@@ -556,7 +569,6 @@ Combining \autoref{eqn:rhs} and \autoref{eqn:lhs}, we see that
 Now that we've discussed the Monge-Kantorovich problem and its dual, it's best to describe conditions in which there is existence of optimal transport maps. Transport maps are difficult to characterize 
 so we will be restricting to quadratic costs $c(x,y)=|x-y|^2$. There are generalizations that exist, but with additional burden \cite{thorpe}. Moreover, the second assumption we will make is that $X,Y\subset \R^n$. 
 \subsection{Characterization of Transport Maps}
-
 The following is theorem 2.12 in \cite{villani}.
 \begin{thm}[Brenier's theorem]\label{thm:brenier}
 Let $\mu,\nu$ be probability measures on $\R^n$ such that $\int |x|^2 d\mu + \int |y|^2d\nu < +\infty$. If $\mu$ does not give mass to small sets, then there is a unique $\pi\in\Pi(\mu,\nu)$ such that 
@@ -567,48 +579,52 @@ where $\phi$ is the unique convex function with $\nabla\phi_\#\mu = \nu$.
   Under the same assumptions as \autoref{thm:brenier}, $\nabla\phi$ is the unique solution to the Monge transportation problem:
   \[\int_X|x-\nabla\phi(x)|^2d\mu(x) = \inf_{T\in\mathcal{T}(\mu,\nu)}\int_X|x-T(x)|^2d\mu(x).\]
 \end{cor}
-\subsection{Optimality and Convex Analysis}
-First introducing a few definitions in convex analysis.
-\begin{defn}[Convex Conjugate]
-  The convex conjugate of a proper function $\phi: \R^n\to\R\cup\{+\infty\}$ is defined by 
-  \[\phi^\star = \sup_{x\in\R^n}(x\cdot y - \phi(x)).\]
-\end{defn}
-\begin{defn}[Subdifferential]
-  The subdifferential $\partial \phi$ of a convex function is defined by 
-  \[\partial \phi(x) = \{y : \phi(z)\ge \phi(x) + y\cdot(z-x)\text{ for all $z\in \R^n$}\}.\]
-\end{defn}
-We can now characterize the subdifferential.
-\begin{prop}
-  Let $\phi$ be a proper, 
-\end{prop}
-Prior to proving \autoref{thm:brenier}, there are some steps required beforehand. The first of which is the Knott-Smith optimality criterion.
-\begin{thm}[Knott-Smith Optimality Criterion]
-  Let $\mu,\nu$ be under the same assumptions as \autoref{thm:brenier}. There exists a minimizer $\pi^\dagger\in\Pi(\mu,\nu)$ to the Kantorovich optimal transport problem with cost $c(x,y) = |x-y|^2$ if and only if there exists 
-  an $L^1(\mu)$, convex lower semi-continuous function $\phi$ such that $\text{supp}(\pi^\dagger)\subseteq \text{Gra}(\partial \phi)$. Moreover, 
-  the pair $(\phi,\phi^\star)$ is a minimizer to the dual problem where $\phi_c$ is defined as 
-  \begin{align*}
-    \Phi_c = \left\{(\phi,\psi) \in L^1(\mu)\times L^1(\nu) : \phi(x)+\psi(y) \ge x\cdot y\right\}.
-  \end{align*}
-\end{thm}
+% Prior to proving \autoref{thm:brenier}, there are some results from convex analysis to be described.
+% \subsection{Optimality and Convex Analysis}
+% First introducing a few definitions in convex analysis.
+% \begin{defn}[Convex Conjugate]
+%   The convex conjugate of a proper function $\phi: \R^n\to\R\cup\{+\infty\}$ is defined by 
+%   \[\phi^\star = \sup_{x\in\R^n}(x\cdot y - \phi(x)).\]
+% \end{defn}
+% \begin{defn}[Subdifferential]
+%   The subdifferential $\partial \phi$ of a convex function is defined by 
+%   \[\partial \phi(x) = \{y : \phi(z)\ge \phi(x) + y\cdot(z-x)\text{ for all $z\in \R^n$}\}.\]
+% \end{defn}
+% We can now characterize the subdifferential.
+% \begin{prop}
+%   Let $\phi$ be a proper, 
+% \end{prop}
+% \begin{thm}[Knott-Smith Optimality Criterion]
+
+%   Let $\mu,\nu$ be under the same assumptions as \autoref{thm:brenier}. There exists a minimizer $\pi^\dagger\in\Pi(\mu,\nu)$ to the Kantorovich optimal transport problem with cost $c(x,y) = |x-y|^2$ if and only if there exists 
+%   an $L^1(\mu)$, convex lower semi-continuous function $\phi$ such that $\text{supp}(\pi^\dagger)\subseteq \text{Gra}(\partial \phi)$. Moreover, 
+%   the pair $(\phi,\phi^\star)$ is a minimizer to the dual problem where $\phi_c$ is defined as 
+%   \begin{align*}
+%     \Phi_c = \left\{(\phi,\psi) \in L^1(\mu)\times L^1(\nu) : \phi(x)+\psi(y) \ge x\cdot y\right\}.
+%   \end{align*}
+% \end{thm}
 \section{Wasserstein}
+
 Metrics such as $L^p$ form a metric based on pointwise differences. We see this when considering the functions $f(x)=\chi_{[0,1]}(x)$ and $f_\delta(x) = \chi_{[\delta,\delta+1]}$, where $\chi_\Omega$ is the indicator function of $\Omega$.
 In particular, we see that 
 \[\|f-f_\delta\|_{L^p}^p = \begin{cases} 2\delta &\text{if $|\delta| < 1$} \\
 2 &\text{otherwise.}\end{cases}\]
-We see that when $|\delta| \ge 1$, the sets $[0,1]$ and $[\delta,\delta+1]$ are disjoint and the $L^p$ distance is constant. This is potentially a problem because if $\delta$ is set large, $\frac{d}{d\delta}\|f_\delta - f \|_{L^p} = 0$, which is a problem in gradient based optimization.\newline
+We see that when $|\delta| \ge 1$, the sets $[0,1]$ and $[\delta,\delta+1]$ are disjoint and the $L^p$ distance is constant. This is potentially a problem because if $\delta$ is set large, $\frac{d}{d\delta}\|f_\delta - f \|_{L^p} = 0$, which is a problem in gradient based optimization.
+
 Rather, if we look for a optimal transport cost using $f$ and $f_\delta$, we have the following problem 
 \[\min_{T_\#f = f_\delta}\ \int_0^1|x-T(x)|^pdx = |\delta|^p\]
-where $f$ and $f_\delta$ are defined as the measures with density $f$ and $f_\delta$ respectively. This example comes from \cite{thorpe}.\newline
+where $f$ and $f_\delta$ are defined as the measures with density $f$ and $f_\delta$ respectively. This example comes from \cite{thorpe}.
+
 Moreover, if we let $f,g$ be functions in $\R^n$, we can intuitively describe $L^p$ as the vertical distance between functions $f$ and $g$ while the optimal transport problem with cost $d(x,y)^p$ can be seen as the horizontal distance between measures with density $f$ and $g$. The figure from \cite{santambrogio} is shown below.
 \begin{figure}[H]
   \center
-  \includegraphics[scale=0.5]{banner.jpg}
+  \includegraphics[scale=0.6]{wasserstein_lp.jpg}
   \caption{The "vertical" and "horizontal" differences described between the $L^p$ cost and the optimal transport cost. $T(x)$ is the optimal transport cost, not to be confused with the optimal transport map.}
 \end{figure}
 \subsection{Wasserstein Distances}
 Let's start by considering Kantorovich-Monge solutions to the transport problem with cost functions $c(x,y) = d(x,y)^p$ where $d$ is the distance on $X$ and $Y$.
 Let $\Omega\subset X$ and set $x_0\in X$.
-\[\mathcal{P}_p(X) = \left\{\mu\in\mathcal{P}(X):\int_{\Omega}d(x,x_0)^p < +\infty\right\}\]
+\[\mathcal{P}_p(X) = \left\{\mu\in\mathcal{P}(X):\int_{\Omega}d(x,x_0)^pd\mu < +\infty\right\}\]
 is the admissable class of measures $\mu$, even if $X$ is unbounded.
 \begin{lem}[Kantorovich-Monge forms a metric.]\label{lem:wass}
 	Let \[W_p(\mu,\nu) = \left[\inf_{\pi\in\Pi(\mu,\nu)}\int_{X\times X}d(x,y)^pd\pi(x,y)\right]^{1/p}\] defined for $\mu,\nu\in\mathcal{P}_P(X)$ be the Wasserstein Distance. This forms a metric on $X$.
@@ -617,8 +633,8 @@ is the admissable class of measures $\mu$, even if $X$ is unbounded.
   \begin{enumerate}
     \item Because $d(x,y) \ge 0$, it's clear that $W_p$ is nonnegative. 
     \item The product measure $\mu\times \nu = \nu\times \mu$, so $W_p$ is symmetric.
-    \item[*] It's sufficient to show for (1), (2) that $W_p$ is finite on $P_p$. For any $\Omega\subset X$,
-    \begin{equation}W_p(\mu,\nu) \le p \inf_{\pi\in\Pi(\mu,\nu)}\int_{\Omega\times \Omega} |x|^p + |y|^pd\pi(x,y) = p\int_\Omega|x|^pd\mu(x) + p\int_{\Omega}|y|^pd\nu(y).\end{equation}
+    \item[*] It's sufficient to show for (1), (2) that $W_p$ is finite on $\mathcal{P}_p$.
+    \begin{equation*}W_p(\mu,\nu) \le p\inf_{\pi\in\Pi(\mu,\nu)}\int_{X\times X}d(x,x_0)^p + d(x_0,y)^pd\pi.\end{equation*}
     This is finite because $\mu,\nu\in \mathcal{P}_p(\Omega)$.
     \item  $W_p(\mu,\mu) = 0$ as $d(x,T(x)) = 0$ if $T_\# \mu = \mu$. Conversely, let $\mu,\nu\in \mathcal{P}_p(X)$ such that $W_p(\mu,\nu) = 0$. Let $\pi$ be an optimal transportation plan. 
     In order for this to be possible, $\pi$ is supported on the diagonal $x=y$. Hence, for all $\phi\in C_b(X)$,
@@ -644,7 +660,8 @@ Moreover, the proof regarding a gluing lemma is found in the proof of theorem 7.
   \begin{equation*}
     \left(\int_{X\times X} d(x,y)^pd\pi(x,y)\right)^{1/p} \ge \int_{X\times X} d(x,y)d\pi(x,y)
   \end{equation*}
-  Hence, $W_p(\mu,\nu) \ge W_1(\mu,\nu)$ as this holds for all $\pi\in \Pi(\mu,\nu)$.\newline
+  Hence, $W_p(\mu,\nu) \ge W_1(\mu,\nu)$ as this holds for all $\pi\in \Pi(\mu,\nu)$.
+
   Now if $X$ is bounded, then for all $x,y\in X$,
   \begin{align*}
     d(x,y)^p \le (\max_{w,z\in X} d(w,z)^{p-1})d(x,y) = \text{diam}(X)^{p-1}d(x,y). \\
@@ -689,7 +706,10 @@ The following theorem is from \cite{villani}.
       \limsup_{k\to\infty}\left|\int \phi d\mu_k - \int \phi d\mu\right| \le \limsup_{k\to\infty}C\left|\int_{d(x_0,x) \ge R}d(x_0,x)^p[d\mu_k + d\mu](x)\right|
     \end{align*}
     Then, allowing $R\to\infty$, the righthand side tends to 0 as $d(x_0,x) \ge R \to \emptyset$. This shows that $(ii)\implies (iv)$.
-    \item[$(iii)$] $\implies (ii)$. This has an inequality I don't exactly get $\dots$ 
+    \item[$(iii)$] $\implies (ii)$. We have 
+    \[\int\inf\{d(x_0,x),R\}^pd\mu_k(x)\to \int \inf\{d(x_0,x),R\}^pd\mu(x)\] 
+    then by the monotone convergence theorem,
+    \[\lim_{R\to\infty}\int\inf\{d(x_0,x),R\}^pd\mu_k(x)= \int d(x_0,x)^pd\mu(x)\] 
   \end{enumerate}
   All that's required now is to show that $(i)\implies(iii)$. However, let's start with noticing 
   \begin{align*}
@@ -702,64 +722,185 @@ The following theorem is from \cite{villani}.
   \end{equation}
 \end{proof}
 \subsection{Wasserstein as a Geodesic Space}
-\section{Gradient Flows and PDEs}
-\subsection{Gradient Flow Motivation}
-\subsubsection{Fluid Mechanics}
-One of the oldest and most basic equations in fluid mechanics is the Euler equation. 
-\begin{defn}[Euler's Equation]
-  Let open $\Omega\subset\R^n$ be a bounded and smooth. The incompressible Euler equation has
-  \begin{equation}
-    \begin{cases}
-      v_t + v \cdot \nabla v = - \nabla p. \\
-      \nabla \cdot v = 0.
-    \end{cases}
-  \end{equation}
-  where $v(t,x): \R_+ \times \Omega \to \R^n$ is the velocity field of a fluid and $p(t,x):\R_+\times \Omega \to \R^n$ is the pressure of the fluid. Moreover, this must be supplemented with the boundary condition, $v$ is tangent to $\partial \Omega$.
+Before there is discussion on gradient flows, it's helpful to show that that the Wasserstein Space is a geodesic space on convex $X\subset \R^n$. The following results are from \cite{santambrogio}.
+\begin{defn}[Geodesic Space]
+  Let $(X,d)$ be a metric space. We say that $X$ is a geodesic space if 
+  \[d(x,y) = \min\{\text{Len}(\omega) : \omega\in AC(X),\omega(0) = x, \omega(1) = y\}.\]
 \end{defn}
-\subsection{Continuity Equation}
+Now, to define $\text{Len}(\omega)$ and $AC(X)$.
+\begin{defn}[Absolute Continuity]
+  Let $(X,d)$ be a metric space and $\omega : [0,1]\to X$ be a curve in $X$. $\omega$ is absolutely continuous if there exists $g\in L^1([0,1])$ such that 
+  \[d(\omega(t_0),\omega(t_1)) \le \int_{t_0}^{t_1} g(s)ds\]
+  for all $0\le t_0 < t_1 \le 1$. The set of such curves is denoted as $AC(X)$.
+\end{defn}
+\begin{defn}[Length and Geodesics]
+  Let $(X,d)$ be a metric space and $\omega : [0,1]\to X$ be a curve in $X$. The length of $\omega$ is defined as 
+  \[\text{Len}(\omega):= \sup\left\{\sum_{k=0}^{n-1}d(\omega(t_k),\omega(t_{k+1})) : n\ge 1, 0 = t_0 <t_1 < \dots < t_n = 1\right\}.\]
+  A curve $\omega$ is said to be a geodesic between $x_0,x_1\in X$ if 
+  \[\omega \in \arg\min\{\text{len}(\tilde{\omega}) : \tilde{\omega}:[0,1]\to X, \tilde{\omega}(0) = x_0, \tilde{\omega}(1) = x_1\}.\]
+  A curve $\omega$ is said to be a constant speed geodesic if 
+  \[d(\omega(t),\omega(s)) = |t-s|d(\omega(0),\omega(1))\]
+  for all $t,s\in [0,1]$.
+\end{defn}
+It can be seen that a constant speed geodesic is a geodesic.
+\begin{prop}
+  A constant speed geodesic curve $\omega$ is a geodesic on $X$.
+\end{prop}
+\begin{proof}
+  Assume that $\omega: [0,1]\to X$ and $\tilde{\omega}: [0,1]\to X$ has $\omega(0) = \tilde{\omega}(0) = x_0$ and $\omega(1)=\tilde{\omega}(1) = x_1$,
+  $\omega$ is a constant speed geodesic and $\text{len}(\tilde{\omega}) < \text{len}(\omega)$. That is, assume that $\omega$ is not a geodesic curve on $X$.
+
+  Now, there exists $n\in \N$ with $0 \le t_0 < t_1 < \dots < t_n = 1$ such that 
+  \[\text{Len}(\tilde{\omega}) < \sum_{k=0}^{n-1}d(\omega(t_k),\omega(t_{k+1})) = d(x_0,x_1)\sum_{k=0}^{n-1}|t_{k+1}-t_k| = d(x_0,x_1).\]
+  However, $\text{Len}(\tilde{\omega}) \ge d(x_0,x_1)$ as 
+  \[\text{Len}(\tilde{\omega}) = \sum_{k=0}^{n-1}d(\tilde{\omega}(t_k),\tilde{\omega}(t_{k+1})) \ge \sum_{k=0}^{0}d(\tilde{\omega}(t_k),\tilde{\omega}(t_{k+1})) = d(x_0,x_1).\]
+  It's easy to see that $\omega$ is absolutely continuous with $g(s) = d(x_0,x_1)$ with
+  \[d(\omega(t_0),\omega(t_1)) = |t_0-t_1|d(x_0,x_1) = \int_{t_0}^{t_1}d(x_0,x_1)ds.\]
+\end{proof}
+Now we can prove that $\mathbb{W}_p$ is a geodesic space provided that $\Omega \subset X$ is convex.
+\begin{thm}[Wasserstein Space is a Geodesic Space]\label{thm:geodesic}
+  Suppose that $X\subset \R^n$ is convex and $\mu,\nu \in \mathcal{P}_p(\Omega)$. Let $\pi\in \Pi(\mu,\nu)$ an 
+  optimal transport plan for the cost $c(x,y) = |x-y|^p$. Define $P_t : X\times X \to X$ by $P_t(x,y) = (1-t)x + ty$, then the 
+  curve $\omega_t = (P_t)_\#\pi$ is a constant speed geodesic in $(X, W_p)$ connecting $\mu$ and $\nu$. Furthermore, if $\pi = (\text{Id}\times T)_\#\mu$ for some transport map $T:X\to X$, then 
+  $\omega_t = ((1-t)\text{Id} + tT)_\# \mu$. 
+\end{thm}
+\begin{proof}
+  It is sufficient to prove that $W_p(\omega_t,\omega_s) \le W_p(\mu,\nu)|t-s|$ as 
+  \begin{align*}
+    W_p(\mu,\nu) &\le W_p(\mu,\omega_s) + W_p(\omega_s,\omega_t) + W_p(\omega_t,\nu) \\
+    &\le W_p(\mu,\nu)|t+(s-t)+(1-s)|\\
+    & = W_p(\mu,\nu).
+  \end{align*}
+  Claim that \begin{equation}\label{eqn:lemgeo}\pi_{s,t} = (P_s,P_t)_\#\pi\in \Pi(\omega_s,\omega_t)\end{equation}
+  which is shown in \cite{thorpe}, then 
+  \begin{align*}
+    W_p(\omega_s,\omega_t) &\le \left[\int_{X\times X}|x-y|^pd\pi_{s,t}(x,y)\right]^{1/p}\\
+    & = \left[\int_{X\times X}|P_s(x,y)-P_t(x,y)|^pd\pi(x,y)\right]^{1/p} \\
+    &= \left[\int_{X\times X}|(t-s)x-(t-s)y|^pd\pi(x,y)\right]^{1/p} \\
+    &= |t-s|\left[\int_{X\times X}|x-y|^pd\pi(x,y)\right]^{1/p} \\
+    &= |t-s|W_p(\mu,\nu).
+  \end{align*}
+  Now, if $T$ is an optimal transport map in the sense of the Monge transportation problem, then $\pi = (\text{Id}\times T)_\#\mu$. Now, for measurable $A\subset X$, as is done in \cite{thorpe},
+  \begin{align*}
+    \omega_t(A) &= (P_t)_\#\pi(A) = \pi(\{(x,y) : (1-t)x + ty\in A\}) \\
+    &= (\text{Id}\times T)_\#\mu(\{(x,y):(1-t)x + ty\in A\}) \\
+    &= ((1-t)\text{Id} + tT)_\#\mu(A)
+  \end{align*}
+  Hence, $\omega_t = ((1-t)\text{Id} + tT)_\#\mu.$
+\end{proof}
+\section{Gradient Flows and PDEs}
+% \subsection{Gradient Flow Motivation}
+% \subsubsection{Fluid Mechanics}
+% One of the oldest and most basic equations in fluid mechanics is the Euler equation. 
+% \begin{defn}[Euler's Equation]
+%   Let open $\Omega\subset\R^n$ be a bounded and smooth. The incompressible Euler equation has
+%   \begin{equation}
+%     \begin{cases}
+%       v_t + v \cdot \nabla v = - \nabla p. \\
+%       \nabla \cdot v = 0.
+%     \end{cases}
+%   \end{equation}
+%   where $v(t,x): \R_+ \times \Omega \to \R^n$ is the velocity field of a fluid and $p(t,x):\R_+\times \Omega \to \R^n$ is the pressure of the fluid. Moreover, this must be supplemented with the boundary condition, $v$ is tangent to $\partial \Omega$.
+% \end{defn}
+\subsection{Eulerian and Lagrangian perspectives}
+In fluid mechanics and other modeling systems, there are two predominant complementary ways to describe motions. These are called the Lagrangian and the Eulerian points of view.
+\subsubsection{Lagrangian perspective}
+When motion is described in Lagrangian formalism, a particle is selected, and then for every time $t$ and every label (position, velocity, etc.), we describe what happens to that particle. Rather, this is equivalent to 
+providing a label to the particle at a specific time $t$. One common example is observing flows $\phi_x(t)$ for the position of a particle at time $t$ with $\phi_x(0) = x$ for some initial $x$.
+
+Furthermore, instead of observing a single particle, we can observe many with the same behavior at once, and indicate how many there are. This amounts to giving a measure, $\rho$, on possible behaviors from groups of particles.
+Now, if we only considers times $t\in [0,1]$, we can describe the behavior of particles only by their initial and final positions, $\rho_0,\rho_1$ respectively. A certain measure on these particles is exactly a transport plan between 
+$\rho_0$ and $\rho_1$. Looking back at \autoref{defn:kantorovich} and \autoref{defn:monge}, we see that they have a Lagrangian formulation.
+
+\subsubsection{Eulerian perspective}
+When motion is described in Eulerian formalism, what happens at every point $x$ and every time $y$ is described. Rather, "what happens" is usually taken to mean the velocity, density, and the flow rate of particles located at time $t$ at point $x$.
+
+There are two classifications of Eulerian models, dynamical and static. A dynamic model usually uses two variables, such as the density $\rho(t,x)$ and the velocity $\mathbf{v}_t(x)$. If we prescribe an initial density $\rho_0$, the position of a particle originally located at $x$ will be given by the solution of the following ODE, using the flow $\phi_x(t)$ from the Lagrangian formalism,
+\begin{equation*}
+  \begin{cases}
+    \phi_x'(t) = \mathbf{v}_t(\phi_x(t)) \\
+    \phi_x(0) = x.
+  \end{cases}
+\end{equation*}
+We define the map $\Phi_t$ through $\Phi_t(x) = \phi_x(t)$, then observe the measure $\rho_t = (\Phi_t)_\#\rho_0$. Now, we can discuss the solution of the \textit{continuity equation}.
+\subsubsection{Continuity Equation}
 The continuity equation is defined with 
-\begin{equation}\label{eqn:continuity}p_t + \nabla \cdot (p\vec{v}) = 0\end{equation}
-where $p$ is the fluid density and $\vec{v}$ is the flow vector field.\newline
-Now, consider the smooth vector field $\vec{v}: [0,\infty)\times \mathbb{R}^n\to \mathbb{R}^n.$
-Let $\phi_t: \mathbb{R}^n\to \mathbb{R}^n$ be the flow map such that for each $x\in \mathbb{R}^n$,
-\[\partial_t\phi_t(x) = \vec{v}(t,\phi_t(x)),\quad \phi_0(x) = x.\]
-Given some measure $p_0$ on $\mathbb{R}^n$, we can look at the family of measures 
-\[p_t := (\phi_t)_\# p_0.\]
+\begin{equation}\label{eqn:continuity}p_t + \nabla \cdot (p\mathbf{v}) = 0\end{equation}
+where $p$ is the fluid density and $\mathbf{v}$ is the flow vector field.
+
+Now, consider the smooth vector field $\mathbf{v}: [0,\infty)\times \mathbb{R}^n\to \mathbb{R}^n.$
+Using the definition from the last section, let $\Phi_t: \mathbb{R}^n\to \mathbb{R}^n$ be the flow map such that for each $x\in \mathbb{R}^n$,
+\[\partial_t\Phi_t(x) = \mathbf{v}(t,\Phi_t(x)),\quad \Phi_0(x) = x.\]
+Given some density $\rho_0$ on $\mathbb{R}^n$, we can look at the family of measures 
+\[\rho_t := (\Phi_t)_\# \rho_0.\]
 \begin{thm}
-	The family of measures $p_t$ is the unique distributional solution of the IVP of \eqref{eqn:continuity} with initial data $p_t\vert_{t=0} = p_0$.
+	The family of measures $p_t$ is the unique distributional solution of the IVP of \eqref{eqn:continuity} with initial data $\rho_t\vert_{t=0} = \rho_0$.
 \end{thm}
 \begin{proof}
 	Let $\phi\in C^\infty_c(\mathbb{R}^n)$.
 	\begin{align*}
-		&\int_0^T \int_{\mathbb{R}^n}\partial_t\phi(t,x) + \vec{v}(t,x)\cdot \nabla\phi(t,x)dp_t(x)dt\\
-	  = &\int_0^T\int_{\mathbb{R}^n}\partial_t\phi(t,\Phi_t(x)) + \vec{v}(t,\Phi_t(x))\cdot \nabla\phi(t,\Phi_t(x))dp_0(x)dt \\
-	  = &\int_{\mathbb{R}^n}\int_0^T \frac{d}{dt}[\phi(t,\Phi_t(x))]dtdp_0(x) = - \int_{\mathbb{R}^n}\phi(0,x)dp_0(x).
+		&\int_0^T \int_{\mathbb{R}^n}\partial_t\phi(t,x) + \mathbf{v}(t,x)\cdot \nabla\phi(t,x)d\rho_t(x)dt\\
+	  = &\int_0^T\int_{\mathbb{R}^n}\partial_t\phi(t,\Phi_t(x)) + \mathbf{v}(t,\Phi_t(x))\cdot \nabla\phi(t,\Phi_t(x))d\rho_0(x)dt \\
+	  = &\int_{\mathbb{R}^n}\int_0^T \frac{d}{dt}[\phi(t,\Phi_t(x))]dtd\rho_0(x) = - \int_{\mathbb{R}^n}\phi(0,x)d\rho_0(x).
 	\end{align*}
-	Hence $p_t$ is a distributional solution. Uniqueness follows considering $\mu_t = \phi_t-\nu_t$ where $\nu_t$ is another solution.
+	Hence $\rho_t$ is a distributional solution. Uniqueness follows considering $\mu_t = \rho_t-\nu_t$ where $\nu_t$ is another solution.
+  Because $\mu_t$ is a solution, for any test function $\phi$,
+  \begin{align*}
+    \int_0^T \int_{\R^n}\partial_t\phi(t,x) + \mathbf{v}(t,x)\cdot\nabla\phi(t,x)d\mu_{t}(x)dt = 0.
+  \end{align*}
+  Let $\psi\in C_c^\infty$ with $\phi$ solving the linear transport equation
+  \begin{align*}
+    \begin{cases}
+      \partial_t\phi + \mathbf{v}\cdot \nabla \phi = \psi \\
+      \phi(T,\cdot) = 0
+    \end{cases}
+  \end{align*}
+  which implies 
+  \begin{align*}
+    \int_0^T \int_{\R^n}\psi(t,x)d\mu_{t}(x)dt = 0.
+  \end{align*}
+  because $\psi$ was arbitrary $\mu_t$ must be zero.
 \end{proof}
-\subsection{Benamou-Brenier Theorem}
-Restrict $0\le t \le 1$ and fix source ($p_0$) and destination ($p_1$) densities.
-\begin{thm}[Bernamou-Brenier]
-	The minimum effort required to transport $p_0$ to $p_1$ by the flow of the vector field $\vec{v}$ with $p_t$,
+\subsection{Differential View of Optimal Transport}
+Now that there is a connection between densities $\rho_t$ and the optimal transport problem, the Bernamou-Brenier theorem connects the continuity equation formally to the Wasserstein distance with $d(x,y) = |x-y|^2$.
+\begin{thm}[Bernamou-Brenier]\label{thm:bernamou}
+	The minimum effort required to transport $p_0$ to $p_1$ by the flow of the vector field $\mathbf{v}$ with $p_t$,
 	\begin{equation}
-		\inf\left\{A[p_t,v]\bigg\vert\partial_t p_t + \nabla \cdot (p_t \vec{v}) = 0,p_t\vert_{t=0}=p_0, p_t\vert_{t=1}=p_1\right\}
+		\inf\left\{A[\rho_t,\mathbb{v}]\bigg\vert\partial_t p_t + \nabla \cdot (p_t \mathbf{v}) = 0,p_t\vert_{t=0}=p_0, p_t\vert_{t=1}=p_1\right\}
 	\end{equation} 
-	is equivalent to the squared $2-$Wasserstein Distance $W_2(p_0,p_1)^2$ where \[A[p_t,v] = \int_0^1\int_{\mathbb{R}^n} |\vec{v}(t,x)|^2p_t(x)dxdt\]
+	is equivalent to the squared $2-$Wasserstein Distance, $W_2(p_0,p_1)^2$, where \[A[p_t,v] = \int_0^1\int_{\mathbb{R}^n} |\mathbf{v}(t,x)|^2p_t(x)dxdt.\]
 \end{thm}
 $A$ is also called the action where the inner integral is the kinetic energy $E$ at time $t$. The action can also be interpreted as the average kinetic energy over $0\le t \le 1$. 
 \begin{proof}
-	Choose admissable $\vec{v},p_t$. We know that $p_t = (\Phi_t)_\#p_0$ where $\Phi$ is the flow map of $V$.
-	\begin{align*}
-		\int_{\mathbb{R}^n}|\vec{v}(t,x)|^2p_t(x)dx &= \int_{\mathbb{R}^n}|\vec{v}(t,x)|^2 d(\Phi_t)_\#p_0\\
-		&= \int_{\mathbb{R}^n}|\vec{v}(t,\Phi_t(x))|^2p_0(x)dx = \int_{\mathbb{R}^n}|\partial_t\Phi_t(x)|^2p_0dx
+  Recall that for an admissable $\mathbf{v}$ and $\rho_t$, we have that $\rho_t = (\Phi_t)_\#\rho_0$
+  \begin{align*}
+		\int_{\mathbb{R}^n}|\mathbf{v}(t,x)|^2\rho_t(x)dx &= \int_{\mathbb{R}^n}|\mathbf{v}(t,x)|^2 d(\Phi_t)_\#\rho_0(x)\\
+		&= \int_{\mathbb{R}^n}|\mathbf{v}(t,\Phi_t(x))|^2\rho_0(x)dx\\
+    &= \int_{\mathbb{R}^n}|\partial_t\Phi_t(x)|^2\rho_0(x)dx
 	\end{align*}
-	Using Fubini's theorem and Jensen's inequality,
-	\begin{align*}
-		A[p_t,v] &= \int_0^1\int_{\mathbb{R}^n}|\partial_t\Phi_t(x)|^2p_0dxdt= \int_{\mathbb{R}^n}\left(\int_0^1|\vec{v}(t,\Phi_t(x))|^2dt\right)p_0(x)dx \\
-		&\ge \int_{\mathbb{R}^n}\left(\int_0^1\partial_t\Phi_t(x)dt\right)^2p_0(x) = \int_{\mathbb{R}^n}|\Phi_1(x) - x|^2p_0(x)dx\\
-		& \ge W_2(p_0,p_1)^2.
-	\end{align*}
+	Now, we see that 
+	\begin{align}
+		A[\rho_t,v] &= \int_0^1\int_{\mathbb{R}^n}|\partial_t\Phi_t(x)|^2\rho_0(x)dxdt \\
+    &= \int_{\mathbb{R}^n}\left(\int_0^1|\mathbf{v}(t,\Phi_t(x))|^2dt\right)\rho_0(x)dx\label{eqn:fubini} \\
+		&\ge \int_{\mathbb{R}^n}\left(\int_0^1\partial_t\Phi_t(x)dt\right)^2\rho_0(x)dx\label{eqn:jensen} \\
+    &= \int_{\mathbb{R}^n}|\Phi_1(x) - x|^2\rho_0(x)dx\\
+		& \ge W_2(\rho_0,\rho_1)^2
+	\end{align}
+  where \autoref{eqn:fubini} applies Fubini's theorem and \autoref{eqn:jensen} applies Jensen's Inequality.\newline
+  To get equality, consider the optimal transport map $\nabla u$ between $\rho_0$ and $\rho_1$ using \autoref{thm:brenier}. Let $u_t(x) = (1-t)\frac{|x|^2}{2}+tu(x)$ with the flow map $\Phi_t(x) := \nabla u_t(x)$. 
+  Then, we see that the velocity field $\mathbf{v}$ satisfies 
+  \begin{align*}
+    \mathbf{v}(t,\nabla u_t(x)) = \partial_t\nabla u_t = \partial_t((1-t)x + t\nabla u(x)) = \nabla u(x) - x.
+  \end{align*}
+  Now, we see that $|\mathbf{v}(t,\nabla u_t(x))|^2 = |\nabla u(x) - x|^2$ so 
+  \begin{align*}
+    A[\rho,\mathbf{v}] &= \int_0^1\int_{\R^n} |\mathbf{v}(t,\nabla u_t(x))|^2\rho_0(x)dxdt \\
+    &= \int_0^1\int_{\R^n} |\nabla u(x) - x|^2\rho_0(x)dxdt = \int_{\R^n} |\nabla u(x) - x|^2\rho_0(x) dx \\
+    &= W_2(\rho_0,\rho_1)^2.
+  \end{align*}
 \end{proof}
+Recall that in \autoref{thm:geodesic}, a curve $\omega_t = \left[(1-t)\text{Id} + tT\right]_\#\mu$ is the unique constant speed geodesic in $\mathbb{W}_2$. In context to the proof of \autoref{thm:bernamou}, we have curves of the type $\rho_t = (\Phi_t)_\# \rho_0$, where $\Phi_t = \nabla u_t$ with an optimal transport map $\nabla u$, so in other words, $\nabla u$ creates a constant speed geodesic in $\mathbb{W}_2$.
+
 \subsection{Gradients in 2-Wasserstein Space}
 In $\R^n$, given a smooth and convex energy functional $E: \R^n\to \R$, a gradient flow with respect to $E$ is the solution to the initial value problem 
 \[x'(t) = -\nabla E(x(t)),\quad x(0) = x_0.\]
@@ -772,7 +913,6 @@ Moreover, the solution for $x_{n+1}$ is found to be the following
 However, we see that in $\mathbb{W}_2$, absolutely continuous curves $\rho_t$ are solutions to the following 
 \[\partial_t \rho_t = -\nabla(v_t\rho_t) \]
 with $\|v_t\|_{L^2} = |\rho'|_t$.
-
 \begin{thebibliography}{9}
 \bibitem{villani}
 Villani C.
