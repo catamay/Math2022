@@ -733,7 +733,7 @@ Now, to define $\text{Len}(\omega)$ and $AC(X)$.
   \[d(\omega(t_0),\omega(t_1)) \le \int_{t_0}^{t_1} g(s)ds\]
   for all $0\le t_0 < t_1 \le 1$. The set of such curves is denoted as $AC(X)$.
 \end{defn}
-\begin{defn}[Length and Geodesics]
+\begin{defn}[Length and Geodesics]\label{defn:len}
   Let $(X,d)$ be a metric space and $\omega : [0,1]\to X$ be a curve in $X$. The length of $\omega$ is defined as 
   \[\text{Len}(\omega):= \sup\left\{\sum_{k=0}^{n-1}d(\omega(t_k),\omega(t_{k+1})) : n\ge 1, 0 = t_0 <t_1 < \dots < t_n = 1\right\}.\]
   A curve $\omega$ is said to be a geodesic between $x_0,x_1\in X$ if 
@@ -866,7 +866,7 @@ Now that there is a connection between densities $\rho_t$ and the optimal transp
 \begin{thm}[Bernamou-Brenier]\label{thm:bernamou}
 	The minimum effort required to transport $p_0$ to $p_1$ by the flow of the vector field $\mathbf{v}$ with $p_t$,
 	\begin{equation}
-		\inf\left\{A[\rho_t,\mathbb{v}]\bigg\vert\partial_t p_t + \nabla \cdot (p_t \mathbf{v}) = 0,p_t\vert_{t=0}=p_0, p_t\vert_{t=1}=p_1\right\}
+		\inf\left\{A[\rho_t,\mathbf{v}]\bigg\vert\partial_t p_t + \nabla \cdot (p_t \mathbf{v}) = 0,p_t\vert_{t=0}=p_0, p_t\vert_{t=1}=p_1\right\}
 	\end{equation} 
 	is equivalent to the squared $2-$Wasserstein Distance, $W_2(p_0,p_1)^2$, where \[A[p_t,v] = \int_0^1\int_{\mathbb{R}^n} |\mathbf{v}(t,x)|^2p_t(x)dxdt.\]
 \end{thm}
@@ -900,6 +900,35 @@ $A$ is also called the action where the inner integral is the kinetic energy $E$
   \end{align*}
 \end{proof}
 Recall that in \autoref{thm:geodesic}, a curve $\omega_t = \left[(1-t)\text{Id} + tT\right]_\#\mu$ is the unique constant speed geodesic in $\mathbb{W}_2$. In context to the proof of \autoref{thm:bernamou}, we have curves of the type $\rho_t = (\Phi_t)_\# \rho_0$, where $\Phi_t = \nabla u_t=(1-t)x + t\nabla u(x)$, so in other words, $\nabla u$ creates a constant speed geodesic in $\mathbb{W}_2$.
+\subsection{Gradients in 2-Wasserstein Space}
+
+
+A consideration to be made is that in a general Riemannian manifold with a metric $d$, the notion of a derivative is not entirely clear. Moreover, we define the concept of a \textit{metric derivative}.
+\begin{defn}[Metric Derivatives]
+  In a given metric space $(X,d)$, the metric derivative for a curve $\omega$, is defined as
+  \[|\omega|'(t) = \lim_{h\to 0}\frac{d(t,t+h)}{h}.\] 
+\end{defn}
+Using this definition, the length in \autoref{defn:len} can be rewritten as 
+\[\text{len}(\omega(t)) = \int_0^1|\omega|'(t)dt\]
+or as a metric between two points $\omega_0,\omega_1\in X$,
+\[\text{len}(\omega_0,\omega_1) = \inf\left\{\int_0^1|\omega|'(t)^2dt \vert \omega(0) = \omega_0, \omega(1) = \omega_1\right\}.\]
+With this information, we can begin to define gradient flows in the 2-Wasserstein Space.
+
+
+In $\R^n$, given a smooth and convex energy functional $E: \R^n\to \R$, a gradient flow with respect to $E$ is the solution to the initial value problem 
+\[x'(t) = -\nabla E(x(t)),\quad x(0) = x_0.\]
+We can discretize this problem by the implicit Euler method, or 
+\[\frac{x_{n+1}-x_n}{t} = - \nabla E(x_{n+1})\]
+which is equivalently written as the convex problem 
+\[\nabla\left(\frac{|x-x_n|^2}{2t} + E(x)\right)\bigg\vert_{x=x_{n+1}} = 0.\]
+Moreover, the solution for $x_{n+1}$ follows from convexity with
+\[x_{n+1} = \arg\min\left(\frac{|x-x_n|^2}{2t} + E(x)\right).\]
+Then for some metric space $X$ and $\mathcal{F}: X\to \R$, we can define the discrete scheme as the following
+\[x_{n+1}^t = \arg\min\left(\frac{d(x_n,x_n^t)^2}{2t} + \mathcal{F}(x)\right).\]
+\cite{santambrogio} states that in $\mathbb{W}_2$, absolutely continuous curves $\rho_t$ are solutions to the following 
+\[\partial_t \rho_t = -\nabla(v_t\rho_t) \]
+with $\|v_t\|_{L^2} = |\rho'|_t$.
+
 \begin{thebibliography}{9}
 \bibitem{villani}
 Villani C.

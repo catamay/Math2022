@@ -516,46 +516,52 @@
       %   \end{align*}
       %   Because $|z|^p < O(e^{|z|^2}),$ the term in parantheses is finite, and always constant.
       % \end{proof}
-      \exercise{26}{Let $g:\R^n\to \R$ be boudned and $\alpha-$Holder continuous for some $\alpha\in (0,1]$. Show that for solutions of the heat equation $u(x,t)$ with initial data $g$,
-      \begin{equation}\sup_{x,t}|\partial_t u| + \sup_{x,t}\left\{\sum_{i,j}|\partial^2_{x_ix_j}u|\right\}\le C\sup_{x\ne y}\frac{|g(x)-g(y)|}{|x-y|^\alpha} t^{(\alpha/2) - 1}.\end{equation}}
-      \begin{proof}[Solution:]
-        % By commutativity, we have that 
-        % \[u(x,t) = \int_{\R^n} \Phi(y,t)g(x-y)dy\]
-        % so for $x\ne x_0$, using the fact that $\Phi > 0$,
-        % \[|u(x,t) - u(x_0,t)| \le \int_{\R^n}\Phi(y,t)|g(x-y)-g(x_0-y)| \le |x-x_0|^\alpha\|g\|_{C^\alpha}\]
-        % Note that $\Phi$ is even, so 
-        % \[u(x,t) = \int_{\R^n}\Phi(x,t)g(x+y)dy = g(x) + \frac{1}{2}\int_{\R^n}\Phi(x,t)[g(x+y)-2g(x) + g(x-y)]dy.\]
-        % Moreover, observe that $|g(x-y)-2g(x)-g(x+y)| \le 2\|g\|_{C^\alpha}|y|^\alpha$ from the fact that 
-        % \[ |g(x-y)-2g(x)-g(x+y)| = |g(x-y) - g(x)| + |g(x+y) - g(x)|.\]
-        % Now we have for $t_0\ne t$,
-        % \begin{align*}
-        %   |u(x,t) - u(x,t_0)| &\le \frac{1}{2}\int_{\R^n}|\Phi(x,t) - \Phi(x,t_0)||g(x+y)-2g(x) + g(x-y)|dy \\
-        %   &= \|g\|_{C^\alpha}\int_{\R^n}|\Phi(x,t) - \Phi(x,t_0)||y|^{\alpha}dy\\
-        %   &\le C\|g\|_{C^\alpha}||t|^{\alpha/2} - |t_0|^{\alpha/2}| \le C\|g\|_{C^\alpha}|t-t_0|^{\alpha/2}
-        % \end{align*}
-        % using exercise 25.\newline
-        Using the fact that $\int \partial_{x_ix_j} \Phi(x-y,t)dy = 0$,
-        \begin{align*}
-          \sum_{i,j}\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)g(y)dy &= \sum_{i,j}\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)(g(y)-g(x))dy \\
-          \sum_{i,j}\left|\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)(g(y)-g(x))dy\right| &\le \sum_{i,j}\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)|g(y)-g(x)| \\
-          &\le [g]_{C^\alpha}\sum_{i,j}\int_{\R^n}|\partial_{x_ix_j}\Phi(x-y,t)||x-y|^\alpha dy
-        \end{align*}
-        Moreover, we can similarly write 
-        \[ |\partial_t u| \le \int_{\R^n} |\partial_t \Phi(x-y,t)||g(y)-g(x)|dy \le [g]_{C^\alpha}\int_{\R^n} |\partial_t \Phi(x-y,t)||x-y|^\alpha dy\]
-        These terms are positive, so we can write the equivalent statement 
-        \begin{align*}
-          (1) &\le \sup_{x,t}[g]_{C^\alpha}\left[\int_{\R^n} |\partial_t \Phi(x-y,t)||x-y|^\alpha dy + \sum_{i,j}\int_{\R^n}|\partial_{x_ix_j}\Phi(x-y,t)||x-y|^\alpha dy\right] \\
-          &= \sup_{x,t}[g]_{C^\alpha}\left[\int_{\R^n} \left[|\partial_t \Phi(x-y,t)|+ \sum_{i,j}\partial_{x_ix_j}\Phi(x-y,t)|\right]|x-y|^\alpha dy\right]
-        \end{align*}
-        By change of variables $z = |x-y|/\sqrt{t}$, we have
-        \[ \sup_{x,t}[g]_{C^\alpha}\left[\int_{\R^n} \left[|\partial_t \frac{1}{(4\pi)^{n/2}t^{n/2-1}}e^{-|z|^2/4}|+ \sum_{i,j}|\partial_{x_ix_j}\frac{1}{(4\pi)^{n/2}t^{n/2-1}}e^{-|z|^2/4}|\right]|z\sqrt{t}|^\alpha dy\right]\]
-        simplifying, we have that 
-        \[ (1)\le \sup_{t}t^{\alpha/2- 1}[g]_{C^\alpha}\left[\int_{\R^n} \left[|\frac{1}{(4\pi)^{n/2}t^{n/2-3}}e^{-|z|^2/4}|+ \sum_{i,j}|\partial_{x_ix_j}\frac{1}{(4\pi)^{n/2}t^{n/2-2}}e^{-|z|^2/4}|\right]|z|^\alpha dy\right]\]
-        The supremum is realized when $t=1$ so by exercise 25, we have that 
-        \[ (1)\le C't^{\alpha/2 - 1}[g]_{C^\alpha}\]
-        where $C' = CD$ where $D$ is the integral over $z$, which is a finite quantity.\newline
-        The proof is sufficient to show that $u\in C^{2+\alpha}_1$. Because $\alpha < 1$, (1) describes a decay estimate of the time derivative and the hessian, otherwise
-        allowing $f$ to be holder if $g$ is holder as well. Boundedness is also important as if either $g$ or $f$ blew up to infinity in (in)finite time, then there would be no way to determine the decay of $u$ with respect to time and space.
+      % \exercise{26}{Let $g:\R^n\to \R$ be boudned and $\alpha-$Holder continuous for some $\alpha\in (0,1]$. Show that for solutions of the heat equation $u(x,t)$ with initial data $g$,
+      % \begin{equation}\sup_{x,t}|\partial_t u| + \sup_{x,t}\left\{\sum_{i,j}|\partial^2_{x_ix_j}u|\right\}\le C\sup_{x\ne y}\frac{|g(x)-g(y)|}{|x-y|^\alpha} t^{(\alpha/2) - 1}.\end{equation}}
+      % \begin{proof}[Solution:]
+      %   % By commutativity, we have that 
+      %   % \[u(x,t) = \int_{\R^n} \Phi(y,t)g(x-y)dy\]
+      %   % so for $x\ne x_0$, using the fact that $\Phi > 0$,
+      %   % \[|u(x,t) - u(x_0,t)| \le \int_{\R^n}\Phi(y,t)|g(x-y)-g(x_0-y)| \le |x-x_0|^\alpha\|g\|_{C^\alpha}\]
+      %   % Note that $\Phi$ is even, so 
+      %   % \[u(x,t) = \int_{\R^n}\Phi(x,t)g(x+y)dy = g(x) + \frac{1}{2}\int_{\R^n}\Phi(x,t)[g(x+y)-2g(x) + g(x-y)]dy.\]
+      %   % Moreover, observe that $|g(x-y)-2g(x)-g(x+y)| \le 2\|g\|_{C^\alpha}|y|^\alpha$ from the fact that 
+      %   % \[ |g(x-y)-2g(x)-g(x+y)| = |g(x-y) - g(x)| + |g(x+y) - g(x)|.\]
+      %   % Now we have for $t_0\ne t$,
+      %   % \begin{align*}
+      %   %   |u(x,t) - u(x,t_0)| &\le \frac{1}{2}\int_{\R^n}|\Phi(x,t) - \Phi(x,t_0)||g(x+y)-2g(x) + g(x-y)|dy \\
+      %   %   &= \|g\|_{C^\alpha}\int_{\R^n}|\Phi(x,t) - \Phi(x,t_0)||y|^{\alpha}dy\\
+      %   %   &\le C\|g\|_{C^\alpha}||t|^{\alpha/2} - |t_0|^{\alpha/2}| \le C\|g\|_{C^\alpha}|t-t_0|^{\alpha/2}
+      %   % \end{align*}
+      %   % using exercise 25.\newline
+      %   Using the fact that $\int \partial_{x_ix_j} \Phi(x-y,t)dy = 0$,
+      %   \begin{align*}
+      %     \sum_{i,j}\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)g(y)dy &= \sum_{i,j}\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)(g(y)-g(x))dy \\
+      %     \sum_{i,j}\left|\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)(g(y)-g(x))dy\right| &\le \sum_{i,j}\int_{\R^n}\partial_{x_ix_j}\Phi(x-y,t)|g(y)-g(x)| \\
+      %     &\le [g]_{C^\alpha}\sum_{i,j}\int_{\R^n}|\partial_{x_ix_j}\Phi(x-y,t)||x-y|^\alpha dy
+      %   \end{align*}
+      %   Moreover, we can similarly write 
+      %   \[ |\partial_t u| \le \int_{\R^n} |\partial_t \Phi(x-y,t)||g(y)-g(x)|dy \le [g]_{C^\alpha}\int_{\R^n} |\partial_t \Phi(x-y,t)||x-y|^\alpha dy\]
+      %   These terms are positive, so we can write the equivalent statement 
+      %   \begin{align*}
+      %     (1) &\le \sup_{x,t}[g]_{C^\alpha}\left[\int_{\R^n} |\partial_t \Phi(x-y,t)||x-y|^\alpha dy + \sum_{i,j}\int_{\R^n}|\partial_{x_ix_j}\Phi(x-y,t)||x-y|^\alpha dy\right] \\
+      %     &= \sup_{x,t}[g]_{C^\alpha}\left[\int_{\R^n} \left[|\partial_t \Phi(x-y,t)|+ \sum_{i,j}\partial_{x_ix_j}\Phi(x-y,t)|\right]|x-y|^\alpha dy\right]
+      %   \end{align*}
+      %   By change of variables $z = |x-y|/\sqrt{t}$, we have
+      %   \[ \sup_{x,t}[g]_{C^\alpha}\left[\int_{\R^n} \left[|\partial_t \frac{1}{(4\pi)^{n/2}t^{n/2-1}}e^{-|z|^2/4}|+ \sum_{i,j}|\partial_{x_ix_j}\frac{1}{(4\pi)^{n/2}t^{n/2-1}}e^{-|z|^2/4}|\right]|z\sqrt{t}|^\alpha dy\right]\]
+      %   simplifying, we have that 
+      %   \[ (1)\le \sup_{t}t^{\alpha/2- 1}[g]_{C^\alpha}\left[\int_{\R^n} \left[|\frac{1}{(4\pi)^{n/2}t^{n/2-3}}e^{-|z|^2/4}|+ \sum_{i,j}|\partial_{x_ix_j}\frac{1}{(4\pi)^{n/2}t^{n/2-2}}e^{-|z|^2/4}|\right]|z|^\alpha dy\right]\]
+      %   The supremum is realized when $t=1$ so by exercise 25, we have that 
+      %   \[ (1)\le C't^{\alpha/2 - 1}[g]_{C^\alpha}\]
+      %   where $C' = CD$ where $D$ is the integral over $z$, which is a finite quantity.\newline
+      %   The proof is sufficient to show that $u\in C^{2+\alpha}_1$. Because $\alpha < 1$, (1) describes a decay estimate of the time derivative and the hessian, otherwise
+      %   allowing $f$ to be holder if $g$ is holder as well. Boundedness is also important as if either $g$ or $f$ blew up to infinity in (in)finite time, then there would be no way to determine the decay of $u$ with respect to time and space.
 
-      \end{proof}
+      %   \end{proof}
+      \exercise{28}{Suppose that $\rho(x,t)$ is a smooth solution of the reaction diffusion equation where $\rho(x,0)\in [0,1]$ and $\rho(x,t)$ is 1-periodic on $\R$ for all $t\ge 0$. Show that $0\le \rho(x,t) le 1$ for all $t > 0$.}
+      Consider $\rho(x,0) \in (0,1)$. From periodicity in $\R$, we can find a minimum, $x_0$, and a maximum, $x_1$, such that $\rho_x = 0$ and $\rho_{xx} \ge 0$ and $\rho_{xx} \le 0$ respectively.\newline
+      Define the following sets
+      \begin{align*}
+        S_0 = \{(x,t) \in [0,1]\times (0,\infty): \rho(x,t) = 1
+      \end{align*}
     \end{document}
