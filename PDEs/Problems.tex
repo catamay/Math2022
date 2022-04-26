@@ -558,10 +558,474 @@
       %   allowing $f$ to be holder if $g$ is holder as well. Boundedness is also important as if either $g$ or $f$ blew up to infinity in (in)finite time, then there would be no way to determine the decay of $u$ with respect to time and space.
 
       %   \end{proof}
-      \exercise{28}{Suppose that $\rho(x,t)$ is a smooth solution of the reaction diffusion equation where $\rho(x,0)\in [0,1]$ and $\rho(x,t)$ is 1-periodic on $\R$ for all $t\ge 0$. Show that $0\le \rho(x,t) le 1$ for all $t > 0$.}
-      Consider $\rho(x,0) \in (0,1)$. From periodicity in $\R$, we can find a minimum, $x_0$, and a maximum, $x_1$, such that $\rho_x = 0$ and $\rho_{xx} \ge 0$ and $\rho_{xx} \le 0$ respectively.\newline
-      Define the following sets
+      % \exercise{27}{Consider the heat equation IBVP set in a bounded domain $U$ with $g(x)\ge 0$. Consider both Dirichlet and Neumann boundary conditions.}
+      % \begin{proof}[Solution]
+      %   \begin{enumerate}[(a)]
+      %     \item With Dirichlet boundary conditions.
+      %     By the maximum principle, for all cylinders $U_T$, $u \ge 0$ for all times $t > 0$ as $g$ is nonnegative. Moreover, we have that 
+      %     \[\frac{d}{dt}\int_Uu(x,t)dx = \int_U u_tdx = \int_U \Delta u dx = \int_{\partial U} \frac{du}{d\upsilon}dS(x)\]
+      %     If $du/d\upsilon$ is nonnegative, we are done. For $\epsilon > 0$, for $x\in \partial U$, $u(x-\epsilon\upsilon,t) \in U$ and $u(x-\epsilon\upsilon,t) \ge 0$ so we have that 
+      %     \[\frac{du}{d\upsilon} = \lim_{\epsilon\to0^+}\frac{f(x-\epsilon\upsilon) - f(x)}{\epsilon} = \lim_{\epsilon\to0^+}\frac{f(x-\epsilon\upsilon)}{\epsilon} \le 0\]
+      %     Hence, $\frac{d}{dt}\int_Uu(x,t)dx \le 0$.
+      %     \item With Neumann boundary conditions, we have that 
+      %     \[\frac{d}{dt}\int_Uu(x,t)dx = \int_U u_tdx = \int_U \Delta u dx = \int_{\partial U} \frac{du}{d\upsilon}dS(x) = 0\]
+      %     \item For Dirichlet boundary conditions, we have that 
+      %     \[\begin{cases}
+      %       -\Delta u_\infty = 0 &\text{in } U \\
+      %       u=0 &\text{on } \partial U.
+      %     \end{cases}\]
+      %     By the maximum principle, $u_\infty$ must be $0$ over $U$. In particular, if $u_\infty$ has a maximum on $\partial U$, and $-u_\infty$ has a minimum on $\partial U$, so $u_\infty$ is equivalently 0.\newline
+      %     For Neumann Boundary conditions, we have that 
+      %     \[\begin{cases}
+      %       -\Delta u_\infty = 0 &\text{in } U \\
+      %       \frac{du}{d\upsilon} = 0 &\text{on } \partial U.
+      %     \end{cases}\]
+      %     Using problem $6$, solutions to $u_\infty$ differ by a constant, so because $0$ is a valid solution, $u_\infty$ is a constant.  Because the volume of $u$ is not changing with respect to time, it has constant volume. Moreover, this is equivalent to the volume at time $0$, so $\int_U u_\infty(x)dx = \int_{U}g(x)dx$. This means that \[u_\infty = \frac{\int_Ug(x)dx}{\text{vol}(U)}\] as $u_\infty$ is constant.
+      %   \end{enumerate}
+      % \end{proof}
+      % \exercise{28}{Suppose that $\rho(x,t)$ is a smooth solution of the reaction diffusion equation where $\rho(x,0)\in [0,1]$ and $\rho(x,t)$ is 1-periodic on $\R$ for all $t\ge 0$. Show that $0\le \rho(x,t) \le 1$ for all $t > 0$.}
+      % \begin{proof}[Solution:]
+      %   $\rho_0 = 0$ and $\rho_1 = 1$ are smooth steady state solutions to this equation. We can use this to create a trapping region for this PDE.\newline
+      %   Because $\rho(t,x)$ is 1-periodic, we only need to look on the torus $\R\setminus \Z$, or simply the interval $[0,1]$. By periodicity, there exists a maximum and a minimum, $x_0$ and $x_1$ respectively, for $x\in [0,1)$.
+      %   For sake of contradiction, for $\epsilon > 0$, assume there exists a maximum $x_1 = 1+\epsilon$ and a minimum $x_0 = -\epsilon$.
+      %   At the point $x_1$, we see that 
+      %   \[\rho_t = \rho_{xx} + \rho(1-\rho) = \rho_{xx} -\epsilon\rho \le 0\]
+      %   as $\rho_{xx} \le 0$ from being a maximum. For $\delta > 0$, if $\rho(x_1, t+\delta) > 1+\epsilon$, this would require that $\rho_t(x_1,t) > 0$, but this would imply that there is a maximum such that $\rho >> 1+\epsilon$, but because the initial data has that $\rho(x,0) \le 1$, $\rho(x_1,t)$ cannot cross $1+\epsilon$. \newline
+      %   If $\rho$ has a minimum at $0$ we see that 
+      %   \[ \rho_t = \rho_{xx} + 0 \ge 0\] 
+      %   Indeed if $\rho(x,0) > \epsilon$ is a minimum, then we see that 
+      %   \[\rho_t = \rho_{xx} + \rho(1-\rho) \ge 0\]
+      %   so $\rho$ is increasing for any minima $\epsilon > 0$, so if $\rho(x,0) \ge 0$, $\rho(x,t)$ is positive.\newline
+      %   If $\rho(x,0) \le 0$, we see that 
+      %   \[ \rho_t = \rho_{xx} + \rho(1-\rho) \le \rho_{xx}\]
+      %   We already have that if $\rho(x,0) > 0$, $0 < \rho(x,t) < 1$ so if $\rho(x,0) = -\epsilon$ and $\rho_{xx} > 0$ with $\epsilon$ sufficiently small, we see that $\rho_t \ge 0$. If $\rho_{xx} \le 0$, then $\rho_t \le 0$ and $\rho$ stays nonnegative.\newline
+      %   However, if $\rho$ is nonnegative, then $\rho$ must be the zero steady state solution.
+      % \end{proof}
+      % \exercise{29}{Evans 2.19d}
+      % \begin{proof}[Solution:]
+      %   \[u(x,t) = \frac{1}{2}(g(x+t) + g(x-t)) + \frac{1}{2}\int_{x-t}^{x+t}h(y)dy = \frac{1}{2}\left(g(x+t) + \int_0^{x+t}h(y)dy + g(x-t) - \int_0^{x-t} h(y)dy\right).\]
+      %   If $u(x,t) = U(x-t)$, $u$ is a right-moving wave. The conditions for this are when $u$ is constant in $x+t$ so 
+      %   \begin{align*}
+      %     \frac{d}{d(x+t)} u(x,t) = \frac{1}{2}g'(x+t) + \frac{1}{2}h(x+t) = 0 \implies g'(x+t) = -h(x+t).
+      %   \end{align*}
+      %   If $u(x,t) = U(x+t)$, $u$ is a left-moving wave. The conditions for this are when $u$ is constant in $x-t$ so 
+      %   \begin{align*}
+      %     \frac{d}{d(x-t)} u(x,t) = \frac{1}{2}g'(x-t) - \frac{1}{2}h(x-t) = 0 \implies g'(x-t) = h(x-t).
+      %   \end{align*}
+      %   Equivalently, $u(x,t) = F(x+t) + G(x-t)$, so we need $F(x+t) = 0$ if $u$ is a right-moving wave and $G(x-t)=0$ if $u$ is a left-moving wave. This is the case when 
+      %   \[F(x+t) = g(x+t) + \int_0^{x+t}h(y)dy = 0,\quad G(x-t) = g(x-t) - \int_0^{x-t} h(y)dy = 0\]
+      %   respectively (This avoids the issue if $g$ is not differentiable).
+      % \end{proof}
+      % \exercise{30}{Evans 2.23}
+      % \begin{proof}[Solution:]
+      %   By Duhamel's Principle,
+      %   \[u(x,t) = \frac{1}{2}\int_0^t\int_{x-s}^{x+s}f(y,t-s)dyds\]
+      %   \begin{figure}[H]
+      %     \centering
+      %     \includegraphics[scale=0.4]{30.jpg}
+      %     \caption{On the right side of the red line, the domain of dependence does not intersect with the support of $f$ (black square) so $u(x,t) = 0$ , but on the left side of the red line, the domain of dependence of $u(x,t)$ contains the entire support of $f$ so the integral will be zero as it is $-1$ on the left side and $1$ on the right side (denoted by the + and - signs in blue).}
+      %     For $(x_0,t_0)$ in the blue region, it only depends on $D(x_0,t_0)$, the red/black segment because it determines how much of the support of $f$ lies in the domain of dependence of $u(x_0,t_0)$. If $D = 0$, then $u(x_0,t_0) = 0$ (it lies on the left green line). If $D = \sqrt{2}$, then $u(x_0,t_0) = 0$ (it lies on the right green line). Because $f$ is balanced, then 
+      %     we have that 
+      %     \[u(x_0,t_0) = \begin{cases}
+      %       D\sqrt{2} &0\le D \le \frac{\sqrt{2}}{2} \\
+      %       2-D\sqrt{2} &\frac{\sqrt{2}}{2} \le D \le \sqrt{2}.
+      %     \end{cases}\]
+      %     This means that $u$ looks like a triangular spike between $t = x+1$ and $t = x+3$.
+      %   \end{figure}
+      % \end{proof}
+      % \exercise{31}{Evans 2.24}
+      % \begin{proof}[Solution:]
+      %   \begin{align*}
+      %     k_t(t) &= \frac{\partial}{\partial t} \frac{1}{2} \int_{-\infty}^\infty u^2_t(x,t)dx = \int_{-\infty}^\infty u_t\cdot u_{tt}dx \\
+      %     p_t(t) &= \frac{\partial}{\partial t} \frac{1}{2} \int_{-\infty}^\infty u^2_x(x,t)dx = \int_{-\infty}^\infty u_x\cdot u_{xt}dx =\int_{-\infty}^\infty \Delta u\cdot u_{t}dx 
+      %   \end{align*}
+      %   Then $k_t + p_t = \int_{-\infty}^\infty u_t\cdot(u_{tt} - u_{xx}) = 0$ so $k + p$ is constant.\newline
+      %   Using D'Alembert's Formula, we have an explicit solution for $u$ so 
+      %   \[k(t) - p(t) = \frac{1}{8}\int_{-\infty}^\infty(h(x+t) - h(x-t))^2 - (g'(x+t) + g'(x-t) + h(x+t) + h(x-t))^2dx \]
+      %   Because $h$ and $g$ have compact support, let $A\subset \R$ with $A = \max\{\text{supp}(g),\text{supp}(h)\}$ so that the integral vanishes on $\R\setminus A$. This means that as $t\to\infty$, $k(t) - p(t)=0$ on $\R\setminus A$ so $k(t)=p(t)$ for all large enough times $t$.
+      % \end{proof}
+      % \exercise{32}{Show that there is at most one smooth solution of the given wave type equation.}
+      % \begin{proof}[Solution:]
+      %   Let $v,w$ be smooth solutions to the wave type equation. Now, let $u = v - w$. We see that $u$ solves the problem, 
+      %   \[\begin{cases}
+      %     u_{tt} - \nabla\cdot(A(x)\nabla u) = 0 &\text{in}\quad \R^n\times (0,\infty)\\
+      %     u(x,0) = 0,\,\,u_t(x,0) = 0 &\text{in}\quad \R^n.
+      %   \end{cases}\]
+      %   Because $A(x) \le \Lambda$, we let $M \ge \Lambda$. Now, we create the backwards light cone with width larger than any speed of propagation this PDE may have in space, which is this bound of $A$, 
+      %   \[C(x_0,t_0) = \{(x,t):|x-x_0| < M(t_0-t),t\in[0,t_0]\}.\]
+      %   Now, to show uniqueness, we wish to show that over this light cone, the energy is decreasing.
+      %   \begin{align*}
+      %     E(t) &= \int_{B(C(x_0,t_0-t))} \frac{1}{2}u_t^2 + \frac{1}{2}\langle A(x)Du,Du\rangle dx \\
+      %     \dot{E}(t) &= \int_{B(C(x_0,t_0-t))} u_tu_{tt} +\langle A(x)Du,Du_t\rangle dx - \frac{1}{2}\int_{\partial B(C(x_0,t_0-t))} (Mu_t^2 + \langle A(x)Du,Du\rangle) dS(x)
+      %   \end{align*}
+      %   For the $\dot{E}(t)$ term, we then use Green's Formula to get that 
+      %   \begin{align*}
+      %     \dot{E}(t) &= \int_{B(C(x_0,t_0-t))} u_tu_{tt} -u_t(\nabla\cdot(A(x)\nabla u)) dx \\
+      %     &+\int_{\partial B(C(x_0,t_0-t))} \langle A(x)Du,\nu u_t\rangle dS(x) - \frac{1}{2}\int_{\partial B(C(x_0,t_0-t))} (Mu_t^2 + \langle A(x)Du,Du\rangle) dS(x)
+      %   \end{align*}
+      %   So to conclude uniqueness, we need to show that $|\langle A(x)Du,\nu\rangle u_t| \le \frac{1}{2}(Mu_t^2 + \langle A(x)Du,Du\rangle)$.
+      %   \begin{align*}
+      %     |\langle A(x)Du,\nu  u_t\rangle|\le^\star \frac{1}{2}\langle A(x)Du,Du\rangle + \frac{1}{2}\langle A(x)\nu u_t,\nu u_t\rangle \le \frac{1}{2}\langle A(x)Du,Du\rangle + \frac{M}{2}|u_t|^2
+      %   \end{align*}
+      %   From this we see that the energy is decreasing, so $u$ must be constant within the light cone $C$ as $e(t) \le e(0) = 0$.\newline
+      %   Proof of $\star$: Let $\langle A(x)v, w\rangle = \langle v,w\rangle_A$,
+      %   \begin{align*}
+      %     &\langle v-w,v-w\rangle_A = \langle v,v\rangle_A - 2\langle v, w\rangle_A + \langle w,w\rangle_A \ge 0 \\
+      %     &\langle v,v\rangle_A  + \langle w,w\rangle_A \ge 2\langle v, w\rangle_A \\
+      %     &\langle A(x)v,v\rangle  + \langle A(x)w,w\rangle \ge 2\langle A(x)v, w\rangle
+      %   \end{align*}
+      % \end{proof}
+      % \exercise{33}{Consider the initial value problem for the wave equation.}
+      % \begin{proof}[Solution:]
+      %   \begin{enumerate}
+      %     \item Since $\phi,D\phi,\psi$ are all supported on $B(0,1)$,  $\phi,D\phi,\psi = 0$ outside of $\partial B(x,t)\cap B(0,1)$.
+      %     By Kirchoff's formula,
+      %     \[u(x,t) = \frac{1}{4\pi t^2} \int_{\partial B(x,t)\cap B(0,1)} \phi(y) + \nabla \phi(y)\cdot(y-x) + t\psi(y)dS(y)\]
+      %     Because $\phi,D\phi,\psi$ are smooth and supported, they are bounded so we have that 
+      %     \[|u(x,t)| \le \frac{1}{4\pi t^2} \int_{\partial B(x,t)\cap B(0,1)} \sup_x|\phi(y)| + \sup_x|\nabla \phi(y)|(x-y) + t\sup_x|\psi(y)|dS(y)\]
+      %     which simplifies to, allowing $y-x = t$,
+      %     \[ |u(x,t)| \le \frac{\sup_x|\phi(y)| + t\sup_x|\nabla \phi(y)|+t\sup_x|\psi(y)|}{4\pi t^2}\int_{\partial B(x,t)\cap B(0,1)}dS(y)\]
+      %     Over the surface, we have that $\int_{\partial B(x,t)\cap B(0,1)}dS(y) = 4\pi(1)^2 = 4\pi$ so we get that 
+      %     \[|u(x,t)|\le \frac{(\sup_x|\phi(y)| + t\sup_x|\nabla \phi(y)|+t\sup_x|\psi(y)|)}{t^2}\]
+      %     $\partial B(x,t)\cap B(0,1) \subset B(x,t+1)\setminus\overline{B}(x,t-1)$ so $u(x,t) = 0$ outside of $B(0,t+1)\setminus\overline{B}(0,t-1)$ as the domain of dependence $B(0,1)$ travels with $x$.
+      %     \item Let $u$ be a solution to the wave equation in $(0,T)$, then we see that 
+      %     \[v_{tt} = u_{tt} + u_{tt},\,\,\Delta v = \Delta u + \Delta u \implies v_{tt} - \Delta v = 0\]
+      %     then for the initial conditions, 
+      %     \[v(x,0) = u(x,T) + u(x,T) = 2u(x,T),\,\, v_{t}(x,0) = u_{t}(x,T) - u_{t}(x,T) = 0.\]
+      %     Hence $v$ also solves the wave equation.
+      %     \item Let $f(x)$ be a bump function supported on $B(0,1)$, then let $\phi(x) = Mf(x)$. We also let $\psi(x) = 0$. Now we have that $\phi,\psi$ are compactly supported smooth functions on $B(0,1)$ so by part (a), $\sup_x|u(x,t)| \le C\frac{M + ctM}{t^2}$. Because this tends towards 0, for $\epsilon > 0$, there exists a $T$ such that $\sup_{x}|u(x,T)| \le \frac{\epsilon}{2}$.\newline 
+      %     This function $u(x,T)$ becomes our initial data to the equation $v(x,t) = u(x,t+T) + u(x,t-T)$ such that $2u(x,T)$ is compactly supported on the annulus $B(0,T+1)\setminus \overline{B}(0,T-1)$ and $\|2u(x,T)\|,\|2\partial_xu(x,T)\| \le \epsilon$. This additionally guarantees that $v_t(x,0) = 0$ by part (b).\newline
+      %     Now, as $t\to T$, we see that $\sup_x|v(x,T)| = \sup_x|u(x,2T) + u(x,0)| = \sup_x|u(x,2T) + \phi(x)| \ge M$.
+      %   \end{enumerate}
+      % \end{proof}
+      % \exercise{34}{Solve using characteristics
+      % \begin{enumerate}
+      %   \item $x_1u_{x_1} + x_2u_{x_2} = 2u, \quad u(x_1,1) = g(x_1)$ 
+      %   \item $x_1u_{x_1} + 2x_2u_{x_2} + u_{x_3} = 3u,\quad u(x_1,x_2,0) = g(x_1,x_2)$
+      %   \item $uu_{x_1} + u_{x_2} = 1,\quad u(x_1,x_1) = \frac{1}{2}x_1$
+      % \end{enumerate}}
+      % \begin{proof}[Solution:]
+      %   The $\mathbf{p}$ terms in these are not necessary as there is no gradient nonlinear term so
+      %   \begin{enumerate}
+      %     \item $x_1u_{x_1} + x_2u_{x_2} = 2u, \quad u(x_1,1) = g(x_1)$
+      %     \item[] We see that $\mathbf{b} = (x_1,x_2)$ and $c = -2$. We have 
+      %     \begin{align*}
+      %       \begin{cases}
+      %         \dot{x} = x \\
+      %         \dot{z} = 2z
+      %       \end{cases}
+      %     \end{align*} 
+      %     so 
+      %     \begin{align*}
+      %       \begin{cases}
+      %         x = Ae^s\\
+      %         z = Be^{2s}
+      %       \end{cases}
+      %     \end{align*}
+      %     where $A$ is selected to be $(C, 1)$. Now, we see that $B = z(0) = u(x(0)) = u(C,1) = g(C)$. In order to recover $(x_1,x_2)$, select $s = \log{(x_2)}$ and $C = \frac{x_1}{x_2}$ so we see $(Ce^{\log{x_2}},e^{\log{x_2}}) = (x_1,x_2)$ and
+      %     \[u(x_1,x_2) = z(\log(x_1)) = g\left(\frac{x_1}{x_2}\right)e^{2\log{x_2}} = g\left(\frac{x_1}{x_2}\right) x_2^2\]
+      %     \item $x_1u_{x_1} + 2x_2u_{x_2} + u_{x_3} = 3u,\quad u(x_1,x_2,0) = g(x_1,x_2)$
+      %     \item[] We see that $\mathbf{b} = (x_1,2x_2, 1)$ and $c = -3$. We have 
+      %     \begin{align*}
+      %       \begin{cases}
+      %         \dot{x} = (x_1,2x_2,1) \\
+      %         \dot{z} = 3z
+      %       \end{cases}
+      %     \end{align*} 
+      %     so 
+      %     \begin{align*}
+      %       \begin{cases}
+      %         x = (Ae^{s}, Be^{2s}, s)\\
+      %         z = Ce^{3s}
+      %       \end{cases}
+      %     \end{align*}
+      %     Now, we see that $C = z(0) = u(x(0)) = u(A,B, 0) = g(A,B)$. In order to recover $(x_1,x_2,x_3)$, select $s = x_3$ and $A = x_1e^{-x_3}$, $B = x_2e^{-x_3}$ so we see $x(s) = (x_1e^{-x_3}e^{x_3},x_2e^{-x_3}e^{x_3},x_3) = (x_1,x_2,x_3)$ and 
+      %     \[u(x_1,x_2,x_3) = z(x_3) = g(x_1e^{-x_3},x_2e^{-x_3})e^{3x_3}\]
+      %     \item $uu_{x_1} + u_{x_2} = 1,\quad u(x_1,x_1) = \frac{1}{2}x_1$
+      %     \item[] We have that $F(p,z,x) = p\cdot(z,1) - 1$ where $p=(u_{x_1},u_{x_2})$ and $z=u$. This has derivatives
+      %     \begin{align*}
+      %       D_pF &= (z,1) \\
+      %       D_xF &= 0 \\
+      %       D_zF &= p_1
+      %     \end{align*} 
+      %     hence the characteristics are
+      %     \begin{align*}
+      %       \begin{cases}
+      %         \dot{x} = (z,1) \\
+      %         \dot{z} = 1
+      %       \end{cases}
+      %     \end{align*}
+      %     let $z(s) = s + A$ and $x_2 = s$. Because $\dot{x}_1 = z = s+A$, let $x_1(s) = \frac{1}{2}(s+A)^2 + B$. Assume there is an $s$ such that $x_1(s)=x_2(s)=s$ so 
+      %     \[s+A = z(s) = u(x(s)) = u(s,s) = \frac{1}{2}s\]
+      %     by the prescribed conditions so $s = -2A$. 
+      %     \[-2A = x_2(-2A) = x_1(-2A) = \frac{1}{2}A^2 + B\]
+      %     so $B = -2A - \frac{1}{2}A^2$. This means we have that 
+      %     \[x(s) = \left(\frac{1}{2}(s+A)^2 - 2A - \frac{1}{2}A^2, s\right) = \left(\frac{1}{2}s^2 + As - 2A, s\right)\]
+      %     and $u\left(\frac{1}{2}s^2 + sc - 2c,s\right) = u(x(s)) = z(s) = s + A$. Finding $s,A$ such that $x(s)=(x_1,x_2)$ gives that 
+      %     \[(x_1,x_2) = \left(\frac{1}{2}s^2+As-2A,s\right)\]
+      %     so $x_2 = s$ and $x_1 = A(s-2) + \frac{1}{2}s^2$ which implies that $A = \frac{2x_1-x_2^2}{2(x_2-2)}$ which gives that 
+      %     \[u(x_1,x_2) = x_2 + \frac{2x_1-x_2^2}{2(x_2-2)}.\]
+      %   \end{enumerate}
+      % \end{proof}
+      % \exercise{35}{Consider the transport equation 
+      % \[u_t + a(x,t)\cdot\nabla u = 0.\]
+      % Show that if $u$ is a $C^1$ solution and $\beta : \R\to \R$ is an arbitrary $C^1$ function, then $\beta(u)$ is a solution as well.}
+      % \begin{proof}[Solution:]
+      %   \[\frac{d}{dt}\beta(u(x,t)) = \beta'(u(x,t)) u_t(x,t)\] and \[\nabla_x \beta(u(x,t)) = \beta'(u(x,t)) \nabla u(x,t)\] as $\frac{d}{dx_n} \beta(u(x,t)) = \beta'(u(x,t))u_{x_n}(x,t)$ for each $n$. Now, 
+      %   \[\frac{d}{dt}\beta(u(x,t)) + a(x,t)\cdot \nabla_x \beta(u(x,t)) = \beta'(u(x,t))\left(u_t(x,t)+ a(x,t)\cdot \nabla u(x,t)\right) = \beta'(u(x,t))\cdot 0 = 0.\]
+      % \end{proof}
+      % \exercise{36}{Find the characteristics for the problem 
+      % \[u_t - \frac{1}{2}u_x^2 - \frac{1}{2}x^2 = 0\] with initial condition $u(x,0) = x$. Explain why the solution is not defined for $|t|\ge \pi/2$.}
+      % \begin{proof}[Solution:]
+      %   % Finding the derivative in $x$ we see $u_{tx} - u_xu_{xx} - x = 0$. Let $v = u_x$ so we see that 
+      %   % \[v_t - vv_x -x = 0\] with $v(x,0) = 1$. Letting $q = v_x$, $p=v_t$, $z=v$, we have that 
+      %   % \[F(p,q,z,x) = p - zq - x = 0\]
+      %   % with characteristics 
+      %   % \begin{align*}
+      %   %   \begin{cases}
+      %   %     \dot{z} = q\partial_q F + p\partial_p F = p - zq = x \\
+      %   %     \dot{x} = \partial_q F = -z.
+      %   %   \end{cases}
+      %   % \end{align*}
+      %   % with initial data $x(t=0) = A$, $z(A,0) = 1$. Moreover, we see that 
+      %   % \[\ddot{x} = \frac{d}{dt}\dot{x} = -\dot{z} = -x\]
+      %   % so letting $(x(0), z(0)) = (A, 1)$, 
+      %   % \[x(t) = \sin(t) + A\cos(t)\]
+      %   %  which means 
+      %   %  \[z(t) = \cos(t) - A\sin(t)\]
+      %   Abusing notation with $(t,x) = (x_1,x_2)$, rewrite this as $F(p,z,x) = p_1 - \frac{1}{2}p_2^2 - \frac{1}{2}x_2^2$.
+      %   \begin{align*}
+      %     \dot{p}_1(s) &= 0, \,\,\dot{p}_2(s) = x_2 \\
+      %     \dot{z}(s) &= (1, -p_2)\cdot(p_1,p_2) = p_1 - p_2^2 \\
+      %     \dot{x}_1(s) &= 1, \,\,\dot{x}_2(s) = -p_2
+      %   \end{align*}
+      %   Then we have that $p_1(s) = p_1^0$, $x_1(s) = x_1^0 + s=s$ and the following system
+      %   \begin{align*}
+      %     \begin{bmatrix}
+      %       \dot{x_2} \\
+      %       \dot{p_2}
+      %     \end{bmatrix} = 
+      %     \begin{bmatrix}
+      %       0 & -1 \\
+      %       1 & 0
+      %     \end{bmatrix}\begin{bmatrix}
+      %       {x_2} \\
+      %       {p_2}
+      %     \end{bmatrix}
+      %   \end{align*}
+      %   which has solutions $(x_2(s),p_2(s)) = (A\cos(s)-B\sin(s),-A\sin(s)-B\cos(s))$.
+      %   To find $A,B$, $p_2^0 = u_x(x_0,0) = \frac{d}{dx} x = 1$ and $x_2^0 = x_0$ where $x_0\in \R$. This means we have the following characteristic 
+      %   \[x(s) = x_0\cos(s) - \sin(s).\]
+      %   Perturbing $x_0$ we see in the following figure that they cross at some value $t$ (where $t$ is the y-axis and $x$ is the x-axis)
+      %   \begin{figure}[H]
+      %     \centering
+      %     \includegraphics[scale=0.3]{36.jpg}
+      %   \end{figure}
+      % \end{proof}
+      % \begin{align*}
+      %   x_1 \cos(s) - \sin(s) = x_0\cos(s) - \sin(s) \\
+      %   \cos(s)(x_1-x_0) = 0
+      % \end{align*}
+      % which implies $|s| = \pi/2$ for the first time where they intersect. This means that there is no existence for $|t| \ge \pi/2$.
+    % \exercise{37}{Consider the solution of Burger's equation with smooth initial data $u_0$
+    % \begin{enumerate}
+    %   \item Compute, in terms of $u_0$, the first time $t_\star$ when characteristics cross.
+    %   \item Derive a necessary and sufficient condition on $u_0$ so that $t_\star = +\infty$.
+    % \end{enumerate}}
+    % \begin{proof}[Solution:]
+    %   Using $q=u_t$, $p=u_x$, and $z=u$ so we have 
+    %   \[q + zp = 0\]
+    %   This has characteristic ODEs 
+    %   \begin{align*}
+    %     \dot{x} = z \\
+    %     \dot{z} = 0
+    %   \end{align*}
+    %   This has solution 
+    %   \begin{align*}
+    %     x(t) = zt + A \\
+    %     z(t) = B
+    %   \end{align*}
+    %   where $B$ is a function of $A$. The characteristics of $x$ have that following 
+    %   \[x(t) = u(x(0),0)t + x(0) = u_0(x_0)t + x_0.\]
+    %   For general initial $x_1,x_0\in\R$ we have an intersection when 
+    %   \begin{align*}
+    %     u_0(x_1)t_\star + x_1 &= u_0(x_0)t_\star + x_0 \\
+    %     t_\star &= \frac{x_1-x_0}{u_0(x_1)-u_0(x_0)}.
+    %   \end{align*}
+    %   We see that $t_\star \to\infty$ whenever $u_0(x_1) - u_0(x_0)$ is sufficiently small, but because $x_1$ and $x_0$ are arbitrary, $u_0$ must be constant.
+    % \end{proof}
+    % \exercise{38}{Consider the scalar conservation law with initial data $u(x,0) = -x$. Show that if $f''(z) \ge \theta > 0$ for all $z\in \R$ then $\inf_{x\in\R} \partial_xu(x,t)\to-\infty$ in a finite time.}
+    % \begin{proof}[Solution:]
+    %   The conservation law can be written as 
+    %   \[u_t + F'(u)u_x = 0\]
+    %   so it has characteristic
+    %   \begin{align*}
+    %     \begin{cases}
+    %       \dot{p}(t) = - F''(z(t))p(t)^2
+    %     \end{cases}
+    %   \end{align*}
+    %   where $z = u$ and $p = u_x$. Now, because $F''(z) \ge \theta > 0$, we have the differential inequality
+    %   \[\dot{p}(t) \le - \theta p(t)^2\]
+    %   which means that  
+    %   \[ -\frac{1}{p(t)} \le C-\theta t \implies p(t) \le -\frac{1}{C-\theta t}\]
+    % $p(0) = -1$ ($(-x)_x$) so we see that $C=1$ so 
+    % \[p(t) \le -\frac{1}{1-\theta t}.\]
+    % $p(t)$ then tends towards $-\infty$ in $t^\star = \frac{1}{\theta}$.
+    % \end{proof}
+    % \exercise{39}{Evans Chapter 3 problem 19}
+    % \begin{proof}[Solution:]
+    %   Because $u$ is a continuous integral solution, we can look at solutions to the problem when time starts at $s$
+    %   \begin{align*}
+    %     \begin{cases}
+    %       u_t + F(u)_x = 0 &\text{ in $\R\times (\tau,\infty)$} \\
+    %       u = u(x,\tau) &\text{on $\R$},
+    %     \end{cases}
+    %   \end{align*} 
+    %   and these still have an integral solution 
+    %   \[\int_\tau^\infty \int_{\R}(uv_t + F(u)v_x)dxdt + \int_{\R}uvdx\vert_{t=\tau} = 0,\]
+    %   for $v\in C^\infty_c(\R\times[\tau,\infty))$. The difference between this and the original integral solution is 
+    %   \[\int_0^\tau\int_{\R}uv_t + F(u)v_xdxdt + \int_\R gvdx\vert_{t=0} - \int_{\R} uvdx\vert_{t=\tau} = 0.\]
+    %   Because $F(0)=0$, we notice $F(u(x\to\infty, t)) = F(0) = 0$ so $F$ is compactly supported as $u$ is compactly supported. Let $v = 1$ over the support of $u$ union the support of $F$. This eliminates the double integral term so we're left with 
+    %   \[\int_\R gvdx\vert_{t=0} = \int_\R uvdx\vert_{t=\tau} \implies \int_\R gdx = \int_\R u(x,\tau)dx\]
+    %   from our choice of $v = 1$.
+    % \end{proof}
+    % \exercise{40}{Entropy Solutions of Scalar Conservation Law}
+    \exercise{41}{Evans Chapter 3 Problem 20}
+    \begin{proof}[Solution:]
+      There is a shock at $x=-1$ and $x=1$, and there is a rarefaction at $x=0$. From the Rankine-Hugoniot condition, at $x=-1$, $\sigma = \frac{1}{2}$ and at $x=1$, $\sigma = 1$.
+      This would then have solution 
+      \[u(x,t) = \begin{cases}
+        1 &x<-1+\frac{1}{2}t \\
+        0 &-1+\frac{1}{2}t < x < 0 \\
+        \frac{x}{t} &0 < x < 2t \\
+        2 &2t < x < 1+t \\
+        0 &x > 1+t
+      \end{cases}\]
+      However, we see that there are collisions at $t=2$ and $t=1$, so solutions for this only exists for $0\le t \le 1$. For the shock at $t=1$, we have that $u_l = \frac{x}{t}$ and $u_r = 0$ so then 
+      \[\dot{s}(t) = \frac{\frac{1}{2}\left(\frac{s(t)}{t}\right)^2}{\frac{s(t)}{t}} = \frac{s(t)}{2t} \implies s(t) = 2\sqrt{t}\]
+      as $s(1) = 2$. Then when $t = 2$, we have that $u_l = 1$ and $u_r = \frac{x}{t}$ so 
+      \[\dot{q}(t) = \frac{1}{2}\frac{1 - \left(\frac{q(t)}{t}\right)^2}{1-\frac{q(t)}{t}} = \frac{1}{2}(1+\frac{q(t)}{t})\implies q(t) = t - \sqrt{2t}\]
+      as $q(2) = 0$. $q(t) = s(t)$ when $t = 6 +4\sqrt{2}$ so there will be another shock there. Moreover, for $1 \le t \le 2$, we have that solution 
+      \[u(x,t) = \begin{cases}
+        1 &x<-1+\frac{1}{2}t \\
+        0 &-1+\frac{1}{2}t < x < 0 \\
+        \frac{x}{t} &0 < x < 2\sqrt{t} \\
+        0 &x > 2\sqrt{t}
+      \end{cases}\]
+      and for $2\ge t \ge 6+4\sqrt{2}$
+      \[u(x,t) = \begin{cases}
+        1 &x<t - \sqrt{2t}\\
+        \frac{x}{t} &t - \sqrt{2t} < x < 2\sqrt{t} \\
+        0 &x > 2\sqrt{t}
+      \end{cases}\]
+      Finally, the shock at $t = 6+4\sqrt{2}$ is given by $u_l = 1$ and $u_r=0$ with 
+      \[\dot{r}(t) = \frac{1}{2} \implies r(t) = \frac{1}{2}t + 1\]
+      as $r(6+4\sqrt{2}) = 4+2\sqrt{2}$. The solution for $t > 6+4\sqrt{2}$ is given by 
+      \[u(x,t) = \begin{cases}
+        1 &x<1 + \frac{1}{2}t\\
+        0 &x > 1 + \frac{1}{2}t.
+      \end{cases}\]
+      The shocks are given by 
+      \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.5]{shocks.jpg}
+        \caption{Plotted are the shocks. Time is on the $x-axis$ and $x$ is on the $y-axis$. There are collisions at $t=1,2$ and $t=6+4\sqrt{2}$.}
+      \end{figure}
+    \end{proof}
+    \exercise{42}{Evans Chapter 3 Problem 9}
+    \begin{proof}[Solution:]
+      \begin{enumerate}[(a)]
+        \item Define $\mathcal{S} = \{y\in C^\infty|y(0)=y(t)=0\}$ and $i : \R\to\R$ such that 
+        \[i(\epsilon) = \int_0^t L(\dot{x}(s) + \epsilon \dot{y}(s), x(s)+\epsilon y(s))ds.\]
+        Now, $i$ has a inimum at $\epsilon = 0$ so 
+        \[i'(0) = \int_0^t\sum_{j=1}^n L_{v_j}(\dot{x},x)\dot{y}_j + L_{x_j}(\dot{x},x)y_jds = 0.\]
+        Then, by integration by parts, 
+        \begin{align*}
+          L_{v_j}(\dot{x}(t),x(t))y_j - L_{v_j}(\dot{x}(0),x(0))y_j(0) &= \int_0^t \left[\frac{\partial}{\partial s}L_{v_j}(\dot{x},x)y_j\right]ds \\
+          &= \int_0^t \left[\left(\frac{\partial}{\partial s}L_{v_j}(\dot{x},x)\right)y_j + L_{v_j}(\dot{x},x)\dot{y}_j\right]ds = 0.
+        \end{align*}
+        This gives that 
+        \[\int_0^t L_{v_j}(\dot{x},x)\dot{y}_j = - \int_0^t\left(\frac{\partial}{\partial s} L_{v_j}(\dot{x},x)\right)y_jds\]
+        Putting this into $i'(0)$, we see that 
+        \[\sum_{j=1}^n\int_0^t \left[-\frac{\partial}{\partial s} L_{v_j}(\dot{x},x) + L_{x_j}(\dot{x},x)\right]y_jds = 0\]
+        which implies that for all $j=1,2,\dots,n$,
+        \[-\frac{\partial}{\partial s}L_{v_j}(\dot{x},x) + L_{x_j}(\dot{x},x) = 0\]
+        as $y\in \mathcal{S}$ was arbitrary. Hence,  $x(s)$ satisfies the Euler-Lagrange Equations.
+        \item Now let $\mathcal{S} = \{y\in C^\infty, y(t)=0\}$. For any $y\in \mathcal{S}$ and $\epsilon\in\R$, $x+\epsilon y \in \mathcal{A}$, so $i(\epsilon)$ has a minimum at $\epsilon = 0$ for any fixed $y\in \mathcal{S}$. By integration by parts, 
+        \[-L_{v_j}(\dot{x}(0),x(0))y_j(0) = \int_0^t\left[\left(\frac{\partial}{\partial s} L_{v_j}(\dot{x},x)\right)y_j+L_{v_j}(\dot{x},x)\dot{y}_j\right]ds \]
+        Therefore, 
+        \[ \int_0^t L_{v_j}(\dot{x},x)\dot{y}_jds = -L_{v_j}(\dot{x}(0),x(0))y_j(0)-\int_0^t\left[\left(\frac{\partial}{\partial s} L_{v_j}(\dot{x},x)\right)y_j(s)\right]ds\]
+        If we put this equality into $i'(0)$ we have that 
+        \[\sum_{j=1}^n\int_0^t \left[-\frac{\partial}{\partial s}L_{v_j}(\dot{x},x) + L_{x_j}(\dot{x},x)\right]y_jds - D_vL(\dot{x}(0),x(0))\cdot y(0) = 0\]
+        Using part (a), we see that $D_vL(\dot{x}(0),x(0))\cdot y(0) = 0$ for any $y\in \mathcal{S}$, thus $D_vL(\dot{x}(0),x(0)) = 0$.
+        \item For any $y \in \{y\in C^\infty|y(0)=y(t)=0\}$ and $\epsilon \in \R$, $x + \epsilon y \in \mathcal{A}$ and $g(x(0)) = g(x(0) + \epsilon y(0))$. Define $k:\R\to\R$ such that 
+        \[k(\epsilon) = i(\epsilon) + g(x(0) + \epsilon y(0)) = \int_0^t L(\dot{x} + \epsilon\dot{y},x + \epsilon y)ds + g(x(0) + \epsilon y(0)).\]
+        By similar reasoning from (a), 
+        \[ k'(0) = \sum_{j=1}^n \int_0^t \left[-\frac{\partial}{\partial s}L_{v_j}(\dot{x},x) + L_{x_j}(\dot{x},x)\right]y_jds\]
+        because $g(x(0)+\epsilon y(0))$ is constant as $\epsilon$ changes. Therefore $x$ satisfies the Euler-Lagrange Equations. Now consider $y\in \{y\in C^\infty, y(t)=0\}$, and define $k(\epsilon)$ in the same way. Then we see that 
+        \[k'(\epsilon) = i'(\epsilon) + \frac{\partial}{\partial \epsilon}g(x(0) + \epsilon y(0)) = i'(\epsilon) + Dg(x(0) + \epsilon y(0))\cdot y(0)\]
+        so at $\epsilon = 0$, $k'(0) = i'(0) + Dg(x(0))\cdot y(0)$. From $b$ we know that $i'(0) = -D_vL(\dot{x}(0), x(0))\cdot y(0)$ since $x$ satisfies the E-L equations. Therefore, 
+        \[k'(0) = -D_vL(\dot{x}(0),x(0))\cdot y(0) + Dg(x(0)) \cdot y(0) = (Dg(x(0)) - D_vL(\dot{x}(0),x(0)))\cdot y(0) = 0.\]
+        Because this holds for all $y$, we have that $D_vL(\dot{x}(0),x(0)) = Dg(x(0))$ as an initial condition for minimizers $x$.
+      \end{enumerate}
+    \end{proof}
+    \exercise{43}{Evans Chapter 3 Problem 10}
+    \begin{proof}[Solution:]
+      We have that $L(v) = \sup_{p\in \R^n}[v\cdot p - H(p)] = \sup_{p\in\R^n} \left[v\cdot p - \frac{|p|^r}{r}\right].$
+      We can then use Young's inequality with $\frac{1}{r}+\frac{1}{s}=1$,
+      \[v\cdot p \le |v||p| \le \frac{|p|^r}{r} + \frac{|v|^s}{s}\]
+      so 
+      \[L(v) = \sup_{p\in\R^n}\left[v\cdot p - \frac{|p|^r}{r}\right] \le \frac{|v|^s}{s}.\]
+      Let $p = v|v|^{(s-r)/r}$ so 
       \begin{align*}
-        S_0 = \{(x,t) \in [0,1]\times (0,\infty): \rho(x,t) = 1
+        v\cdot p - \frac{|p|^r}{r} &= v\cdot v|v|^{(s-r)/r} - \frac{|v|v|^{(s-r)/r}|^r}{r} \\
+        &= |v|^{(s+r)/r} - \frac{|v|^s}{r} \\
+        &= |v|^s - \frac{|v|^s}{r} = \frac{|v|^s}{s}.
       \end{align*}
+      using that $\frac{1}{s} + \frac{1}{r} = 1$. This implies that $L(v) = \frac{|v|^s}{s}$.\newline
+      Now, fix $v\in \R^n$ and define $f = f_v : \R^n \to \R$ with 
+      \[f(p) = v\cdot p - H(p) = \sum_{i=1}^n(v_i - b_i)p_i - \frac{1}{2}\sum_{i,j=1}^n a_{ij}p_ip_j\]
+      If $f$ is bounded, then there is a $p^\star$ such that $f(p^\star) = \sup_{p\in\R^n} f(p) = L(v)$. Because $f$ is smooth, $p^\star$ must be a critical point with $Df(p^\star) = 0$. Let $r_i$ be the $i$th row of the matrix $A$, then 
+      \[\frac{\partial}{\partial p_i} f(p^\star) = (v_i - b_i) - r_i\cdot p^\star\]
+      Hence, 
+      \[Df(p^\star) = v - b - Ap^\star.\]
+      Because $A$ is positive definite, it is invertible, so $p^\star = A^{-1}(v-b)$. Moreover, the Hession of $f$ at $p^\star$ is $-A$, which is negative definite so $p$ is a global maximum (as it was assumed that it was the only critical point of $f$). Therefore, 
+      \begin{align*}
+        L(v) &= f(p^\star) \\
+        &= (v-b)\cdot p^\star - \frac{1}{2}(p^\star)^T A p^\star \\
+        &= (v-b)\cdot(A^{-1}(v-b)) - \frac{1}{2}(A^{-1}(v-b))^T A (A^{-1}(v-b)) \\
+        &= (v-b)\cdot(A^{-1}(v-b)) - \frac{1}{2}((v-b)^TA^{-1}) A (A^{-1}(v-b)) \\
+        &= \frac{1}{2}(v-b)^TA^{-1}(v-b).
+      \end{align*}
+      Now all is left is to show that $f$ is bounded.\newline
+      $x^T A x$ is continuous so we can choose some $x^T A x \ge M > 0$ for $|x| = 1$. Let $p_1 = \frac{p}{|p|}$ so 
+      \begin{align*}
+        f(p) &= (v-b)\cdot p - p^T A p \\
+        &\le |v-b||p| - |p|^2 p_1^T A p_1 \\
+        &\le|v-b||p| - M|p|^2\\
+        &= \frac{1}{M}M|p|(|v-b| - M|p|)\\
+        &\le \frac{1}{M}\frac{|v-b|^2}{4}.
+      \end{align*}
+    \end{proof}
+    \exercise{44}{Evans Chapter 3 Problem 13}
+    \begin{proof}[Solution:]
+      Define $f(y) = tL(\frac{x-y}{t}) + g(y)$ and assume $f$ takes its minimum at some $y_0$. This means $Df(y_0) = 0$. We know that $Df(y) = -tDL(\frac{x-y}{t})\frac{1}{t} + Dg(y) = Dg(y) - DL(\frac{x-y}{t})$ so we have that 
+      \[DL(\frac{x-y_0}{t}) = Dg(y_0).\] Then, by (16) in Theorem 3 in 3.3.2, $DH(Dg(y_0)) = DH(DL(\frac{x-y_0}{t}))=\frac{x - y_0}{t}$. We are given that $R \ge |DH(Dg)|$ so we have that 
+      \[Rt \ge |x-y_0|\]
+      so $y_0 \in B(x,Rt)$ meaning that 
+      \[\min_{y\in\R^n} \left[tL(\frac{x-y}{t}) + g(y)\right] = \min_{y\in B(x,Rt)}\left[tL(\frac{x-y}{t}) + g(y)\right].\]
+
+    \end{proof}
+    \exercise{45}{Evans Chapter 3 Problem 14}
+    \begin{proof}[Solution:]
+      $L(v) = \min_{p\in\R^n} [v\cdot p - |p|^2] \le |v||p| - |p|^2 \le \frac{|v|^2}{4} + |p|^2 - |p|^2 = \frac{|v|^2}{4}.$ However, for $p^\star = \frac{v}{2}, p^\star \cdot v - |p^\star|^2 = \frac{|v|^2}{4}$. This means that 
+      \[L(v) = \frac{|v|^2}{4}.\]
+      Now, write $u$ as the Hopf-lax formula, 
+      \begin{align*}
+        u(x,t) &= \min_{y\in\R^n} \left[tL(\frac{x-y}{t}) + g(y))\right]\\
+        &= \min_{y\in\R^n} \left[\frac{|x-y|^2}{4t} + g(y))\right]
+      \end{align*}
+      Using the given $g(y) = u(y,0)$, 
+      \[ u(x,t) = \min_{y\in E} \left[\frac{|x-y|^2}{4t}\right] = \frac{1}{4t}\operatorname{dist}(x,E)^2.\]
+    \end{proof}  
     \end{document}
